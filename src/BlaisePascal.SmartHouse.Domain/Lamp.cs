@@ -2,6 +2,6 @@
 {
     public class Lamp
     {
-
+        int a = 0;
     }
 }

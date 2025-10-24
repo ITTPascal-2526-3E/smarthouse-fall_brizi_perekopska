@@ -1,11 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36212.18 d17.14
+VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6C83A596-D32D-B35F-00DD-F0C99B673980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Console", "src\BlaisePascal.SmartHouse.Console\BlaisePascal.SmartHouse.Console.csproj", "{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlaisePascal.SmartHouse.Domain", "src\BlaisePascal.SmartHouse.Domain\BlaisePascal.SmartHouse.Domain.csproj", "{C43691D1-F167-4AC5-8AC3-33F8507120D3}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C43691D1-F167-4AC5-8AC3-33F8507120D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43691D1-F167-4AC5-8AC3-33F8507120D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43691D1-F167-4AC5-8AC3-33F8507120D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43691D1-F167-4AC5-8AC3-33F8507120D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DD29077-2F00-45E5-B7EC-3CEB54BC99F8} = {6C83A596-D32D-B35F-00DD-F0C99B673980}
+		{C43691D1-F167-4AC5-8AC3-33F8507120D3} = {6C83A596-D32D-B35F-00DD-F0C99B673980}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D11F870-8382-44D7-B40D-3D3E38F46073}
