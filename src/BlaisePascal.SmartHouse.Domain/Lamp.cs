@@ -3,5 +3,6 @@
     public class Lamp
     {
         int a = 0;
+        int prova;
     }
 }
