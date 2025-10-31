@@ -8,6 +8,8 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Time
     {
+
+        
         //Attributes:
         public int Hours{ get; set;}
         public int Minutes { get; set;}
