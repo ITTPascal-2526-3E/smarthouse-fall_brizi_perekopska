@@ -16,7 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain
         private double ConsumeAtMaxBrightnessPerHour;
         public Time OnTime;
         public Time OffTime;
-
+        
 
         //Constructor:
         public EcoLamp(bool isOn, byte brightness, byte[] color, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime) 
