@@ -8,9 +8,9 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Time
     {
-        private int Hours{ get; set;}
-        private int Minutes { get; set;}
-        private int Seconds { get; set;}
+        public int Hours{ get; set;}
+        public int Minutes { get; set;}
+        public int Seconds { get; set;}
 
         public Time(int hours, int minutes, int seconds)
         {
