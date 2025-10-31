@@ -8,6 +8,26 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     internal class Time
     {
-        class
+        private int Hours { get; set; }
+        private int Minutes { get; set; }
+        private int Seconds { get; set; }
+
+        public Time(int hours, int minutes, int seconds)
+        {
+            if (hours <= 23 && hours >= 0)
+            {
+                Hours = hours;
+            }
+
+            if (minutes <= 59 && minutes >= 0)
+            {
+                Minutes = minutes;
+            }
+
+            if (seconds <= 59 && seconds >= 0)
+            {
+                Seconds = seconds;
+            }
+        }
     }
 }
