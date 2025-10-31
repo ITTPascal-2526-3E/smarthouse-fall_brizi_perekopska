@@ -9,10 +9,54 @@ namespace BlaisePascal.SmartHouse.Domain
     public class EcoLamp
     {
         //Attributes:
-
+        public bool IsOn { get; set; }
+        public byte Brightness { get; set; }
+        public byte[] Color = new byte[3] { 0, 0, 0 };
+        private string Type;
+        private double ConsumeAtMaxBrightnessPerHour;
+        public Time OnTime;
+        public Time OffTime;
 
 
         //Constructor:
-        public EcoLamp() { }
+        public EcoLamp(bool isOn, byte brightness, byte[] color, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime) 
+        {
+            IsOn = isOn;
+
+
+            if (brightness >= 1 && brightness <= 100)
+            {
+                Brightness = brightness;
+            }
+
+
+            Color = color;
+
+
+            if (!string.IsNullOrEmpty(type))
+            {
+                Type = type;
+            }
+
+
+            if (consumeAtMaxBrightnessPerHour > 0.0)
+            {
+                ConsumeAtMaxBrightnessPerHour = consumeAtMaxBrightnessPerHour;
+            }
+
+
+            if (onTime.Hours > offTime.Hours)
+            {
+                OnTime = onTime;
+            }
+
+
+            if (onTime.Hours > offTime.Hours)
+            {
+                OffTime = offTime;
+            }
+
+
+        }
     }
 }
