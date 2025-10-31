@@ -8,10 +8,12 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     public class Time
     {
+        //Attributes:
         public int Hours{ get; set;}
         public int Minutes { get; set;}
         public int Seconds { get; set;}
 
+        //Constructor:
         public Time(int hours, int minutes, int seconds)
         {
             if (hours <= 23 && hours >= 0)

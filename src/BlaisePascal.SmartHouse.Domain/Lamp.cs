@@ -12,6 +12,9 @@
         public Time OnTime;
         public Time OffTime;
 
+
+
+        //Constructor:
         public Lamp(bool isOn,byte brightness,string color,string type,double consumeAtMaxBrightnessPerHour,Time onTime,Time offTime) 
         { 
             IsOn = isOn;
