@@ -16,15 +16,16 @@ namespace BlaisePascal.SmartHouse.Domain
         private double ConsumeAtMaxBrightnessPerHour;
         public Time OnTime;
         public Time OffTime;
+        public Time Timer;
         
 
         //Constructor:
-        public EcoLamp(bool isOn, byte brightness, byte[] color, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime) 
+        public EcoLamp(bool isOn, byte brightness, byte[] color, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime, Time timer) 
         {
             IsOn = isOn;
 
 
-            if (brightness >= 1 && brightness <= 100)
+            if (brightness >= 1 && brightness <= 65)
             {
                 Brightness = brightness;
             }
@@ -56,6 +57,7 @@ namespace BlaisePascal.SmartHouse.Domain
                 OffTime = offTime;
             }
 
+            Timer = timer;
 
         }
     }

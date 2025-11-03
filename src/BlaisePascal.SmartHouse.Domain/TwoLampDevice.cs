@@ -10,69 +10,145 @@ namespace BlaisePascal.SmartHouse.Domain
     public class TwoLampDevice
     {
         //Attributes:
-        private Lamp NormalLamp;
-        private EcoLamp EcoLamp;
+        private Lamp FirstLamp;
+        private EcoLamp SecondLamp;
 
 
 
         //Constructor:
-        public TwoLampDevice(Lamp normalLamp, EcoLamp ecoLamp) 
+        public TwoLampDevice(Lamp firstLamp, EcoLamp secondLamp) 
         { 
-            NormalLamp=normalLamp;
-            EcoLamp = ecoLamp;
+            FirstLamp=firstLamp;
+            SecondLamp = secondLamp;
+        }
+
+
+        /// <summary>
+        /// Change state to the first lamp.
+        /// </summary>
+        public void ChangeLamp1State()
+        {
+
+            if (FirstLamp.IsOn == true)
+            {
+                FirstLamp.IsOn = false;
+            }
+            else
+            {
+                FirstLamp.IsOn = false;
+            }
         }
 
 
 
-        public void ChangeState(string witch) 
+        /// <summary>
+        /// Change state to the second lamp.
+        /// </summary>
+        public void ChangeLamp2State() { 
+            if (SecondLamp.IsOn == true)
+            {
+                SecondLamp.IsOn = false;
+            }
+            else
+            {
+                SecondLamp.IsOn = false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Change state to both the lamp.
+        /// </summary>
+        public void ChangeBothLampState() { 
+            if (SecondLamp.IsOn == true)
+            {
+                SecondLamp.IsOn = false;
+            }
+            else
+            {
+                SecondLamp.IsOn = false;
+            }
+
+
+            if (FirstLamp.IsOn == true)
+            {
+                FirstLamp.IsOn = false;
+            }
+            else
+            {
+                FirstLamp.IsOn = false;
+            }
+            
+        }
+
+
+        /// <summary>
+        /// Change first lamp brightness.
+        /// </summary>
+        /// <param name="brightness"></param>
+        public void ChangeLamp1Brightness(byte brightness)
         {
-            if (witch == "Normal") 
-            {
-                if (NormalLamp.IsOn == true)
-                {
-                    NormalLamp.IsOn = false;
-                }
-                else 
-                { 
-                    NormalLamp.IsOn=false;
-                }
-            }
+            FirstLamp.Brightness = brightness;
+        }
 
 
-            if (witch == "Eco")
-            {
-                if (EcoLamp.IsOn == true)
-                {
-                    EcoLamp.IsOn = false;
-                }
-                else
-                {
-                    EcoLamp.IsOn = false;
-                }
-            }
+
+        /// <summary>
+        /// Change second lamp brightness.
+        /// </summary>
+        /// <param name="brightness"></param>
+        public void ChangeLamp2Brightness(byte brightness)
+        {
+            SecondLamp.Brightness = brightness;
+        }
 
 
-            if (witch == "Both") 
-            {
-                if (EcoLamp.IsOn == true)
-                {
-                    EcoLamp.IsOn = false;
-                }
-                else
-                {
-                    EcoLamp.IsOn = false;
-                }
+
+        /// <summary>
+        /// Change both lamps brightness.
+        /// </summary>
+        /// <param name="firstLampBrightness"></param>
+        /// <param name="secondLampBrightness"></param>
+        public void ChangeBothLampBrightness(byte firstLampBrightness, byte secondLampBrightness)
+        {
+            FirstLamp.Brightness = firstLampBrightness;
+            SecondLamp.Brightness = secondLampBrightness;
+        }
 
 
-                if (NormalLamp.IsOn == true)
-                {
-                    NormalLamp.IsOn = false;
-                }
-                else
-                {
-                    NormalLamp.IsOn = false;
-                }
-            }
+
+        /// <summary>
+        /// Change color to the first lamp.
+        /// </summary>
+        /// <param name="colors"></param>
+        public void ChangeLamp1Color(byte[] colors) 
+        { 
+            FirstLamp.Color = colors;
+        }
+
+
+
+        /// <summary>
+        /// Change color to the seond lamp.
+        /// </summary>
+        /// <param name="colors"></param>
+        public void ChangeLamp2Color(byte[] colors)
+        {
+            SecondLamp.Color = colors;
+        }
+
+
+
+        /// <summary>
+        /// Change both lamps colors.
+        /// </summary>
+        /// <param name="firstLampColors"></param>
+        /// <param name="secondLampColors"></param>
+        public void ChangeBothLampColor(byte[] firstLampColors, byte[] secondLampColors)
+        {
+            FirstLamp.Color = firstLampColors;
+            SecondLamp.Color = secondLampColors;
         }
     }
 }
