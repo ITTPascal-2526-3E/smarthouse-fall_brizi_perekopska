@@ -12,6 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain
         //Attributes:
         private bool IsOn;
         public byte Brightness { get; set; }
+        private byte BrightnessBeforeTurnOff;
         const byte MaxBrightness = 65;
         private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
         private string Type;
@@ -36,6 +37,7 @@ namespace BlaisePascal.SmartHouse.Domain
             if (brightness >= 1 && brightness <= 65)
             {
                 Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
             }
 
 
@@ -62,8 +64,6 @@ namespace BlaisePascal.SmartHouse.Domain
                 OffTime = offTime;
             }
 
-            
-
         }
 
 
@@ -75,10 +75,12 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             if (IsOn == true)
             {
+                Brightness = 0;
                 IsOn = false;
             }
             else
             {
+                Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
                 TimerToTurnOff();
             }
@@ -93,8 +95,8 @@ namespace BlaisePascal.SmartHouse.Domain
         private void TimerToTurnOff() 
         {
             int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;
-            TimeOn=new System.Timers.Timer(time);
-            IsOn= false;
+            TimeOn = new System.Timers.Timer(time);
+            IsOn = false;
         }
 
 

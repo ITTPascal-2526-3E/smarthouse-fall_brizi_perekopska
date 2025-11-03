@@ -6,6 +6,7 @@
         //Attributes:
         private bool IsOn;
         public byte Brightness { get; set; }
+        private byte BrightnessBeforeTurnOff;
         public byte[] Color = new byte[3] { 0,0,0}; //RGB
         private string Type;
         private double ConsumeAtMaxBrightnessPerHour;
@@ -23,6 +24,7 @@
             if(brightness>=1 && brightness <= 100)
             {
                 Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
             }
             
 
@@ -66,10 +68,12 @@
             if (IsOn == true)
             {
                 IsOn = false;
+                Brightness = 0;
             }
             else 
-            { 
-                IsOn=true;
+            {
+                Brightness = BrightnessBeforeTurnOff;
+                IsOn = true;
             }
             return IsOn;
         }

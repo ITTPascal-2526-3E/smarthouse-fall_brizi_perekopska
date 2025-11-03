@@ -29,7 +29,6 @@ namespace BlaisePascal.SmartHouse.Domain
         /// </summary>
         public void ChangeLamp1State()
         {
-
             FirstLamp.TurnOnOrOff();
         }
 
