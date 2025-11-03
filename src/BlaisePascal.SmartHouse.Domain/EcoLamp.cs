@@ -18,13 +18,15 @@ namespace BlaisePascal.SmartHouse.Domain
         private double ConsumeAtMaxBrightnessPerHour;
         public Time OnTime;
         public Time OffTime;
-        public Time Timer;
+        public Time _Timer;
         private System.Timers.Timer TimeOn;
         
 
         //Constructor:
         public EcoLamp(bool isOn, byte brightness, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime, Time timer) 
         {
+            _Timer = timer;
+
             IsOn = isOn;
             if (IsOn)
             {
@@ -60,7 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain
                 OffTime = offTime;
             }
 
-            Timer = timer;
+            
 
         }
 
@@ -90,7 +92,7 @@ namespace BlaisePascal.SmartHouse.Domain
         /// </summary>
         private void TimerToTurnOff() 
         {
-            int time = ((Timer.Hours * 3600) + (Timer.Minutes * 60) + Timer.Seconds)*1000;
+            int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;
             TimeOn=new System.Timers.Timer(time);
             IsOn= false;
         }
