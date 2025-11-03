@@ -35,7 +35,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             else
             {
-                FirstLamp.IsOn = false;
+                FirstLamp.IsOn = true;
             }
         }
 
@@ -51,7 +51,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             else
             {
-                SecondLamp.IsOn = false;
+                SecondLamp.IsOn = true;
             }
         }
 
@@ -67,7 +67,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             else
             {
-                SecondLamp.IsOn = false;
+                SecondLamp.IsOn = true;
             }
 
 
@@ -77,7 +77,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             else
             {
-                FirstLamp.IsOn = false;
+                FirstLamp.IsOn = true;
             }
             
         }

@@ -6,7 +6,7 @@
         //Attributes:
         public bool IsOn { get; set; }
         public byte Brightness { get; set; }
-        public byte[] Color = new byte[3] { 0,0,0};
+        public byte[] Color = new byte[3] { 0,0,0}; //RGB
         private string Type;
         private double ConsumeAtMaxBrightnessPerHour;
         public Time OnTime;

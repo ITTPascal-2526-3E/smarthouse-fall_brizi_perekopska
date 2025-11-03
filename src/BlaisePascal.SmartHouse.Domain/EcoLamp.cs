@@ -11,6 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain
         //Attributes:
         public bool IsOn { get; set; }
         public byte Brightness { get; set; }
+        const byte MaxBrightness = 65;
         public byte[] Color = new byte[3] { 0, 0, 0 };
         private string Type;
         private double ConsumeAtMaxBrightnessPerHour;
