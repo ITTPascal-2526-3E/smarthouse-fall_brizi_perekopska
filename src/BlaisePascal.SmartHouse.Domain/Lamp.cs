@@ -15,7 +15,7 @@
 
 
         //Constructor:
-        public Lamp(bool isOn,byte brightness,byte[] color,string type,double consumeAtMaxBrightnessPerHour,Time onTime,Time offTime) 
+        public Lamp(bool isOn,byte brightness,byte[] color,string type,double consumeAtMaxBrightness,Time onTime,Time offTime) 
         { 
             IsOn = isOn;
 
@@ -35,9 +35,9 @@
             }
 
 
-            if (consumeAtMaxBrightnessPerHour>0.0) 
+            if (consumeAtMaxBrightness>0.0) 
             { 
-                ConsumeAtMaxBrightnessPerHour = consumeAtMaxBrightnessPerHour;
+                ConsumeAtMaxBrightnessPerHour = consumeAtMaxBrightness;
             }
 
 
