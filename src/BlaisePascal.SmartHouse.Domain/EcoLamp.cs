@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain
         public bool IsOn { get; set; }
         public byte Brightness { get; set; }
         const byte MaxBrightness = 65;
-        public byte[] Color = new byte[3] { 0, 0, 0 };
+        private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
         private string Type;
         private double ConsumeAtMaxBrightnessPerHour;
         public Time OnTime;
@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain
         
 
         //Constructor:
-        public EcoLamp(bool isOn, byte brightness, byte[] color, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime, Time timer) 
+        public EcoLamp(bool isOn, byte brightness, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime, Time timer) 
         {
             IsOn = isOn;
 
@@ -30,9 +30,6 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 Brightness = brightness;
             }
-
-
-            Color = color;
 
 
             if (!string.IsNullOrEmpty(type))

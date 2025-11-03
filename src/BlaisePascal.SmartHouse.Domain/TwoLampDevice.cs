@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,11 +134,12 @@ namespace BlaisePascal.SmartHouse.Domain
         /// Change color to the seond lamp.
         /// </summary>
         /// <param name="colors"></param>
+        /*the color of eco lamp cant be changed because it's Eco
         public void ChangeLamp2Color(byte[] colors)
         {
             SecondLamp.Color = colors;
         }
-
+        */ 
 
 
         /// <summary>
@@ -145,10 +147,12 @@ namespace BlaisePascal.SmartHouse.Domain
         /// </summary>
         /// <param name="firstLampColors"></param>
         /// <param name="secondLampColors"></param>
+        /*NO need
         public void ChangeBothLampColor(byte[] firstLampColors, byte[] secondLampColors)
         {
             FirstLamp.Color = firstLampColors;
             SecondLamp.Color = secondLampColors;
         }
+        */
     }
 }
