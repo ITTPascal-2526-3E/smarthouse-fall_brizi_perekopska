@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
     public class EcoLamp
     {
         //Attributes:
-        public bool IsOn { get; set; }
+        private bool IsOn;
         public byte Brightness { get; set; }
         const byte MaxBrightness = 65;
         private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
@@ -18,13 +19,17 @@ namespace BlaisePascal.SmartHouse.Domain
         public Time OnTime;
         public Time OffTime;
         public Time Timer;
+        private System.Timers.Timer TimeOn;
         
 
         //Constructor:
         public EcoLamp(bool isOn, byte brightness, string type, double consumeAtMaxBrightnessPerHour, Time onTime, Time offTime, Time timer) 
         {
             IsOn = isOn;
-
+            if (IsOn)
+            {
+                TimerToTurnOff();
+            }
 
             if (brightness >= 1 && brightness <= 65)
             {
@@ -58,5 +63,38 @@ namespace BlaisePascal.SmartHouse.Domain
             Timer = timer;
 
         }
+
+
+
+        /// <summary>
+        /// Change the state of the Lamp, on or off.
+        /// </summary>
+        public bool TurnOnOrOff() 
+        {
+            if (IsOn == true)
+            {
+                IsOn = false;
+            }
+            else
+            {
+                IsOn = true;
+                TimerToTurnOff();
+            }
+            return IsOn;
+        }
+
+
+
+        /// <summary>
+        /// Set the timer to turn off the eco lapm.
+        /// </summary>
+        private void TimerToTurnOff() 
+        {
+            int time = ((Timer.Hours * 3600) + (Timer.Minutes * 60) + Timer.Seconds)*1000;
+            TimeOn=new System.Timers.Timer(time);
+            IsOn= false;
+        }
+
+
     }
 }

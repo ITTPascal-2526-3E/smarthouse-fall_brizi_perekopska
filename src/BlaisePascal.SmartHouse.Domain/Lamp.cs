@@ -4,7 +4,7 @@
     {
 
         //Attributes:
-        public bool IsOn { get; set; }
+        private bool IsOn;
         public byte Brightness { get; set; }
         public byte[] Color = new byte[3] { 0,0,0}; //RGB
         private string Type;
@@ -53,6 +53,25 @@
             }
 
 
+        }
+
+
+
+
+        /// <summary>
+        /// Change the state of the Lamp, on or off.
+        /// </summary>
+        public bool TurnOnOrOff() 
+        {
+            if (IsOn == true)
+            {
+                IsOn = false;
+            }
+            else 
+            { 
+                IsOn=true;
+            }
+            return IsOn;
         }
 
 

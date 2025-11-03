@@ -30,14 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain
         public void ChangeLamp1State()
         {
 
-            if (FirstLamp.IsOn == true)
-            {
-                FirstLamp.IsOn = false;
-            }
-            else
-            {
-                FirstLamp.IsOn = true;
-            }
+            FirstLamp.TurnOnOrOff();
         }
 
 
@@ -46,14 +39,7 @@ namespace BlaisePascal.SmartHouse.Domain
         /// Change state to the second lamp.
         /// </summary>
         public void ChangeLamp2State() { 
-            if (SecondLamp.IsOn == true)
-            {
-                SecondLamp.IsOn = false;
-            }
-            else
-            {
-                SecondLamp.IsOn = true;
-            }
+            SecondLamp.TurnOnOrOff();
         }
 
 
@@ -61,26 +47,9 @@ namespace BlaisePascal.SmartHouse.Domain
         /// <summary>
         /// Change state to both the lamp.
         /// </summary>
-        public void ChangeBothLampState() { 
-            if (SecondLamp.IsOn == true)
-            {
-                SecondLamp.IsOn = false;
-            }
-            else
-            {
-                SecondLamp.IsOn = true;
-            }
-
-
-            if (FirstLamp.IsOn == true)
-            {
-                FirstLamp.IsOn = false;
-            }
-            else
-            {
-                FirstLamp.IsOn = true;
-            }
-            
+        public void ChangeBothLampState() {
+            FirstLamp.TurnOnOrOff();
+            SecondLamp.TurnOnOrOff();
         }
 
 
