@@ -95,32 +95,5 @@ namespace BlaisePascal.SmartHouse.Domain
         { 
             FirstLamp.Color = colors;
         }
-
-
-
-        /// <summary>
-        /// Change color to the seond lamp.
-        /// </summary>
-        /// <param name="colors"></param>
-        /*the color of eco lamp cant be changed because it's Eco
-        public void ChangeLamp2Color(byte[] colors)
-        {
-            SecondLamp.Color = colors;
-        }
-        */ 
-
-
-        /// <summary>
-        /// Change both lamps colors.
-        /// </summary>
-        /// <param name="firstLampColors"></param>
-        /// <param name="secondLampColors"></param>
-        /*NO need
-        public void ChangeBothLampColor(byte[] firstLampColors, byte[] secondLampColors)
-        {
-            FirstLamp.Color = firstLampColors;
-            SecondLamp.Color = secondLampColors;
-        }
-        */
     }
 }
