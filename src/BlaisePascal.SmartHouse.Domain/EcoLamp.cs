@@ -82,7 +82,7 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
-                TimerToTurnOff();
+                //TimerToTurnOff(); //Incorrect, has to be implemented (sugg VS: with async/await)
             }
             return IsOn;
         }
