@@ -78,7 +78,10 @@
             return IsOn;
         }
 
+        public void ChangeLampColor(byte[] colors)
+        {
+            Color = colors;
+        }
 
-        
     }
 }

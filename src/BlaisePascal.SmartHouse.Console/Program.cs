@@ -14,6 +14,8 @@ namespace BlaisePascal.SmartHouse.Domain
             Console.WriteLine("EcoLamp1: " + EcoLamp1.TurnOnOrOff() + ", brightness = " + EcoLamp1.Brightness);
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
 
+            Lamp1.ChangeLampColor([120, 120, 120]);
+
             TwoLampDevice1.ChangeBothLampState();
             do {
                 Console.Clear();
@@ -21,6 +23,8 @@ namespace BlaisePascal.SmartHouse.Domain
                 Console.WriteLine("EcoLamp1: "+ EcoLamp1.TurnOnOrOff() + ", brightness = " + EcoLamp1.Brightness);
                 Thread.Sleep(5000);
             } while(true);
+
+            
             
         }
     }
