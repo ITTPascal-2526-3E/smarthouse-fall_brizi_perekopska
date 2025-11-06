@@ -20,7 +20,6 @@ namespace BlaisePascal.SmartHouse.Domain
         public Time OnTime;
         public Time OffTime;
         public Time _Timer;
-        private System.Timers.Timer TimeOn;
         
 
         //Constructor:
@@ -82,7 +81,7 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
-                //TimerToTurnOff(); //Incorrect, has to be implemented (sugg VS: with async/await)
+                TimerToTurnOff(); 
             }
             return IsOn;
         }
@@ -92,10 +91,10 @@ namespace BlaisePascal.SmartHouse.Domain
         /// <summary>
         /// Set the timer to turn off the eco lapm.
         /// </summary>
-        private void TimerToTurnOff() 
+        private async Task TimerToTurnOff() 
         {
             int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;
-            TimeOn = new System.Timers.Timer(time);
+            await Task.Delay(time);
             IsOn = false;
         }
 
