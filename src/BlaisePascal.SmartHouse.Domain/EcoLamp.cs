@@ -95,6 +95,8 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;
             await Task.Delay(time);
+            BrightnessBeforeTurnOff = Brightness;
+            Brightness = 0;
             IsOn = false;
         }
 
