@@ -74,6 +74,7 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             if (IsOn == true)
             {
+                BrightnessBeforeTurnOff = Brightness;
                 Brightness = 0;
                 IsOn = false;
             }
