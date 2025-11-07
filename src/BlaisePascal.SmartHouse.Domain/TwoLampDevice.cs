@@ -21,48 +21,43 @@ namespace BlaisePascal.SmartHouse.Domain
             SecondLamp = secondLamp;
         }
 
-        /// Change state to the first lamp.
+        // Change state to the first lamp.
         public void ChangeLamp1State()
         {
             FirstLamp.TurnOnOrOff();
         }
 
-        /// Change state to the second lamp.
+        // Change state to the second lamp.
         public void ChangeLamp2State() { 
             SecondLamp.TurnOnOrOff();
         }
 
-        /// Change state to both the lamp.
+        // Change state to both the lamp
         public void ChangeBothLampState() {
             FirstLamp.TurnOnOrOff();
             SecondLamp.TurnOnOrOff();
         }
 
-        /// Change first lamp brightness.
-        /// <param name="brightness"></param>
+        // Change first lamp brightness
         public void ChangeLamp1Brightness(byte brightness)
         {
-            FirstLamp.Brightness = brightness;
+            FirstLamp.ChangeBrightness(brightness);
         }
 
-        /// Change second lamp brightness.
-        /// <param name="brightness"></param>
+        // Change second lamp brightness.
         public void ChangeLamp2Brightness(byte brightness)
         {
             SecondLamp.Brightness = brightness;
         }
 
-        /// Change both lamps brightness.
-        /// <param name="firstLampBrightness"></param>
-        /// <param name="secondLampBrightness"></param>
+        // Change both lamps brightness
         public void ChangeBothLampBrightness(byte firstLampBrightness, byte secondLampBrightness)
         {
-            FirstLamp.Brightness = firstLampBrightness;
-            SecondLamp.Brightness = secondLampBrightness;
+            FirstLamp.ChangeBrightness(firstLampBrightness);
+            SecondLamp.ChangeBrightness(secondLampBrightness);
         }
 
-        /// Change color to the first lamp.
-        /// <param name="colors"></param>
+        // Change color to the first lamp
         public void ChangeLamp1Color(byte[] colors) 
         { 
             FirstLamp.Color = colors;

@@ -22,7 +22,6 @@ namespace BlaisePascal.SmartHouse.Domain
         public Time OnTime;
         public Time OffTime;
         public Time _Timer;
-        
 
         //Constructor:
         public EcoLamp(bool isOn, byte brightness, string type, Time onTime, Time offTime, Time timer) 
@@ -49,7 +48,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         }
 
-        /// Change the state of the Lamp, on or off.
+        // Change the state of the Lamp, on or off
         public bool TurnOnOrOff() 
         {
             if (IsOn == true)
@@ -66,8 +65,18 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             return IsOn;
         }
+      
+        // Changes the brightness of the eco lamp
+        public void ChangeBrightness(byte newBrightness)
+        {
+            if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+            {
+                Brightness = newBrightness;
+                BrightnessBeforeTurnOff = Brightness;
+            }
+        }
 
-        /// Set the timer to turn off the eco lapm.
+        // Set the timer to turn off the eco lapm
         private async Task TimerToTurnOff() 
         {
             int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;

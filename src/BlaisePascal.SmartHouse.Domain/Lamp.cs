@@ -5,7 +5,7 @@
 
         //Attributes:
         private bool IsOn;
-        public byte Brightness { get; set; }
+        public byte Brightness { get; private set; }
         const double ConsumeAtMaxBrightnessPerHour = 100.0;
         private byte BrightnessBeforeTurnOff;
             const byte MaxBrightness = 100;
@@ -55,6 +55,17 @@
             return IsOn;
         }
 
+        /// Changes the brightness of the lamp
+        public void ChangeBrightness(byte newBrightness)
+        {
+            if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+            {
+                Brightness = newBrightness;
+                BrightnessBeforeTurnOff = Brightness;
+            }
+        }
+
+        // Changes the color of the  lamp
         public void ChangeLampColor(byte[] colors)
         {
             Color = colors;
