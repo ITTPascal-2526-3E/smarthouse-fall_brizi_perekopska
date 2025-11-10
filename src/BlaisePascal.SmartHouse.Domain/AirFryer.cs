@@ -15,22 +15,22 @@ namespace BlaisePascal.SmartHouse.Domain
         const byte MinTemperature = 80;
         private byte CookingTemperature;
 
+        public enum CookingType { Null, Fryed, Roasted, Sweets, Grilled, Dehydrated, Baked, Dryed, SlowCooked, Steamed, Pizza, Reheated, Tosted, KeepWarmed, Pasta}
+
         private Time _Timer;
 
         //Constructor
-        public AirFryer(bool isOn, byte cookingTemperature)
+        public AirFryer(bool isOn)
         {
             IsOn = isOn;
-            CookingTemperature = cookingTemperature;
-            if(cookingTemperature>=MinTemperature && cookingTemperature<=MaxTemperature)
+        }
+
+        public void Start( CookingType type, byte cookingTemperature)
+        {
+            if (cookingTemperature >= MinTemperature && cookingTemperature <= MaxTemperature)
             {
                 CookingTemperature = cookingTemperature;
             }
-        }
-
-        public void Start()
-        {
-
         }
 
     }
