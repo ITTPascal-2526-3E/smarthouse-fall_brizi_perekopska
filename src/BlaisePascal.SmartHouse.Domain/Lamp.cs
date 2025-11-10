@@ -5,14 +5,16 @@
 
         //Attributes:
         private bool IsOn;
+
         public byte Brightness { get; private set; }
         const double ConsumeAtMaxBrightnessPerHour = 100.0;
         private byte BrightnessBeforeTurnOff;
-            const byte MaxBrightness = 100;
+        const byte MaxBrightness = 100;
         const byte MinBrightness = 1;
 
         public byte[] Color = new byte[3] { 0,0,0}; //RGB
         private string Type;
+
         public Time OnTime;
         public Time OffTime;
 

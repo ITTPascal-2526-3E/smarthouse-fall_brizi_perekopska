@@ -11,6 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain
     {
         //Attributes:
         private bool IsOn;
+
         public byte Brightness { get; set; }
         const double ConsumeAtMaxBrightnessPerHour= 65.0;
         private byte BrightnessBeforeTurnOff;
@@ -19,6 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
         private string Type;
+
         public Time OnTime;
         public Time OffTime;
         public Time _Timer;
