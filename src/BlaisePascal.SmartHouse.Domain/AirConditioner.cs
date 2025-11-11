@@ -11,11 +11,11 @@ namespace BlaisePascal.SmartHouse.Domain
         //Attributes
         private bool IsOn;
 
-        const byte MaxTemperature = 35;
-        const byte MinTemperature = 10;
-        private byte TemperatureBeforeTurnOff;
-        const byte AutoTemperature = 20;
-        public byte Temperature { get; set; }
+        const float MaxTemperature = 35;
+        const float MinTemperature = 16;
+        private float TemperatureBeforeTurnOff;
+        const float AutoTemperature = 20;
+        public float Temperature { get; set; }
 
         const byte MaxSpeed = 100;
         const byte MinSpeed = 1;
@@ -31,7 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain
         }
 
         //Start the air condinioter
-        public void StartAirConditioner(AirType airType, byte temperature, byte speed)
+        public void StartAirConditioner(AirType airType, float temperature, byte speed)
         {
             if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
                 Temperature = temperature;
@@ -48,16 +48,6 @@ namespace BlaisePascal.SmartHouse.Domain
             {
                 SpeedBeforeTurnOff = Speed;
                 Speed = 0;
-                IsOn = false;
-            }
-            else
-            {
-                Speed = SpeedBeforeTurnOff;
-                IsOn = true;
-            }
-
-            if (IsOn == true)
-            {
                 TemperatureBeforeTurnOff = Temperature;
                 Temperature = AutoTemperature;
                 IsOn = false;
@@ -65,9 +55,9 @@ namespace BlaisePascal.SmartHouse.Domain
             else
             {
                 Temperature = TemperatureBeforeTurnOff;
+                Speed = SpeedBeforeTurnOff;
                 IsOn = true;
-            } 
-
+            }
             return IsOn;
         }
 
