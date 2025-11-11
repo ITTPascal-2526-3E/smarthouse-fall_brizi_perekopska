@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BlaisePascal.SmartHouse.Domain
+{
+    internal class AirConditioner
+    {
+        //Attributes
+        private bool IsOn;
+
+        const byte MaxTemperature = 35;
+        const byte MinTemperature = 10;
+        private byte TemperatureBeforeTurnOff;
+        const byte AutoTemperature = 20;
+        public byte Temperature { get; set; }
+
+        const byte MaxSpeed = 100;
+        const byte MinSpeed = 1;
+        private byte SpeedBeforeTurnOff;
+        public byte Speed {  get; set; }
+
+        public enum AirType { Cool, Heat, Fan, auto, Dry}
+
+        //Constructor
+        public AirConditioner(bool isOn)
+        {
+            IsOn = isOn;
+        }
+
+        //Start the air condinioter
+        public void StartAirConditioner(AirType airType, byte temperature, byte speed)
+        {
+            if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
+                Temperature = temperature;
+
+            if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
+                Temperature = temperature;
+
+        }
+
+        // Change the state of the air conditioner, on or off
+        public bool TurnOnOrOff()
+        {
+            if (IsOn == true)
+            {
+                SpeedBeforeTurnOff = Speed;
+                Speed = 0;
+                IsOn = false;
+            }
+            else
+            {
+                Speed = SpeedBeforeTurnOff;
+                IsOn = true;
+            }
+
+            if (IsOn == true)
+            {
+                TemperatureBeforeTurnOff = Temperature;
+                Temperature = AutoTemperature;
+                IsOn = false;
+            }
+            else
+            {
+                Temperature = TemperatureBeforeTurnOff;
+                IsOn = true;
+            } 
+
+            return IsOn;
+        }
+
+    }
+}
