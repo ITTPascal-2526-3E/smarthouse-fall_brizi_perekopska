@@ -29,24 +29,30 @@ namespace BlaisePascal.SmartHouse.Domain
         {
             _Timer = timer;
             IsOn = isOn;
-
-            if (brightness >= MinBrightness && brightness <= MaxBrightness)
+            try
             {
-                Brightness = brightness;
-                BrightnessBeforeTurnOff = Brightness;
+                if (brightness >= MinBrightness && brightness <= MaxBrightness)
+                {
+                    Brightness = brightness;
+                    BrightnessBeforeTurnOff = Brightness;
+                }
+                if (IsOn)
+                    TimerToTurnOff();
+
+                if (!string.IsNullOrEmpty(type))
+                    Type = type;
+
+                if (onTime.Hours > offTime.Hours)
+                    OnTime = onTime;
+
+                if (onTime.Hours > offTime.Hours)
+                    OffTime = offTime;
             }
-            if (IsOn)
-                TimerToTurnOff();
-
-            if (!string.IsNullOrEmpty(type))
-                Type = type;
-
-            if (onTime.Hours > offTime.Hours)
-                OnTime = onTime;
-
-            if (onTime.Hours > offTime.Hours)
-                OffTime = offTime;
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
 
         // Change the state of the Lamp, on or off
@@ -70,10 +76,18 @@ namespace BlaisePascal.SmartHouse.Domain
         // Changes the brightness of the eco lamp
         public void ChangeBrightness(byte newBrightness)
         {
-            if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+            try
             {
-                Brightness = newBrightness;
-                BrightnessBeforeTurnOff = Brightness;
+                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+                {
+                    Brightness = newBrightness;
+                    BrightnessBeforeTurnOff = Brightness;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
             }
         }
 

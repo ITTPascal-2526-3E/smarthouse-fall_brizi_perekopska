@@ -31,9 +31,21 @@ namespace BlaisePascal.SmartHouse.Domain
         //Start of the cooking, using a timer.
         public async Task StartTheCooking( CookingType type, byte cookingTemperature, Time timer)
         {
-            if (cookingTemperature >= MinTemperature && cookingTemperature <= MaxTemperature)
+            try
             {
-                CookingTemperature = cookingTemperature;
+                if (cookingTemperature >= MinTemperature && cookingTemperature <= MaxTemperature)
+                {
+                    CookingTemperature = cookingTemperature;
+                }
+                else 
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                return;
             }
             LastCookingMethod = type;
 

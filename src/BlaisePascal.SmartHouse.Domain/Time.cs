@@ -18,14 +18,22 @@ namespace BlaisePascal.SmartHouse.Domain
         //Constructor:
         public Time(int hours, int minutes, int seconds)
         {
-            if (hours <= 23 && hours >= 0)
-                Hours = hours;
+            try
+            {
+                if (hours <= 23 && hours >= 0)
+                    Hours = hours;
 
-            if (minutes <= 59 && minutes >= 0)
-                Minutes = minutes;
+                if (minutes <= 59 && minutes >= 0)
+                    Minutes = minutes;
 
-            if (seconds <= 59 && seconds >= 0)
-                Seconds = seconds;
+                if (seconds <= 59 && seconds >= 0)
+                    Seconds = seconds;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
     }
 }

@@ -23,22 +23,28 @@
         { 
             IsOn = isOn;
             Color = color;
-
-            if (brightness>=MinBrightness && brightness <= MaxBrightness)
+            try
             {
-                Brightness = brightness;
-                BrightnessBeforeTurnOff = Brightness;
+                if (brightness >= MinBrightness && brightness <= MaxBrightness)
+                {
+                    Brightness = brightness;
+                    BrightnessBeforeTurnOff = Brightness;
+                }
+
+                if (!string.IsNullOrEmpty(type))
+                    Type = type;
+
+                if (onTime.Hours > offTime.Hours)
+                    OnTime = onTime;
+
+                if (onTime.Hours > offTime.Hours)
+                    OffTime = offTime;
             }
-
-            if (!string.IsNullOrEmpty(type)) 
-                Type = type;
-
-            if (onTime.Hours > offTime.Hours)
-                OnTime = onTime;
-
-            if (onTime.Hours > offTime.Hours)
-                OffTime = offTime;
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
 
         /// Change the state of the Lamp, on or off.
@@ -60,10 +66,18 @@
         /// Changes the brightness of the lamp
         public void ChangeBrightness(byte newBrightness)
         {
-            if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+            try
             {
-                Brightness = newBrightness;
-                BrightnessBeforeTurnOff = Brightness;
+                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
+                {
+                    Brightness = newBrightness;
+                    BrightnessBeforeTurnOff = Brightness;
+                }
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.Message);
+                return;
             }
         }
 

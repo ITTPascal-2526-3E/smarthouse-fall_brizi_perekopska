@@ -33,12 +33,19 @@ namespace BlaisePascal.SmartHouse.Domain
         //Start the air condinioter
         public void StartAirConditioner(AirType airType, float temperature, byte speed)
         {
-            if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
-                Temperature = temperature;
+            try
+            {
+                if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
+                    Temperature = temperature;
 
-            if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
-                Temperature = temperature;
-
+                if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
+                    Temperature = temperature;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
 
         // Change the state of the air conditioner, on or off
