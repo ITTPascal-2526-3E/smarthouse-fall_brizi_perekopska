@@ -48,33 +48,42 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void IncreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature <= MaxThermostateTemperature && clicks > 0)
+            if (SetpointTemperature <= MaxThermostateTemperature && clicks > 0){
+                Console.WriteLine("[Increased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature += 0.5f * clicks;
+            }
         }
 
         public void DecreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature >= MinThermostateTemperature && clicks > 0)
+            if (SetpointTemperature >= MinThermostateTemperature && clicks > 0){
+                Console.WriteLine("[Decreased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature -= 0.5f * clicks;
+            }
         }
 
-        public async Task ModifyCurrentTemperature()
+        public async Task RaiseCurrentTemperature()
         {
-            while (SetpointTemperature != CurrentTemperature)
+            string[] changingTemperature = {".", "..", "..."};
+
+            while (CurrentTemperature < SetpointTemperature + 1)
             {
-                Console.WriteLine("Current Temperature += 0.5");
-                await Task.Delay(1000);
-                if (SetpointTemperature < CurrentTemperature)
-                    CurrentTemperature -= 0.5f;
-                if (SetpointTemperature > CurrentTemperature)
-                    CurrentTemperature += 0.5f;
+                foreach (string points in changingTemperature){
+                    Console.Clear();
+                    Console.WriteLine("\n" + points + "\n");
+                    await Task.Delay(100);
+                }
+                CurrentTemperature += 0.5f;
+                Console.Clear();
             }
         }
 
         public void DisplayCurrentTemperature()
         {
-            Console.WriteLine("Current Temperature: " + CurrentTemperature + "°C");
-            Console.WriteLine("Setpoint temperature: " + SetpointTemperature + "°C");
+            Console.WriteLine("  ----------------------------- ");
+            Console.WriteLine(" | Current Temperature: " + CurrentTemperature + "°C |");
+            Console.WriteLine("  ----------------------------- ");
+            //Console.WriteLine("Setpoint temperature: " + SetpointTemperature + "°C");
         }
     }
 }

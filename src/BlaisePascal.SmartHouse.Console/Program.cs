@@ -13,10 +13,8 @@ namespace BlaisePascal.SmartHouse.Domain
             Thermostat Thermostat1 = new Thermostat(true, 19.5f, 23.5f);
             Thermostat1.DisplayCurrentTemperature();
             Thermostat1.IncreaseSetpointTemperature(4);
-            Thermostat1.DisplayCurrentTemperature();
-            await Task.Delay(3000);
-            Thermostat1.ModifyCurrentTemperature();
-            await Task.Delay(3000);
+            Console.ReadKey();
+            await Thermostat1.RaiseCurrentTemperature();
             Thermostat1.DisplayCurrentTemperature();
 
             ///FLASHING LAMP
