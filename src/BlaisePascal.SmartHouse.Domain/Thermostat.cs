@@ -11,8 +11,8 @@ namespace BlaisePascal.SmartHouse.Domain
         //Attributes:
         private bool IsOn;
 
-        const float MaxThermostateTemperature = 35;
-        const float MinThermostateTemperature = 5;
+        const float MaxThermostatTemperature = 35;
+        const float MinThermostatTemperature = 5;
         private float CurrentTemperature { get; set; }
         private float SetpointTemperature {  get; set; }
         private float CurrentTemperatureBeforeTurnOff;
@@ -22,9 +22,9 @@ namespace BlaisePascal.SmartHouse.Domain
         public Thermostat(bool isOn, float currentTemperature, float setpointTemperature)
         {
             IsOn = isOn;
-            if (setpointTemperature >= MinThermostateTemperature && setpointTemperature <= MaxThermostateTemperature)
+            if (setpointTemperature >= MinThermostatTemperature && setpointTemperature <= MaxThermostatTemperature)
                 SetpointTemperature = setpointTemperature;
-            if (currentTemperature <= MaxThermostateTemperature)
+            if (currentTemperature <= MaxThermostatTemperature)
                 CurrentTemperature = currentTemperature;
         }
 
@@ -48,7 +48,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void IncreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature <= MaxThermostateTemperature && clicks > 0){
+            if (SetpointTemperature <= MaxThermostatTemperature && clicks > 0){
                 Console.WriteLine("[Increased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature += 0.5f * clicks;
             }
@@ -56,7 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain
 
         public void DecreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature >= MinThermostateTemperature && clicks > 0){
+            if (SetpointTemperature >= MinThermostatTemperature && clicks > 0){
                 Console.WriteLine("[Decreased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature -= 0.5f * clicks;
             }

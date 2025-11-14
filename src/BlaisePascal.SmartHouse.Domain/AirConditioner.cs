@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain
 {
-    internal class AirConditioner
+    public class AirConditioner
     {
         //Attributes
         private bool IsOn;
