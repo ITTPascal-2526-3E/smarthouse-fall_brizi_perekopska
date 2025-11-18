@@ -9,9 +9,48 @@ namespace BlaisePascal.SmartHouse.Domain
     public class CCTV
     {
         //Attributes
-
+        private bool IsOn;
+        public bool IsRecording;
+        const uint ResolutionPixels=3840*2160;//4K
+        private bool HasNightVision;
 
         //Constructor
-        public CCTV() { }
+        public CCTV(bool isOn, bool isRecording, bool hasNightVision) 
+        { 
+            IsOn = isOn;
+            if (IsOn == true)
+                IsRecording = true;
+            Console.WriteLine("CCTV cannot stert recording in is off");
+            HasNightVision = hasNightVision;
+        }
+
+        // Turn on the CCTV
+        public bool TurnOnOrOff() 
+        {
+            if (IsOn == true)
+            {
+                IsOn = false;
+            }
+            else
+            {
+                IsOn = true;
+            }
+            return IsOn;
+        }
+        //Start or stop the recording
+        public void StartOrStopRecording() 
+        {
+            if (IsRecording == true)
+            {
+                IsRecording = false;
+            }
+            else
+            {
+                if (IsOn == true) 
+                    IsRecording = true;
+                Console.WriteLine("CCTV cannot stert recording if is off");
+            }
+        }
+
     }
 }

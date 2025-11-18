@@ -34,6 +34,14 @@ namespace BlaisePascal.SmartHouse.Domain
             Random rnd = new Random();
 
             TwoLampDevice1.ChangeBothLampState();
+
+            //CCTV
+            CCTV Camera1 = new CCTV(false, false, true);
+            Camera1.StartOrStopRecording();
+            Camera1.TurnOnOrOff();
+            Camera1.StartOrStopRecording();
+
+            //DISPLAY LAMPS STATUS IN LOOP
             do
             {
                 Console.Clear();

@@ -60,6 +60,7 @@
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
             }
+
             return IsOn;
         }
 
