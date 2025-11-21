@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-
-namespace BlaisePascal.SmartHouse.Domain
+﻿namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class EcoLamp
+    public class Lamp
     {
+
         //Attributes:
         private bool IsOn;
-        public byte Brightness { get; set; }
-        const double ConsumeAtMaxBrightnessPerHour= 65.0;
+
+        public byte Brightness { get; private set; }
+        const double ConsumeAtMaxBrightnessPerHour = 100.0;
         private byte BrightnessBeforeTurnOff;
-        const byte MaxBrightness = 65;
+        const byte MaxBrightness = 100;
         const byte MinBrightness = 1;
 
-        private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
+        public byte[] Color = new byte[3] { 0,0,0}; //RGB
         private string Type;
 
         public Time OnTime;
         public Time OffTime;
-        public Time _Timer;
 
         //Constructor:
-        public EcoLamp(bool isOn, byte brightness, string type, Time onTime, Time offTime, Time timer) 
-        {
-            _Timer = timer;
+        public Lamp(bool isOn,byte brightness,byte[] color,string type,Time onTime,Time offTime) 
+        { 
             IsOn = isOn;
+            Color = color;
             try
             {
                 if (brightness >= MinBrightness && brightness <= MaxBrightness)
@@ -36,8 +30,6 @@ namespace BlaisePascal.SmartHouse.Domain
                     Brightness = brightness;
                     BrightnessBeforeTurnOff = Brightness;
                 }
-                if (IsOn)
-                    TimerToTurnOff();
 
                 if (!string.IsNullOrEmpty(type))
                     Type = type;
@@ -55,25 +47,24 @@ namespace BlaisePascal.SmartHouse.Domain
             }
         }
 
-        // Change the state of the Lamp, on or off
+        /// Change the state of the Lamp, on or off.
         public bool TurnOnOrOff() 
         {
             if (IsOn == true)
             {
-                BrightnessBeforeTurnOff = Brightness;
-                Brightness = 0;
                 IsOn = false;
+                Brightness = 0;
             }
-            else
+            else 
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
-                TimerToTurnOff(); 
             }
+
             return IsOn;
         }
-      
-        // Changes the brightness of the eco lamp
+
+        /// Changes the brightness of the lamp
         public void ChangeBrightness(byte newBrightness)
         {
             try
@@ -84,21 +75,18 @@ namespace BlaisePascal.SmartHouse.Domain
                     BrightnessBeforeTurnOff = Brightness;
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) 
+            { 
                 Console.WriteLine(ex.Message);
                 return;
             }
         }
 
-        // Set the timer to turn off the eco lapm
-        private async Task TimerToTurnOff() 
+        // Changes the color of the  lamp
+        public void ChangeLampColor(byte[] colors)
         {
-            int time = ((_Timer.Hours * 3600) + (_Timer.Minutes * 60) + _Timer.Seconds)*1000;
-            await Task.Delay(time);
-            BrightnessBeforeTurnOff = Brightness;
-            Brightness = 0;
-            IsOn = false;
+            Color = colors;
         }
+
     }
 }

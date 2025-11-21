@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain
+namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
     public class AirFryer
     {
@@ -49,7 +49,7 @@ namespace BlaisePascal.SmartHouse.Domain
             }
             LastCookingMethod = type;
 
-            int time = ((timer.Hours * 3600) + (timer.Minutes * 60) + timer.Seconds) * 1000;
+            int time = (timer.Hours * 3600 + timer.Minutes * 60 + timer.Seconds) * 1000;
             int temp = 0;
             while (temp < time) 
             {
