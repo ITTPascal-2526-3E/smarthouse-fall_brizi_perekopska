@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 using BlaisePascal.SmartHouse.Domain.Illumination;
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTests
+namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
 {
     
     public class LampTests

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.HomeAppliances;
 
-namespace BlaisePascal.SmartHouse.Domain.UnitTests
+namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
 {
     internal class AirConditionerTests
     {
