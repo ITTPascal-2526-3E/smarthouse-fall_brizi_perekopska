@@ -2,6 +2,7 @@
 using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Temperature;
+using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 using System;
 using System.Drawing;
 using System.Threading;

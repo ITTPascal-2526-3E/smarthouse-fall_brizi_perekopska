@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using BlaisePascal.SmartHouse.Domain.Illumination;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests
 {

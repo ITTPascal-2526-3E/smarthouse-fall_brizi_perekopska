@@ -1,4 +1,6 @@
-﻿namespace BlaisePascal.SmartHouse.Domain.Illumination
+﻿using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+
+namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
     public class Lamp
     {

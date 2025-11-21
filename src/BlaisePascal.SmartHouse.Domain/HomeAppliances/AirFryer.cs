@@ -1,9 +1,11 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
