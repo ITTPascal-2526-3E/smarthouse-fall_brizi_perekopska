@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             IsOn = isOn;
             if (IsOn == true)
                 IsRecording = true;
-            Console.WriteLine("CCTV cannot start recording if is off🎥🚫");
+            //Console.WriteLine("CCTV cannot start recording if it's off🎥🚫");
             HasNightVision = hasNightVision;
         }
 
@@ -37,6 +37,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             }
             return IsOn;
         }
+
         //Start or stop the recording
         public void StartOrStopRecording() 
         {
@@ -48,9 +49,8 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             {
                 if (IsOn == true) 
                     IsRecording = true;
-                Console.WriteLine("CCTV cannot start recording if is off🎥🚫");
+                Console.WriteLine("CCTV cannot start recording if it's off🎥🚫");
             }
         }
-
     }
 }

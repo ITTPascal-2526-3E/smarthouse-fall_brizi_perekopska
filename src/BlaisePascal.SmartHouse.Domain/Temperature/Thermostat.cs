@@ -52,6 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
                 Console.WriteLine("[Increased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature += 0.5f * clicks;
             }
+            RaiseCurrentTemperature();
         }
 
         public void DecreaseSetpointTemperature(byte clicks)
@@ -60,6 +61,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
                 Console.WriteLine("[Decreased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature -= 0.5f * clicks;
             }
+            RaiseCurrentTemperature();
         }
 
         public async Task RaiseCurrentTemperature()

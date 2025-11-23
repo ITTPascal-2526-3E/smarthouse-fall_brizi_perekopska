@@ -8,8 +8,6 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
 {
     public class Time
     {
-
-        
         //Attributes:
         public int Hours{ get; set;}
         public int Minutes { get; set;}
@@ -18,8 +16,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
         //Constructor:
         public Time(int hours, int minutes, int seconds)
         {
-            try
-            {
+            try {
                 if (hours <= 23 && hours >= 0)
                     Hours = hours;
 
@@ -29,8 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                 if (seconds <= 59 && seconds >= 0)
                     Seconds = seconds;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
                 return;
             }

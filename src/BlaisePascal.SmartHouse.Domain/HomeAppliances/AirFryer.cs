@@ -31,7 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start of the cooking, using a timer.
-        public async Task StartTheCooking( CookingType type, byte cookingTemperature, Time timer)
+        public async Task StartTheCooking(CookingType type, byte cookingTemperature, Time timer)
         {
             try
             {

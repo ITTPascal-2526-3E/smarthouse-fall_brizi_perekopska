@@ -15,7 +15,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             IsLocked = isClosed;
         }
 
-
+        // Lock or unlock the door
         public bool LockUnlockTheDoor()
         {
             if(IsLocked == true)
