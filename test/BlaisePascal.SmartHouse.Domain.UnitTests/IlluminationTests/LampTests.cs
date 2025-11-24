@@ -53,8 +53,5 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             lamp.ChangeBrightness(newBrightness);
             Assert.Equal(newBrightness, lamp.Brightness);
         }
-
-
-        
     }
 }
