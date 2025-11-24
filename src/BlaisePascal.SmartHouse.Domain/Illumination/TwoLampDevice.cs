@@ -26,29 +26,34 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public void ChangeLamp1State()
         {
             FirstLamp.TurnOnOrOff();
+            Console.WriteLine("First lamp state changed");
         }
 
         // Change state to the second lamp.
         public void ChangeLamp2State() { 
             SecondLamp.TurnOnOrOff();
+            Console.WriteLine("Second lamp state changed");
         }
 
         // Change state to both the lamp
         public void ChangeBothLampState() {
             FirstLamp.TurnOnOrOff();
             SecondLamp.TurnOnOrOff();
+            Console.WriteLine("Both lamps state changed");
         }
 
         // Change first lamp brightness
         public void ChangeLamp1Brightness(byte brightness)
         {
             FirstLamp.ChangeBrightness(brightness);
+            Console.WriteLine("First lamp brightness changed to " + brightness);
         }
 
         // Change second lamp brightness.
         public void ChangeLamp2Brightness(byte brightness)
         {
             SecondLamp.Brightness = brightness;
+            Console.WriteLine("Second lamp brightness changed to " + brightness);
         }
 
         // Change both lamps brightness
@@ -56,12 +61,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             FirstLamp.ChangeBrightness(firstLampBrightness);
             SecondLamp.ChangeBrightness(secondLampBrightness);
+            Console.WriteLine("Both lamps brightness changed to " + firstLampBrightness + " and " + secondLampBrightness);
         }
 
         // Change color to the first lamp
         public void ChangeLamp1Color(byte[] colors) 
         { 
             FirstLamp.Color = colors;
+            Console.WriteLine("First lamp color changed to RGB(" + colors[0] + ", " + colors[1] + ", " + colors[2] + ")");
         }
     }
 }

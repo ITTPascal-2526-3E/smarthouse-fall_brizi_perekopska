@@ -35,11 +35,12 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         {
             try
             {
-                if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
+                if (temperature >= MinTemperature && temperature <= MaxTemperature)
                     Temperature = temperature;
 
-                if (Temperature >= MinTemperature && Temperature <= MaxTemperature)
-                    Temperature = temperature;
+                if (speed >= MinSpeed && speed <= MaxSpeed)
+                    Speed = speed;
+                Console.WriteLine($"Air Conditioner started with {airType} mode, temperature set to {Temperature}°C and speed set to {Speed}%");
             }
             catch (Exception ex)
             {
@@ -58,12 +59,14 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
                 TemperatureBeforeTurnOff = Temperature;
                 Temperature = AutoTemperature;
                 IsOn = false;
+                Console.WriteLine("Air Conditioner turned off");
             }
             else
             {
                 Temperature = TemperatureBeforeTurnOff;
                 Speed = SpeedBeforeTurnOff;
                 IsOn = true;
+                Console.WriteLine("Air Conditioner turned on");
             }
             return IsOn;
         }

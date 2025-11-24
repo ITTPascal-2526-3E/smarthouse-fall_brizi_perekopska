@@ -56,11 +56,13 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             {
                 IsOn = false;
                 Brightness = 0;
+                Console.WriteLine("The lamp is turned off");
             }
             else 
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
+                Console.WriteLine("The lamp is turned on");
             }
 
             return IsOn;
@@ -75,6 +77,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 {
                     Brightness = newBrightness;
                     BrightnessBeforeTurnOff = Brightness;
+                    Console.WriteLine($"The lamp brightness is changed to {Brightness}");
                 }
             }
             catch (Exception ex) 
@@ -88,6 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public void ChangeLampColor(byte[] colors)
         {
             Color = colors;
+            Console.WriteLine($"The lamp color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
         }
 
     }

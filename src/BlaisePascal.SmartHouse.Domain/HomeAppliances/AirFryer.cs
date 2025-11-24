@@ -62,10 +62,19 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             }
 
             if (Stop == true)
-                Console.WriteLine("🍗🍗🍗 FISHED COOKING 🍗🍗🍗");
+            {
+                Console.WriteLine("\t ------------------------------------ ");
+                Console.WriteLine("\t|   🍗🍗🍗 FISHED COOKING 🍗🍗🍗   |");
+                Console.WriteLine("\t| 🍽️🍽️🍽️ YOUR FOOD IS READY 🍽️🍽️🍽️ |");
+                Console.WriteLine("\t ------------------------------------ ");
+            }
             else
-                Console.WriteLine("🧑‍🍳🧑‍🍳🧑‍🍳 COOKING STOPPED 🧑‍🍳🧑‍🍳🧑‍🍳");
-            
+            {
+                Console.WriteLine("\t ---------------------------------------------- ");
+                Console.WriteLine("\t| 🧑‍🍳🧑‍🍳🧑‍🍳 COOKING STOPPED 🧑‍🍳🧑‍🍳🧑‍🍳 |");
+                Console.WriteLine("\t ---------------------------------------------- ");
+            }
+
             Stop = false;
         }
 

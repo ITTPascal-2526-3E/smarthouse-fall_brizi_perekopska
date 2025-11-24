@@ -35,15 +35,15 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                         TwoLampDevice1.ChangeBothLampBrightness(lamp1Brightness, ecolamp1Brightness);}},
                     {"display current temperature", Thermostat1.DisplayCurrentTemperature },
                     {"start recording", Camera1.StartOrStopRecording },
-                    {"stop recording", Camera1.StartOrStopRecording },
-                    {"stop cooking", AirFryer1.StopTheCooking },
+                    {"stop camera1 recording", Camera1.StartOrStopRecording },
+                    {"stop air fryer1", AirFryer1.StopTheCooking }
                 };
 
                 ByteCommands = new Dictionary<string, Action<byte>>() {
                     {"change lamp1 brightness", Lamp1.ChangeBrightness},
                     {"change ecolamp1 brightness", EcoLamp1.ChangeBrightness},
-                    {"increase thermostat setpoint temperature", Thermostat1.IncreaseSetpointTemperature },
-                    {"decrease thermostat setpoint temperature", Thermostat1.DecreaseSetpointTemperature }
+                    {"increase thermostat1 setpoint temperature", Thermostat1.IncreaseSetpointTemperature },
+                    {"decrease thermostat1 setpoint temperature", Thermostat1.DecreaseSetpointTemperature }
                 };
 
                 ByteArrayCommands = new Dictionary<string, Action<byte[]>>() {
@@ -55,22 +55,22 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     {"turn off lamp1", Lamp1.TurnOnOrOff },
                     {"turn on ecolamp1", EcoLamp1.TurnOnOrOff },
                     {"turn off ecolamp1", EcoLamp1.TurnOnOrOff },
-                    {"turn on thermostat", Thermostat1.TurnOnOrOff },
-                    {"turn off thermostat", Thermostat1.TurnOnOrOff },
-                    {"turn on air conditioner", AirConditioner1.TurnOnOrOff },
-                    {"turn off air conditioner", AirConditioner1.TurnOnOrOff },
-                    {"turn on cctv", Camera1.TurnOnOrOff },
-                    {"turn of cctv", Camera1.TurnOnOrOff },
-                    {"lock the door", Door1.LockUnlockTheDoor },
-                    {"unlock the door", Door1.LockUnlockTheDoor }
+                    {"turn on thermostat1", Thermostat1.TurnOnOrOff },
+                    {"turn off thermostat1", Thermostat1.TurnOnOrOff },
+                    {"turn on air conditioner1", AirConditioner1.TurnOnOrOff },
+                    {"turn off air conditioner1", AirConditioner1.TurnOnOrOff },
+                    {"turn on camera1", Camera1.TurnOnOrOff },
+                    {"turn of camera1", Camera1.TurnOnOrOff },
+                    {"lock the door1", Door1.LockUnlockTheDoor },
+                    {"unlock the door1", Door1.LockUnlockTheDoor }
                 };
 
                 AirFryerCommands = new Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>>() {
-                    {"start cooking", AirFryer1.StartTheCooking }
+                    {"start air fryer1", AirFryer1.StartTheCooking }
                 };
 
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirType, float, byte>>() {
-                    {"start air conditioner", AirConditioner1.StartAirConditioner }
+                    {"start air conditioner1", AirConditioner1.StartAirConditioner }
                 };
             }
             catch (Exception ex)

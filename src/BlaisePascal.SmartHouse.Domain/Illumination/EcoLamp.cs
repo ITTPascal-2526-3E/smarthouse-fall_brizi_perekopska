@@ -64,12 +64,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 BrightnessBeforeTurnOff = Brightness;
                 Brightness = 0;
                 IsOn = false;
+                Console.WriteLine("Eco lamp is turned off");
             }
             else
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
                 TimerToTurnOff(); 
+                Console.WriteLine("Eco lamp is turned on and the timer to turn off is set");
             }
             return IsOn;
         }
@@ -83,6 +85,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 {
                     Brightness = newBrightness;
                     BrightnessBeforeTurnOff = Brightness;
+                    Console.WriteLine($"Eco lamp brightness changed to {Brightness}");
                 }
             }
             catch (Exception ex)
@@ -93,13 +96,22 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Set the timer to turn off the eco lapm
-        private async Task TimerToTurnOff() 
+        private async Task TimerToTurnOff()
         {
-            int time = (_Timer.Hours * 3600 + _Timer.Minutes * 60 + _Timer.Seconds)*1000;
-            await Task.Delay(time);
-            BrightnessBeforeTurnOff = Brightness;
-            Brightness = 0;
-            IsOn = false;
+            try
+            {
+                int time = (_Timer.Hours * 3600 + _Timer.Minutes * 60 + _Timer.Seconds) * 1000;
+                await Task.Delay(time);
+                BrightnessBeforeTurnOff = Brightness;
+                Brightness = 0;
+                IsOn = false;
+                Console.WriteLine("Eco lamp is turned off by timer");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
         }
     }
 }

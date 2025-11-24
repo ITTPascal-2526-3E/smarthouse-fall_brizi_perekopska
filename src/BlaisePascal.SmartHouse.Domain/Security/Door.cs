@@ -19,12 +19,16 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         public bool LockUnlockTheDoor()
         {
             if(IsLocked == true)
+            {
                 IsLocked = false;
+                Console.WriteLine("The door is unlocked");
+            }
             else
+            {
                 IsLocked = true;
-
+                Console.WriteLine("The door is locked");
+            }
             return IsLocked;
-
         }
     }
 }

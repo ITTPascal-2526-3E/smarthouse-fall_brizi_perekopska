@@ -37,12 +37,13 @@ namespace BlaisePascal.SmartHouse.Domain
 - change both lamps state
 - change both lamps brightness [lamp1 value from 1 to 100] [ecolamp1 value from 1 to 66]
 - turn on/off thermostat
-- increase thermostat setpoint temperature [number of clicks]
-- decrease thermostat setpoint temperature [number of clicks]
-- start/stop air conditioner
-- start/stop air fryer
-- start/stop cctv recording
-- lock/unlock the door
+- increase thermostat1 setpoint temperature [number of clicks]
+- decrease thermostat1 setpoint temperature [number of clicks]
+- start/stop air conditioner1
+- start/stop air fryer1
+- turn on/off camera1
+- start/stop camera1 recording
+- lock/unlock the door1
 - display current temperature
 ";
             do

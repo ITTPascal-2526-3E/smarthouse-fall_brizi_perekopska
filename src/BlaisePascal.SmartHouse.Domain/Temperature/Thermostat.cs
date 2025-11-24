@@ -82,10 +82,16 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
 
         public void DisplayCurrentTemperature()
         {
-            Console.WriteLine("  ----------------------------- ");
-            Console.WriteLine(" | Current Temperature: " + CurrentTemperature + "°C |");
-            Console.WriteLine("  ----------------------------- ");
-            //Console.WriteLine("Setpoint temperature: " + SetpointTemperature + "°C");
+            if (IsOn)
+            {
+                Console.WriteLine("\t ----------------------------- ");
+                Console.WriteLine("\t| Current Temperature: " + CurrentTemperature + "°C |");
+                Console.WriteLine("\t ----------------------------- ");
+            }
+            else
+            {
+                Console.WriteLine("Cante display current temperature if thermostat is turned off");
+            }
         }
     }
 }
