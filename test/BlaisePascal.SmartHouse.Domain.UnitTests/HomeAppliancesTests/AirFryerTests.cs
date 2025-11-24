@@ -8,7 +8,48 @@ using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests
 {
-    internal class AirFryerTests
+    public class AirFryerTests
     {
+        [Fact]
+        public void StartTheCooking_TemperatureIs79_CookingNotStart() 
+        {
+            var AirFryer = new AirFryer(true);
+
+            AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 79 ,new Time(0,0,15));
+
+            Assert.NotEqual(AirFryer.CookingType.Fryed,AirFryer.LastCookingMethod);
+        }
+
+        [Fact]
+        public void StartTheCooking_TemperatureIs201_CookingNotStart() 
+        {
+            var AirFryer = new AirFryer(true);
+
+            AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 201, new Time(0, 0, 15));
+
+            Assert.NotEqual(AirFryer.CookingType.Fryed, AirFryer.LastCookingMethod);
+        }
+
+        [Fact]
+        public void StartTheCooking_TemperatureIsInTheAcceptable_CookingStart()
+        {
+            var AirFryer = new AirFryer(true);
+
+            AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 180, new Time(0, 0, 15));
+
+            Assert.Equal(AirFryer.CookingType.Fryed, AirFryer.LastCookingMethod);
+        }
+
+        [Fact]
+        public async Task StartTheCooking_StopTurnTrueFromTheMethod_TheCookingStop() 
+        {
+            var AirFryer = new AirFryer(true);
+
+            AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 180, new Time(0, 0, 15));
+            AirFryer.StopTheCooking();
+            await Task.Delay(1000);
+            Assert.Equal(AirFryer.Stop, false);
+        }
+
     }
 }

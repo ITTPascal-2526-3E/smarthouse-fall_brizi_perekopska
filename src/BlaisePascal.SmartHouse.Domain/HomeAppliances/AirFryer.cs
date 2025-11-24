@@ -20,9 +20,9 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 
         public enum CookingType { Null, Fryed, Roasted, Sweets, Grilled, Dehydrated, Baked, Dryed, SlowCooked, Steamed, Pizza, Reheated, Tosted, KeepWarmed, Pasta}
 
-        CookingType LastCookingMethod;
+        public CookingType LastCookingMethod { get; private set;  }
         
-        private bool Stop = false;
+        public bool Stop { get; private set; }
 
         //Constructor
         public AirFryer(bool isOn)
