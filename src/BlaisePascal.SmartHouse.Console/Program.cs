@@ -28,7 +28,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Door Door1 = new Door(true);
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Camera1, Door1);
-
+            
             string CommandsList = @"Available Commands:
 - turn on/off lamp1
 - turn on/off ecolamp1
@@ -45,11 +45,14 @@ namespace BlaisePascal.SmartHouse.Domain
 - lock/unlock the door
 - display current temperature
 ";
-            //Command Processing
-            Console.WriteLine(CommandsList);
-            string commandInput = Console.ReadLine().ToLower();
+            do
+            {
+                //Command Processing
+                Console.WriteLine(CommandsList);
+                string commandInput = Console.ReadLine().ToLower();
 
-            CommandsHandler.Process(commandInput);
+                CommandsHandler.Process(commandInput);
+            } while (true);
         }
     }
 }
