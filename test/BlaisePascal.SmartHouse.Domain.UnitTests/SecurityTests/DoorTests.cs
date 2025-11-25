@@ -7,7 +7,16 @@ using BlaisePascal.SmartHouse.Domain.Security;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests
 {
-    internal class DoorTests
+    public class DoorTests
     {
+        [Fact]
+        public void LockUnlockTheDoor_IsLockAndTurnedUnlock_IsUnlock()
+        {
+            bool isClosed = true
+            var door = new Door(isClosed);
+
+            var newState = door.LockUnlockTheDoor();
+            Assert.Equal(true, newState);
+        }
     }
 }

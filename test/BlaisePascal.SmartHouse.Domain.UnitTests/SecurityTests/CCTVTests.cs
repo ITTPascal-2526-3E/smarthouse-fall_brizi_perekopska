@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Security;
 namespace BlaisePascal.SmartHouse.Domain.UnitTests.SecurityTests
 {
-    internal class CCTVTests
+    public class CCTVTests
     {
     }
 }

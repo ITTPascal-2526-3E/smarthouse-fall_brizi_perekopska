@@ -8,7 +8,7 @@ using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
 {
-    internal class EcoLampTests
+    public class EcoLampTests
     {
     }
 }

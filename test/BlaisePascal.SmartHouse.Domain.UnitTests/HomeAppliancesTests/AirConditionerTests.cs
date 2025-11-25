@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.HomeAppliances;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
 {
-    internal class AirConditionerTests
+    public class AirConditionerTests
     {
     }
 }

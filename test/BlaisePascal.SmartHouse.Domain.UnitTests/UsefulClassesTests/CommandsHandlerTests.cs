@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests.UsefulClassesTests
 {
-    internal class CommandsHandlerTests
+    public class CommandsHandlerTests
     {
     }
 }
