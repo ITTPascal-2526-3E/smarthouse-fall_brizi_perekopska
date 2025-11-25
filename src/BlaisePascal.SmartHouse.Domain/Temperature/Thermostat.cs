@@ -78,21 +78,10 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
 
         public async Task RaiseCurrentTemperature()
         {
-            //string[] changingTemperature = { ".", "..", "..." };
-
-            while (CurrentTemperature < SetpointTemperature + 1)
-            {
-                /*foreach (string points in changingTemperature) // "Animation effect"
-                {
-                    Console.Clear();
-                    Console.WriteLine("\n" + points + "\n");
-                    await Task.Delay(100);
-                }*/
-                CurrentTemperature += 0.5f;
-                if(CurrentTemperature == 35.0f)
-                    return;
-                Console.Clear();
-            }
+            if (CurrentTemperature < SetpointTemperature + 1 )
+                CurrentTemperature = SetpointTemperature + 1;
+            if (CurrentTemperature > 35.0f)
+                CurrentTemperature = 35.0f;
         }
 
         public void DisplayCurrentTemperature()
@@ -104,9 +93,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
                 Console.WriteLine("\t ----------------------------- ");
             }
             else
-            {
-                Console.WriteLine("Cante display current temperature if thermostat is turned off");
-            }
+                Console.WriteLine("Can't display current temperature if the thermostat is off");
         }
     }
 }

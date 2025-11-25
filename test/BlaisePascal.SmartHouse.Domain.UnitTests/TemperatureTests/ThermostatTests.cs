@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         public async Task Thermostat_RaiseCurrentTemperature_AdjustsCurrentTowardsSetpointPlusOne()
         {
             var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 25.0f);
-            await thermostat.RaiseCurrentTemperature();
+            thermostat.RaiseCurrentTemperature();
             Assert.Equal(26.0f, thermostat.CurrentTemperature);
         }
 
@@ -111,7 +111,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         public async Task Thermostat_RaiseCurrentTemperature_DoesNotExceedMaxTemperature()
         {
             var thermostat = new Thermostat(isOn: true, currentTemperature: 34.0f, setpointTemperature: 35.0f);
-            await thermostat.RaiseCurrentTemperature();
+            thermostat.RaiseCurrentTemperature();
             Assert.Equal(35.0f, thermostat.CurrentTemperature); /// Max is 35°C
         }
     }
