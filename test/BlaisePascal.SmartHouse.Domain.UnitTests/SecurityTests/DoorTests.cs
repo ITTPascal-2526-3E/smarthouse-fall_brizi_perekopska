@@ -12,11 +12,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
         [Fact]
         public void LockUnlockTheDoor_IsLockAndTurnedUnlock_IsUnlock()
         {
-            bool isClosed = true
+            bool isClosed = true;
             var door = new Door(isClosed);
 
             var newState = door.LockUnlockTheDoor();
-            Assert.Equal(true, newState);
+            Assert.False(newState);
         }
     }
 }

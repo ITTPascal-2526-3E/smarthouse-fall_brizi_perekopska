@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
     public class Thermostat
     {
         //Attributes:
-        private bool IsOn;
+        public bool IsOn { get; private set; }
 
         const float MaxThermostatTemperature = 35;
         const float MinThermostatTemperature = 5;
@@ -76,7 +76,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
                 Console.WriteLine("Setpoint temperature is already at minimum value");
         }
 
-        public async Task RaiseCurrentTemperature()
+        public void RaiseCurrentTemperature()
         {
             if (CurrentTemperature < SetpointTemperature + 1 )
                 CurrentTemperature = SetpointTemperature + 1;

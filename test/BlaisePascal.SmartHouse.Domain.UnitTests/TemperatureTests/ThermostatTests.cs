@@ -9,6 +9,16 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
 {
     public class ThermostatTests
     {
+        // Constructor Test
+        [Fact]
+        public void Thermostat_Constructor_InitializesPropertiesCorrectly()
+        {
+            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            Assert.True(thermostat.IsOn);
+            Assert.Equal(20.0f, thermostat.CurrentTemperature);
+            Assert.Equal(22.0f, thermostat.SetpointTemperature);
+        }
+
         //TurnOnOrOff Tests
         [Fact]
         public void Thermostat_TurnOnOrOff_ChangesStateToOnIfOffAndToOffIfOn()
@@ -100,7 +110,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
 
         // RaiseCurrentTemperature Tests
         [Fact]
-        public async Task Thermostat_RaiseCurrentTemperature_AdjustsCurrentTowardsSetpointPlusOne()
+        public void Thermostat_RaiseCurrentTemperature_AdjustsCurrentTowardsSetpointPlusOne()
         {
             var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 25.0f);
             thermostat.RaiseCurrentTemperature();
@@ -108,11 +118,19 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         }
 
         [Fact]
-        public async Task Thermostat_RaiseCurrentTemperature_DoesNotExceedMaxTemperature()
+        public void Thermostat_RaiseCurrentTemperature_DoesNotExceedMaxTemperature()
         {
             var thermostat = new Thermostat(isOn: true, currentTemperature: 34.0f, setpointTemperature: 35.0f);
             thermostat.RaiseCurrentTemperature();
             Assert.Equal(35.0f, thermostat.CurrentTemperature); /// Max is 35°C
+        }
+
+        [Fact]
+        public void Thermostat_RaiseCurrentTemperature_NoChangeWhenCurrentAboveSetpointPlusOne()
+        {
+            var thermostat = new Thermostat(isOn: true, currentTemperature: 30.0f, setpointTemperature: 25.0f);
+            thermostat.RaiseCurrentTemperature();
+            Assert.Equal(30.0f, thermostat.CurrentTemperature); /// Should remain unchanged
         }
     }
 }

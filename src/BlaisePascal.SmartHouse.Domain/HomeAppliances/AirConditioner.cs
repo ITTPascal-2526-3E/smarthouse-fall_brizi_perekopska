@@ -9,20 +9,21 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
     public class AirConditioner
     {
         //Attributes
-        private bool IsOn;
+        public bool IsOn { get; private set; }
 
         const float MaxTemperature = 35;
         const float MinTemperature = 16;
-        private float TemperatureBeforeTurnOff;
+        public float TemperatureBeforeTurnOff { get; private set; }
         const float AutoTemperature = 20;
-        public float Temperature { get; set; }
+        public float Temperature { get; private set; }
 
         const byte MaxSpeed = 100;
         const byte MinSpeed = 1;
-        private byte SpeedBeforeTurnOff;
-        public byte Speed {  get; set; }
+        public byte SpeedBeforeTurnOff { get; private set; }
+        public byte Speed {  get; private set; }
 
-        public enum AirType { Cool, Heat, Fan, auto, Dry}
+        public string AirType { get; private set; }
+        public enum AirTypeList { Cool, Heat, Fan, auto, Dry }
 
         //Constructor
         public AirConditioner(bool isOn)
@@ -31,22 +32,20 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start the air condinioter
-        public void StartAirConditioner(AirType airType, float temperature, byte speed)
+        public void StartAirConditioner(AirTypeList airType, float temperature, byte speed)
         {
-            try
-            {
-                if (temperature >= MinTemperature && temperature <= MaxTemperature)
-                    Temperature = temperature;
+            if (!IsOn)
+                throw new Exception("Air Conditioner is off");
+            if (temperature < MinTemperature || temperature > MaxTemperature)
+                throw new Exception($"Temperature must be between {MinTemperature}°C and {MaxTemperature}°C");
 
-                if (speed >= MinSpeed && speed <= MaxSpeed)
-                    Speed = speed;
-                Console.WriteLine($"Air Conditioner started with {airType} mode, temperature set to {Temperature}°C and speed set to {Speed}%");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return;
-            }
+            if (speed < MinSpeed || speed > MaxSpeed)
+                throw new Exception($"Speed must be between {MinSpeed}% and {MaxSpeed}%");
+
+            Temperature = temperature;
+            Speed = speed;
+            IsOn = true;
+            AirType = airType.ToString();
         }
 
         // Change the state of the air conditioner, on or off
@@ -70,6 +69,5 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             }
             return IsOn;
         }
-
     }
 }

@@ -15,7 +15,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
         Dictionary<string, Action> VoidCommands; //dictionary with completely void methods
         Dictionary<string, Action<byte>> ByteCommands; //dictionary with methods that accepts byte values but are void
         Dictionary<string, Action<byte[]>> ByteArrayCommands; //dictionary with methods that accepts byte array values but are void
-        Dictionary<string, Action<AirConditioner.AirType, float, byte>> AcCommands; //dictionary with methods that accepts AirType, float, byte and returns void (Air conditioner)
+        Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>> AcCommands; //dictionary with methods that accepts AirType, float, byte and returns void (Air conditioner)
         Dictionary<string, Func<bool>> BoolReturnCommands; //dictionary with methods that returns bool values
         Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>> AirFryerCommands; //dictionary with methods that accepts CookingType, byte, Time and returns Task (Air fryer)
 
@@ -69,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     {"start air fryer1", AirFryer1.StartTheCooking }
                 };
 
-                AcCommands = new Dictionary<string, Action<AirConditioner.AirType, float, byte>>() {
+                AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
                     {"start air conditioner1", AirConditioner1.StartAirConditioner }
                 };
             }
@@ -111,7 +111,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     // Let the user choose air type
                     Console.WriteLine("Choose air type: Cool, Heat, Fan, auto, Dry");
                     string typeInput = Console.ReadLine();
-                    if (!Enum.TryParse(typeInput, true, out AirConditioner.AirType airType))
+                    if (!Enum.TryParse(typeInput, true, out AirConditioner.AirTypeList airType))
                     {
                         Console.WriteLine("Invalid air type");
                         return;
