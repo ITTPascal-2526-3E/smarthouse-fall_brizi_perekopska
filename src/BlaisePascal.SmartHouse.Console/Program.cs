@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             //Illumination Devices
             Lamp Lamp1 = new Lamp(false, 100, [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain
             AirConditioner AirConditioner1 = new AirConditioner(true);
             AirFryer AirFryer1 = new AirFryer(true);
             //Security Devices
-            CCTV Camera1 = new CCTV(true, true, true);
+            CCTV Camera1 = new CCTV(true, false, true);
             Door Door1 = new Door(true);
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Camera1, Door1);
@@ -46,14 +46,17 @@ namespace BlaisePascal.SmartHouse.Domain
 - lock/unlock the door1
 - display current temperature
 ";
-            do
+            /*do
             {
                 //Command Processing
                 Console.WriteLine(CommandsList);
                 string commandInput = Console.ReadLine().ToLower();
 
                 CommandsHandler.Process(commandInput);
-            } while (true);
+            } while (true);*/
+            Camera1.StartRecording();
+            Camera1.Save();
+            Camera1.StopRecording();
         }
     }
 }

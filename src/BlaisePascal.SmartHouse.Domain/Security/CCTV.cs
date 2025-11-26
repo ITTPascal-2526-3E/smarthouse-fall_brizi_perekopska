@@ -13,14 +13,27 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         public bool IsRecording;
         const uint ResolutionPixels=3840*2160;//4K
         private bool HasNightVision;
+        private CCTVStartUp Starting=new CCTVStartUp();
 
         //Constructor
         public CCTV(bool isOn, bool isRecording, bool hasNightVision) 
         { 
             IsOn = isOn;
-            if (IsOn == true)
-                IsRecording = true;
-            //Console.WriteLine("CCTV cannot start recording if it's off🎥🚫");
+            try
+            {
+                if (IsOn == true)
+                {
+                    IsRecording = true;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("CCTV cannot start recording if it's off");
+            }
             HasNightVision = hasNightVision;
         }
 
@@ -38,19 +51,53 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             return IsOn;
         }
 
-        //Start or stop the recording
-        public void StartOrStopRecording() 
+        //Start the recording
+        public void StopRecording() 
         {
             if (IsRecording == true)
             {
                 IsRecording = false;
+                Starting.StopFilming();
             }
             else
             {
-                if (IsOn == true) 
-                    IsRecording = true;
-                Console.WriteLine("CCTV cannot start recording if it's off🎥🚫");
+                try
+                {
+                    throw new Exception();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("CCTV cannot stop recording if it's already off");
+                }
             }
+        }
+        //Stop the recording
+        public void StartRecording() 
+        {
+            try
+            {
+                if (IsOn == true )
+                {
+                    IsRecording = true;
+                    CCTVStartUp.StartRealRecording();
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("CCTV cannot start recording if it's off");
+            }
+        }
+
+        //Save and show the screen
+        public void Save() 
+        { 
+            Starting.SaveScreen();
         }
     }
 }

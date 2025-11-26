@@ -34,8 +34,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                         byte ecolamp1Brightness = byte.Parse(Console.ReadLine());
                         TwoLampDevice1.ChangeBothLampBrightness(lamp1Brightness, ecolamp1Brightness);}},
                     {"display current temperature", Thermostat1.DisplayCurrentTemperature },
-                    {"start recording", Camera1.StartOrStopRecording },
-                    {"stop camera1 recording", Camera1.StartOrStopRecording },
+                    {"start recording", Camera1.StartRecording },
+                    {"stop camera1 recording", Camera1.StopRecording },
                     {"stop air fryer1", AirFryer1.StopTheCooking }
                 };
 
