@@ -60,8 +60,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
             else 
             {
-                Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
+                Brightness = BrightnessBeforeTurnOff;
                 Console.WriteLine("The lamp is turned on");
             }
 

@@ -12,7 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
     public class LampTests
     {
         [Fact]
-        public void Lamp_TurnOnOrOff_ChangesState()
+        public void TurnOnOrOff_ChangesState()
         {
             bool isOn = false;
             var lamp = new Lamp(isOn, brightness: 50, color: new byte[] { 255, 0, 0 }, type: "LED", onTime: new Time(18, 0,2), offTime: new Time(6, 0,5));
@@ -24,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
         }
 
         [Fact]
-        public void Lamp_TurnOnOrOff_SetsBrightnessToZeroWhenOff()
+        public void TurnOnOrOff_SetsBrightnessToZeroWhenOff()
         {
             bool isOn = true;
             var lamp = new Lamp(isOn, brightness: 70, color: new byte[] { 0, 0, 255 }, type: "Incandescent", onTime: new Time(20, 0, 4), offTime: new Time(8, 0, 7));
@@ -34,7 +34,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
         }
 
         [Fact]
-        public void Lamp_TurnOnOrOff_RestoresBrightnessWhenOn()
+        public void TurnOnOrOff_RestoresBrightnessWhenOn()
         {
             bool isOn = false;
             var lamp = new Lamp(isOn, brightness: 60, color: new byte[] { 255, 255, 0 }, type: "CFL", onTime: new Time(17, 0,1), offTime: new Time(5, 0,4));
@@ -44,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
         }
 
         [Fact]
-        public void Lamp_ChangeBrightness_UpdatesBrightness()
+        public void ChangeBrightness_UpdatesBrightness()
         {
             bool isOn = true;
             var lamp = new Lamp(isOn, brightness: 50, color: new byte[] { 0, 255, 0 }, type: "Halogen", onTime: new Time(19, 0,3), offTime: new Time(7, 0,6));
@@ -52,6 +52,16 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             byte newBrightness = 80;
             lamp.ChangeBrightness(newBrightness);
             Assert.Equal(newBrightness, lamp.Brightness);
+        }
+        [Fact]
+        public void ChangeLampColor_UpdateColor()
+        {
+            bool isOn = true;
+            var initialColor = new byte[] { 52, 200, 105 };
+            var lamp = new Lamp(isOn, brightness: 50, initialColor, type: "Halogen", onTime: new Time(19, 0, 3), offTime: new Time(7, 0, 6));
+            var color = new byte[] { 22,235, 1 };
+            lamp.ChangeLampColor(color);
+            Assert.NotEqual (initialColor, lamp.Color);
         }
     }
 }
