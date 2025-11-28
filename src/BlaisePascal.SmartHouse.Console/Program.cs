@@ -46,14 +46,15 @@ namespace BlaisePascal.SmartHouse.Domain
 - lock/unlock the door1
 - display current temperature
 ";
-            /*do
+            do
             {
                 //Command Processing
                 Console.WriteLine(CommandsList);
                 string commandInput = Console.ReadLine().ToLower();
 
                 CommandsHandler.Process(commandInput);
-            } while (true);*/
+            } while (true);
+
             Camera1.StartRecording();
             Camera1.Save();
             Camera1.StopRecording();

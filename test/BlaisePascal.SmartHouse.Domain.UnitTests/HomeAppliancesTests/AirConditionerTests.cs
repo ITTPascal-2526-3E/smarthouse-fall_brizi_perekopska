@@ -11,7 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
     {
         // Constructor test
         [Fact]
-        public void AirConditioner_Constructor_InitializesPropertiesCorrectly()
+        public void Constructor_InitializesPropertiesCorrectly()
         {
             var airConditioner = new AirConditioner(isOn: true);
             Assert.True(airConditioner.IsOn);
