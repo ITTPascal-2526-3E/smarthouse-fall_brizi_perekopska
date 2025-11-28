@@ -12,6 +12,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
 {
     public class CommandsHandler
     {
+        //Dictionaries for different command types
         Dictionary<string, Action> VoidCommands; //dictionary with completely void methods
         Dictionary<string, Action<byte>> ByteCommands; //dictionary with methods that accepts byte values but are void
         Dictionary<string, Action<byte[]>> ByteArrayCommands; //dictionary with methods that accepts byte array values but are void
@@ -19,6 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
         Dictionary<string, Func<bool>> BoolReturnCommands; //dictionary with methods that returns bool values
         Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>> AirFryerCommands; //dictionary with methods that accepts CookingType, byte, Time and returns Task (Air fryer)
 
+        //Constructor
         public CommandsHandler(Lamp Lamp1, EcoLamp EcoLamp1, TwoLampDevice TwoLampDevice1, Thermostat Thermostat1, AirConditioner AirConditioner1, AirFryer AirFryer1, CCTV Camera1, Door Door1)
         {
             try
@@ -80,20 +82,25 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
             }
         }
 
+        // Process the command
         public async Task Process(string command)
         {
             try
             {
+                //Void commands
                 if (VoidCommands.TryGetValue(command, out var voidAction))
                     voidAction();
+                //Byte commands
                 else if (ByteCommands.TryGetValue(command, out var byteAction))
                 {
                     Console.WriteLine("Enter value:");
                     byte ByteValue = byte.Parse(Console.ReadLine());
                     byteAction(ByteValue);
                 }
+                //Bool return commands
                 else if (BoolReturnCommands.TryGetValue(command, out var boolFunc))
                     boolFunc();
+                //Byte array commands
                 else if (ByteArrayCommands.TryGetValue(command, out var byteArrayAction))
                 {
                     Console.WriteLine("Enter three byte values for RGB color (0-255) separated by spaces: ");
@@ -106,6 +113,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     }
                     byteArrayAction(byteArray);
                 }
+                // Air conditioner commands
                 else if (AcCommands.TryGetValue(command, out var acAction))
                 {
                     // Let the user choose air type
@@ -126,6 +134,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     acAction(airType, temperature, speed);
                     Console.WriteLine("Air conditioner started!");
                 }
+                // Air fryer commands
                 else if (AirFryerCommands.TryGetValue(command, out var airFryerFunc))
                 {
                     // Let the user choose cooking type
@@ -147,8 +156,10 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
                     await airFryerFunc(cookingType, temperature, duration);
                     Console.WriteLine("Cooking started!");
                 }
+                // No command entered
                 else if (string.IsNullOrWhiteSpace(command))
                     Console.WriteLine("No command entered");
+                // Command not found
                 else
                     Console.WriteLine("Command not found");
             }

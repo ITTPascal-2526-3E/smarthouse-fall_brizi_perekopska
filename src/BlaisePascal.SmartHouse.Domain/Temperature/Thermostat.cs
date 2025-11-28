@@ -9,14 +9,14 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
     public class Thermostat
     {
         //Attributes:
-        public bool IsOn { get; private set; }
+        private bool IsOn;
 
         const float MaxThermostatTemperature = 35;
         const float MinThermostatTemperature = 5;
         public float CurrentTemperature { get; private set; }
         public float SetpointTemperature { get; private set; }
-        public float CurrentTemperatureBeforeTurnOff { get; private set; }
-        public float SetpointTemperatureBeforeTurnOff { get; private set; }
+        private float CurrentTemperatureBeforeTurnOff;
+        private float SetpointTemperatureBeforeTurnOff;
 
         //Constructor:
         public Thermostat(bool isOn, float currentTemperature, float setpointTemperature)

@@ -10,6 +10,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
 {
     public class EcoLampTests
     {
+        // TurnOnOrOff tests
         [Fact]
         public void TurnOnOrOff_ChangesState()
         {
@@ -28,10 +29,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             bool isOn = true;
             var ecoLamp = new EcoLamp(isOn, brightness: 50, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5), timer: new Time(0, 5, 0));
 
-            ecoLamp.TurnOnOrOff(); // Turn off the lamp
+            ecoLamp.TurnOnOrOff(); /// Turn off the lamp
             Assert.Equal(0, ecoLamp.Brightness);
         }
 
+        // ChangeBrightness tests
         [Fact]
         public void ChangeBrightness_UpdatesBrightness()
         {

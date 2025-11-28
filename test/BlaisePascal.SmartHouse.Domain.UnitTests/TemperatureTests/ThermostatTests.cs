@@ -13,8 +13,9 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void Constructor_InitializesPropertiesCorrectly()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
-            Assert.True(thermostat.IsOn);
+            bool isOn = true;
+            var thermostat = new Thermostat(isOn, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            Assert.True(isOn);
             Assert.Equal(20.0f, thermostat.CurrentTemperature);
             Assert.Equal(22.0f, thermostat.SetpointTemperature);
         }

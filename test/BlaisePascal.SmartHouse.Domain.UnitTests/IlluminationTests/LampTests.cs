@@ -11,6 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
     
     public class LampTests
     {
+        // TurnOnOrOff tests
         [Fact]
         public void TurnOnOrOff_ChangesState()
         {
@@ -29,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             bool isOn = true;
             var lamp = new Lamp(isOn, brightness: 70, color: new byte[] { 0, 0, 255 }, type: "Incandescent", onTime: new Time(20, 0, 4), offTime: new Time(8, 0, 7));
 
-            lamp.TurnOnOrOff(); // Turn off the lamp
+            lamp.TurnOnOrOff(); /// Turn off the lamp
             Assert.Equal(0, lamp.Brightness);
         }
 
@@ -39,10 +40,11 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             bool isOn = false;
             var lamp = new Lamp(isOn, brightness: 60, color: new byte[] { 255, 255, 0 }, type: "CFL", onTime: new Time(17, 0,1), offTime: new Time(5, 0,4));
             
-            lamp.TurnOnOrOff(); // Turn on the lamp
+            lamp.TurnOnOrOff(); /// Turn on the lamp
             Assert.Equal(60, lamp.Brightness);
         }
 
+        // ChangeBrightness tests
         [Fact]
         public void ChangeBrightness_UpdatesBrightness()
         {
@@ -53,6 +55,8 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             lamp.ChangeBrightness(newBrightness);
             Assert.Equal(newBrightness, lamp.Brightness);
         }
+
+        // ChangeLampColor tests
         [Fact]
         public void ChangeLampColor_UpdateColor()
         {
