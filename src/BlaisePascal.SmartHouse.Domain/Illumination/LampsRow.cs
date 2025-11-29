@@ -13,17 +13,38 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public List<Lamp> LampsList { get; private set; }
 
         //Constructor
-        public LampsRow(int lampsNum, Lamp newLamp) {
+        public LampsRow(int lampsNum, Lamp defaultLamp) {
             LampsList = new List<Lamp>();
-            //Initialize the LampsList with the specified number of lamps
+            ///Initialize the LampsList with the specified number of lamps
             for (int i = 0; i < lampsNum; i++)
-                LampsList.Add(newLamp);
+                LampsList.Add(defaultLamp);
         }
 
         //Adds a new lamp to the LampsRow
         public void AddLamp(Lamp newLamp)
         {
-            LampsList.Add(newLamp);
+            if (newLamp != null)
+                LampsList.Add(newLamp);
+            else
+                throw new ArgumentNullException("Lamp to add cannot be null");
+        }
+
+        // Inserts a lamp at the specified position in the LampsRow
+        public void InsertLampInPosition(Lamp lampToInsert, int position)
+        {
+            if (lampToInsert != null && position >= 0 && position <= LampsList.Count)
+                LampsList.Insert(position, lampToInsert);
+            else
+                throw new ArgumentOutOfRangeException("Position is out of range or lamp is null");
+        }
+
+        //Removes a lamp from the LampsRow
+        public void RemoveLamp(Lamp lampToRemove)
+        {
+            if (lampToRemove != null && LampsList.Contains(lampToRemove))
+                LampsList.Remove(lampToRemove);
+            else
+                throw new ArgumentException("Lamp to remove is null or does not exist in the LampsRow");
         }
 
         //Turns on or off all lamps in the LampsRow
