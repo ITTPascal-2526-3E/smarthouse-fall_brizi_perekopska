@@ -54,10 +54,6 @@ namespace BlaisePascal.SmartHouse.Domain
 
                 CommandsHandler.Process(commandInput);
             } while (true);
-
-            Camera1.StartRecording();
-            Camera1.Save();
-            Camera1.StopRecording();
         }
     }
 }

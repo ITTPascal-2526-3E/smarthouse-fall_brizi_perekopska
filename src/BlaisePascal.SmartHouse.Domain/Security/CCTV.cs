@@ -80,7 +80,8 @@ namespace BlaisePascal.SmartHouse.Domain.Security
                 if (IsOn == true )
                 {
                     IsRecording = true;
-                    CCTVStartUp.StartRealRecording();
+                    var starting = new Thread(()=>CCTVStartUp.StartRealRecording());
+                    starting.Start();
                 }
                 else
                 {
