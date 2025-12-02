@@ -19,12 +19,18 @@ namespace BlaisePascal.SmartHouse.Domain.UsefullClasses
             try {
                 if (hours <= 23 && hours >= 0)
                     Hours = hours;
+                else
+                    throw new Exception();
 
                 if (minutes <= 59 && minutes >= 0)
                     Minutes = minutes;
+                else
+                    throw new Exception();
 
                 if (seconds <= 59 && seconds >= 0)
                     Seconds = seconds;
+                else
+                    throw new Exception();
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
