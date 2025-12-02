@@ -15,9 +15,26 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         //Constructor
         public LampsRow(int lampsNum, Lamp defaultLamp) {
             LampsList = new List<Lamp>();
-            ///Initialize the LampsList with the specified number of lamps
-            for (int i = 0; i < lampsNum; i++)
-                LampsList.Add(defaultLamp);
+            if (lampsNum <= 0)
+            {
+                if (lampsNum == 0)
+                    return; ///If 0 lamps are specified, initialize an empty LampsRow
+                else
+                    throw new ArgumentException("Number of lamps cannot be negative");
+            }
+            else
+            {
+                ///Initialize the LampsList with the specified number of lamps
+                for (int i = 0; i < lampsNum; i++)
+                    LampsList.Add(defaultLamp);
+            }
+             
+        }
+
+        //Counts the total number of lamps in the LampsRow
+        public int CountLamps()
+        {
+            return LampsList.Count;
         }
 
         //Adds a new lamp to the LampsRow
@@ -47,6 +64,15 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 throw new ArgumentException("Lamp to remove is null or does not exist in the LampsRow");
         }
 
+        //Removes a lamp at the specified position in the LampsRow
+        public void RemoveLampInPosition(int position)
+        {
+            if (position >= 0 && position < LampsList.Count)
+                LampsList.RemoveAt(position);
+            else
+                throw new ArgumentOutOfRangeException("Position is out of range");
+        }
+
         //Turns on or off all lamps in the LampsRow
         public void TurnOnOrOffAllLamps()
         {
@@ -55,14 +81,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         //Changes the brightness of all lamps in the LampsRow to the specified value
-        public void ChangeBrightnessAllLamps(byte newBrightness)
+        public void ChangeBrightnessForAllLamps(byte newBrightness)
         {
             foreach (var lamp in LampsList)
                 lamp.ChangeBrightness(newBrightness);
         }
 
         //Changes the color of all lamps in the LampsRow to the specified RGB value
-        public void ChangeColorAllLamps(byte[] newColor)
+        public void ChangeColorForAllLamps(byte[] newColor)
         {
             foreach (var lamp in LampsList)
                 lamp.ChangeLampColor(newColor);
