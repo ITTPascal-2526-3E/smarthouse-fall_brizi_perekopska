@@ -1,17 +1,17 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class EcoLamp 
+    public class EcoLamp : Device
     {
         //Attributes:
-        private bool IsOn;
         public byte Brightness { get; set; }
         const double ConsumeAtMaxBrightnessPerHour= 65.0;
         private byte BrightnessBeforeTurnOff;
@@ -26,7 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time _Timer;
 
         //Constructor:
-        public EcoLamp(bool isOn, byte brightness, string type, Time onTime, Time offTime, Time timer) 
+        public EcoLamp(string name, bool isOn, byte brightness, string type, Time onTime, Time offTime, Time timer) : base(name, isOn)
         {
             _Timer = timer;
             IsOn = isOn;

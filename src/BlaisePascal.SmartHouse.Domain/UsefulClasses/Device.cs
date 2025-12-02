@@ -8,9 +8,9 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
     public class Device
     {
-        protected string Name { get; set; }
-        protected Guid Id { get; set; }
-        public bool IsOn { get; set; }
+        public string Name { get; protected set; }
+        public Guid Id { get; protected set; }
+        public bool IsOn { get; protected set; }
 
         public Device(string name, bool isOn)
         {

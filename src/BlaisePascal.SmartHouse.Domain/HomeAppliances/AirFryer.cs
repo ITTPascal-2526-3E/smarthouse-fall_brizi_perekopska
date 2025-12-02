@@ -1,4 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -28,7 +28,6 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 for (int i = 0; i < lampsNum; i++)
                     LampsList.Add(defaultLamp);
             }
-             
         }
 
         //Counts the total number of lamps in the LampsRow
@@ -73,11 +72,58 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 throw new ArgumentOutOfRangeException("Position is out of range");
         }
 
+        //Removers a lamp by name from the LampsRow
+        public void RemoveLampByName(string lampName)
+        {
+            var lampToRemove = LampsList.FirstOrDefault(lamp => lamp.Name == lampName);
+            if (lampToRemove != null)
+                LampsList.Remove(lampToRemove);
+            else
+                throw new ArgumentException("Lamp with the specified name does not exist in the LampsRow");
+        }
+
+        //Removes a lamp by ID from the LampsRow
+        public void RemoveLampById(Guid lampId)
+        {
+            var lampToRemove = LampsList.FirstOrDefault(lamp => lamp.Id == lampId);
+            if (lampToRemove != null)
+                LampsList.Remove(lampToRemove);
+            else
+                throw new ArgumentException("Lamp with the specified ID does not exist in the LampsRow");
+        }
+
         //Turns on or off all lamps in the LampsRow
         public void TurnOnOrOffAllLamps()
         {
             foreach(var lamp in LampsList)
                 lamp.TurnOnOrOff();
+        }
+
+        //Turns on or off one lamp by name in the LampsRow
+        public void TurnOnOrOffLampByName(string lampName)
+        {
+            bool found = false;
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.Name == lampName)
+                {
+                    lamp.TurnOnOrOff();
+                    found = true;
+                    return;
+                }
+            }
+            if (!found)
+                throw new ArgumentException("Lamp with the specified name does not exist in this LampsRow");
+        }
+
+        //Turns on or off one lamp by ID in the LampsRow
+        public void TurnOnOrOffLampById(Guid lampId)
+        {
+            var lamp = LampsList.FirstOrDefault(l => l.Id == lampId);
+            if (lamp != null)
+                lamp.TurnOnOrOff();
+            else
+                throw new ArgumentException("Lamp with the specified ID does not exist in this LampsRow");
         }
 
         //Changes the brightness of all lamps in the LampsRow to the specified value

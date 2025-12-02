@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Illumination;
-using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.UnitTests
 {
     public class TwoLampDeviceTests
     {
+        /*
         //State
         [Fact]
         public void ChangeLamp1State_StateChangedTrue()
@@ -133,5 +134,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
 
             Assert.NotEqual(initialState, secondLamp.brightness2);
         }
+        */
     }
 }

@@ -1,13 +1,11 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class Lamp
+    public class Lamp : Device
     {
 
         //Attributes:
-        private bool IsOn;
-
         public byte Brightness { get; private set; }
         const double ConsumeAtMaxBrightnessPerHour = 100.0;
         private byte BrightnessBeforeTurnOff;
@@ -21,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time OffTime;
 
         //Constructor:
-        public Lamp(bool isOn,byte brightness,byte[] color,string type,Time onTime,Time offTime) 
+        public Lamp(string name, bool isOn, byte brightness,byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
         { 
             IsOn = isOn;
             Color = color;
