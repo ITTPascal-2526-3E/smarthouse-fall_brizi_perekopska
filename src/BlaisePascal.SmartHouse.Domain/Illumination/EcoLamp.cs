@@ -8,7 +8,7 @@ using System.Timers;
 using BlaisePascal.SmartHouse.Domain.UsefullClasses;
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class EcoLamp
+    public class EcoLamp 
     {
         //Attributes:
         private bool IsOn;

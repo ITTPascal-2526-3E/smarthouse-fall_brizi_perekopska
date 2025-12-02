@@ -32,15 +32,25 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                     Brightness = brightness;
                     BrightnessBeforeTurnOff = Brightness;
                 }
+                else 
+                {
+                    throw new Exception();
+                }
 
                 if (!string.IsNullOrEmpty(type))
                     Type = type;
+                else
+                    throw new Exception();
 
                 if (onTime.Hours > offTime.Hours)
                     OnTime = onTime;
-
+                else
+                    throw new Exception();
+                
                 if (onTime.Hours > offTime.Hours)
                     OffTime = offTime;
+                else
+                    throw new Exception();
             }
             catch (Exception ex)
             {

@@ -11,6 +11,30 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
     
     public class LampTests
     {
+        //Constructor
+        [Fact]
+        public void Constructor_BrightnessIsGreaterThanMaxBrightness_BrightbessNotAssigned() 
+        {
+            byte brightness = 101;
+            var Lamp = new Lamp(true,brightness , [0,0,0],"Led",new Time(11,11,11),new Time(11,11,11));
+            Assert.NotEqual(brightness, Lamp.Brightness);
+        }
+        [Fact]
+        public void Constructor_BrightnessIsLessThanMinBrightness_BrightbessIs0()
+        {
+            byte brightness = 0;
+            var Lamp = new Lamp(true, brightness, [0, 0, 0], "Led", new Time(11, 11, 11), new Time(11, 11, 11));
+            Assert.Equal(brightness, Lamp.Brightness);
+        }
+        [Fact]
+        public void Constructor_BrightnessIsAcceptable_BrightbessIsSetted()
+        {
+            byte brightness = 99;
+            var Lamp = new Lamp(true, brightness, [0, 0, 0], "Led", new Time(11, 11, 11), new Time(11, 11, 11));
+            Assert.Equal(brightness, Lamp.Brightness);
+        }
+
+
         // TurnOnOrOff tests
         [Fact]
         public void TurnOnOrOff_ChangesState()
@@ -67,5 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             lamp.ChangeLampColor(color);
             Assert.NotEqual (initialColor, lamp.Color);
         }
+
+
     }
 }
