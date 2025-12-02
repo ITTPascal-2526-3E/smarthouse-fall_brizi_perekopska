@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Security
 {
-    public class CCTV
+    public class CCTV : Device
     {
         //Attributes
-        private bool IsOn;
         public bool IsRecording;
         const uint ResolutionPixels=3840*2160;//4K
         private bool HasNightVision;
         private CCTVStartUp Starting=new CCTVStartUp();
 
         //Constructor
-        public CCTV(bool isOn, bool isRecording, bool hasNightVision) 
+        public CCTV(string name, bool isOn, bool isRecording, bool hasNightVision) : base(name, isOn)
         { 
             IsOn = isOn;
             try
@@ -41,13 +41,9 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         public bool TurnOnOrOff() 
         {
             if (IsOn == true)
-            {
                 IsOn = false;
-            }
             else
-            {
                 IsOn = true;
-            }
             return IsOn;
         }
 

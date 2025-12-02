@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {
-    public class Thermostat
+    public class Thermostat : Device
     {
         //Attributes:
-        private bool IsOn;
 
         const float MaxThermostatTemperature = 35;
         const float MinThermostatTemperature = 5;
@@ -19,9 +19,8 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         private float SetpointTemperatureBeforeTurnOff;
 
         //Constructor:
-        public Thermostat(bool isOn, float currentTemperature, float setpointTemperature)
+        public Thermostat(string name, bool isOn, float currentTemperature, float setpointTemperature) : base(name, isOn)
         {
-            IsOn = isOn;
             if (setpointTemperature >= MinThermostatTemperature && setpointTemperature <= MaxThermostatTemperature)
                 SetpointTemperature = setpointTemperature;
             if (currentTemperature <= MaxThermostatTemperature)

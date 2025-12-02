@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         public void Constructor_InitializesPropertiesCorrectly()
         {
             bool isOn = true;
-            var thermostat = new Thermostat(isOn, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn, currentTemperature: 20.0f, setpointTemperature: 22.0f);
             Assert.True(isOn);
             Assert.Equal(20.0f, thermostat.CurrentTemperature);
             Assert.Equal(22.0f, thermostat.SetpointTemperature);
@@ -25,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         public void TurnOnOrOff_ChangesStateToOnIfOffAndToOffIfOn()
         {
             bool isOn = false;
-            var thermostat = new Thermostat(isOn, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn, currentTemperature: 20.0f, setpointTemperature: 22.0f);
 
             var initialState = isOn;
             var newState = thermostat.TurnOnOrOff();
@@ -35,7 +35,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void TurnOnOrOff_SetsCurrentAndSetpointTemperratureToZero()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
             thermostat.TurnOnOrOff(); /// Turn off
 
             Assert.Equal(0, thermostat.CurrentTemperature);
@@ -45,7 +45,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void TurnOnOrOff_RestoresPreviousTemperaturesWhenTurnedOnAgain()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
             thermostat.TurnOnOrOff(); /// Turn off
             thermostat.TurnOnOrOff(); /// Turn on
             Assert.Equal(20.0f, thermostat.CurrentTemperature);
@@ -55,7 +55,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void IncreaseSetpointTemperature_IncreasesSetpointBy2C()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
 
             byte clicks = 4; /// Increase by 2.0°C
             thermostat.IncreaseSetpointTemperature(clicks);
@@ -65,7 +65,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void IncreaseSetpointTemperature_DoesNotExceedMaxTemperature()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 30.0f, setpointTemperature: 34.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 30.0f, setpointTemperature: 34.0f);
             byte clicks = 4; /// Attempt to increase by 2.0°C, exceeding max
             thermostat.IncreaseSetpointTemperature(clicks);
             Assert.Equal(35.0f, thermostat.SetpointTemperature); /// Max is 35°C
@@ -74,7 +74,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void IncreaseSetpointTemperature_NoChangeWhenClicksIsZero()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
             byte clicks = 0; /// No increase
             thermostat.IncreaseSetpointTemperature(clicks);
             Assert.Equal(22.0f, thermostat.SetpointTemperature); // Should remain unchanged
@@ -84,7 +84,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void DecreaseSetpointTemperature_DecreasesSetpointBy1C()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
 
             byte clicks = 2; /// Decrease by 1.0°C
             thermostat.DecreaseSetpointTemperature(clicks);
@@ -94,7 +94,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void DecreaseSetpointTemperature_DoesNotGoBelowMinTemperature()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 10.0f, setpointTemperature: 6.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 10.0f, setpointTemperature: 6.0f);
             byte clicks = 4; /// Attempt to decrease by 2.0°C, going below min
             thermostat.DecreaseSetpointTemperature(clicks);
             Assert.Equal(5.0f, thermostat.SetpointTemperature); /// Min is 5°C
@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void DecreaseSetpointTemperature_NoChangeWhenClicksIsZero()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 22.0f);
             byte clicks = 0; /// No decrease
             thermostat.DecreaseSetpointTemperature(clicks);
             Assert.Equal(22.0f, thermostat.SetpointTemperature); /// Should remain unchanged
@@ -113,7 +113,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void RaiseCurrentTemperature_AdjustsCurrentTowardsSetpointPlusOne()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 20.0f, setpointTemperature: 25.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 20.0f, setpointTemperature: 25.0f);
             thermostat.RaiseCurrentTemperature();
             Assert.Equal(26.0f, thermostat.CurrentTemperature);
         }
@@ -121,7 +121,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void RaiseCurrentTemperature_DoesNotExceedMaxTemperature()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 34.0f, setpointTemperature: 35.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 34.0f, setpointTemperature: 35.0f);
             thermostat.RaiseCurrentTemperature();
             Assert.Equal(35.0f, thermostat.CurrentTemperature); /// Max is 35°C
         }
@@ -129,7 +129,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.TemperatureTests
         [Fact]
         public void RaiseCurrentTemperature_NoChangeWhenCurrentAboveSetpointPlusOne()
         {
-            var thermostat = new Thermostat(isOn: true, currentTemperature: 30.0f, setpointTemperature: 25.0f);
+            var thermostat = new Thermostat("aaa", isOn: true, currentTemperature: 30.0f, setpointTemperature: 25.0f);
             thermostat.RaiseCurrentTemperature();
             Assert.Equal(30.0f, thermostat.CurrentTemperature); /// Should remain unchanged
         }

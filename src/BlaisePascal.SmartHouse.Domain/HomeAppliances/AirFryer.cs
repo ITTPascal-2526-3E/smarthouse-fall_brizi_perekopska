@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefullClasses;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
-    public class AirFryer
+    public class AirFryer : Device
     {
         //Attributes
-        private bool IsOn;
 
         const byte MaxTemperature = 200;
         const byte MinTemperature = 80;
@@ -25,7 +24,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         public bool Stop { get; private set; }
 
         //Constructor
-        public AirFryer(bool isOn)
+        public AirFryer(string name, bool isOn) : base(name, isOn)
         {
             IsOn = isOn;
         }

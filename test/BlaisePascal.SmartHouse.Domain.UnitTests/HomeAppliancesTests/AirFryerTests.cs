@@ -13,7 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
         [Fact]
         public void StartTheCooking_TemperatureIs79_CookingNotStart() 
         {
-            var AirFryer = new AirFryer(true);
+            var AirFryer = new AirFryer("AirFryer1", true);
 
             AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 79 ,new Time(0,0,15));
 
@@ -23,7 +23,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
         [Fact]
         public void StartTheCooking_TemperatureIs201_CookingNotStart() 
         {
-            var AirFryer = new AirFryer(true);
+            var AirFryer = new AirFryer("AirFryer1", true);
 
             AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 201, new Time(0, 0, 15));
 
@@ -33,7 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
         [Fact]
         public void StartTheCooking_TemperatureIsInTheAcceptable_CookingStart()
         {
-            var AirFryer = new AirFryer(true);
+            var AirFryer = new AirFryer("AirFryer1", true);
 
             AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 180, new Time(0, 0, 15));
 
@@ -43,7 +43,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
         [Fact]
         public async Task StartTheCooking_StopTurnTrueFromTheMethod_TheCookingStop() 
         {
-            var AirFryer = new AirFryer(true);
+            var AirFryer = new AirFryer("AirFryer1", true);
 
             AirFryer.StartTheCooking(AirFryer.CookingType.Fryed, 180, new Time(0, 0, 15));
             AirFryer.StopTheCooking();

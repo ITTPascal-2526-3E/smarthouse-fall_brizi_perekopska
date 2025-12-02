@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
-    public class AirConditioner
+    public class AirConditioner : Device
     {
         //Attributes
-        public bool IsOn { get; private set; }
-
         const float MaxTemperature = 35;
         const float MinTemperature = 16;
         public float TemperatureBeforeTurnOff { get; private set; }
@@ -26,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         public enum AirTypeList { Cool, Heat, Fan, auto, Dry }
 
         //Constructor
-        public AirConditioner(bool isOn)
+        public AirConditioner(string name, bool isOn) : base(name, isOn)
         {
             IsOn = isOn;
         }

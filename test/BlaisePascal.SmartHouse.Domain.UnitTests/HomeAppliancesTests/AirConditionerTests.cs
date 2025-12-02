@@ -13,7 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
         [Fact]
         public void Constructor_InitializesPropertiesCorrectly()
         {
-            var airConditioner = new AirConditioner(isOn: true);
+            var airConditioner = new AirConditioner("aaa", isOn: true);
             Assert.True(airConditioner.IsOn);
         }
 
@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
         [Fact]
         public void StartAirConditioner_SetsPropertiesCorrectly()
         {
-            var airConditioner = new AirConditioner(isOn: true);
+            var airConditioner = new AirConditioner("aaa", isOn: true);
             airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Heat, 25, 60);
             Assert.Equal(AirConditioner.AirTypeList.Heat.ToString(), airConditioner.AirType);
             Assert.Equal(25, airConditioner.Temperature);
@@ -31,21 +31,21 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
         [Fact]
         public void StartAirConditioner_InvalidTemperature_DoesNotChangeTemperature()
         {
-            var airConditioner = new AirConditioner(isOn: false);
+            var airConditioner = new AirConditioner("aaa", isOn: false);
             Assert.Throws<Exception>(() => airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Fan, 10, 110));
         }
 
         [Fact]
         public void StartAirConditioner_InvalidSpeed_DoesNotChangeSpeed()
         {
-            var airConditioner = new AirConditioner(isOn: false);
+            var airConditioner = new AirConditioner("aaa", isOn: false);
             Assert.Throws<Exception>(() => airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Fan, 20, 150)); // Invalid speed
         }
 
         [Fact]
         public void StartAirConditioner_WhenOff_ThrowsException()
         {
-            var airConditioner = new AirConditioner(isOn: false);
+            var airConditioner = new AirConditioner("aaa", isOn: false);
             var exception = Assert.Throws<Exception>(() => airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Cool, 22, 50));
             Assert.Equal("Air Conditioner is off", exception.Message);
         }
@@ -54,7 +54,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
         [Fact]
         public void TurnOnOrOff_TurnsOffAirConditioner_SavesPreviousSettings()
         {
-            var airConditioner = new AirConditioner(isOn: true);
+            var airConditioner = new AirConditioner("aaa", isOn: true);
             airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Cool, 22, 50);
             var newState = airConditioner.TurnOnOrOff();
             Assert.False(newState);
@@ -67,7 +67,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.HomeAppliancesTests
         [Fact]
         public void TurnOnOrOff_ToggleMultipleTimes_MaintainsCorrectState()
         {
-            var airConditioner = new AirConditioner(isOn: true);
+            var airConditioner = new AirConditioner("aaa", isOn: true);
             airConditioner.StartAirConditioner(AirConditioner.AirTypeList.Dry, 26, 80);
             // Turn off
             airConditioner.TurnOnOrOff();

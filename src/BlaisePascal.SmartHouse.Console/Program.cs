@@ -19,12 +19,12 @@ namespace BlaisePascal.SmartHouse.Domain
             EcoLamp EcoLamp1 = new EcoLamp(false, 50, "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
             //Temperature Devices
-            Thermostat Thermostat1 = new Thermostat(true, 19.5f, 23.5f);
+            Thermostat Thermostat1 = new Thermostat("Thermostat1", true, 19.5f, 23.5f);
             //Home Appliances
-            AirConditioner AirConditioner1 = new AirConditioner(true);
-            AirFryer AirFryer1 = new AirFryer(true);
+            AirConditioner AirConditioner1 = new AirConditioner("AirConditioner1", true);
+            AirFryer AirFryer1 = new AirFryer("AirFryer1", true);
             //Security Devices
-            CCTV Camera1 = new CCTV(true, false, true);
+            CCTV Camera1 = new CCTV("Camera1", true, false, true);
             Door Door1 = new Door(true);
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Camera1, Door1);
