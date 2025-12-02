@@ -33,6 +33,28 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             var Lamp = new Lamp(true, brightness, [0, 0, 0], "Led", new Time(11, 11, 11), new Time(11, 11, 11));
             Assert.Equal(brightness, Lamp.Brightness);
         }
+        [Fact]
+        public void Constructor_TypeIsNull_TypeNotAssigned()
+        {
+            string type = "";
+            var Lamp = new Lamp(true, 80, [0, 0, 0], type, new Time(11, 11, 11), new Time(11, 11, 11));
+            Assert.Equal(type, Lamp.Type);
+        }
+        [Fact]
+        public void Constructor_TypeIsNotNull_TypeAssigned()
+        {
+            string type = "LED";
+            var Lamp = new Lamp(true, 80, [0, 0, 0], type, new Time(11, 11, 11), new Time(11, 11, 11));
+            Assert.Equal(type, Lamp.Type);
+        }
+        [Fact]
+        public void Constructor_OnTimeHourIsLessthanOffTimeHour_OnTimeNotAssigned()
+        {
+            var timeOn = new Time(10, 11, 11);
+            var timeOff=new Time(11, 11, 11);
+            var Lamp = new Lamp(true, 80, [0, 0, 0], "Led",timeOn , timeOff);
+            Assert.NotEqual(timeOn, Lamp.OnTime);
+        }
 
 
         // TurnOnOrOff tests
