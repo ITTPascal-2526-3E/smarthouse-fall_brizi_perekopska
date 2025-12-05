@@ -24,10 +24,10 @@ namespace BlaisePascal.SmartHouse.Domain
             AirConditioner AirConditioner1 = new AirConditioner("AirConditioner1", true);
             AirFryer AirFryer1 = new AirFryer("AirFryer1", true);
             //Security Devices
-            CCTV Camera1 = new CCTV("Camera1", true, false, true);
+            CCTV Cameras = new CCTV("Cameras", true, false, true);
             Door Door1 = new Door(true);
             //Commands Handler
-            CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Camera1, Door1);
+            CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1);
             
             string CommandsList = @"AVAILABLE COMANDS:
 LAMPS COMANDS
@@ -57,9 +57,9 @@ AIRFRYER COMANDS
 - start/stop air fryer1
 
 CCTV COMANDS
-- turn on/off camera1
-- start/stop camera1 recording
-- save camera1
+- turn on/off cameras
+- start/stop cameras recording
+- save cameras
 
 DOOR COMANDS
 - lock/unlock the door1

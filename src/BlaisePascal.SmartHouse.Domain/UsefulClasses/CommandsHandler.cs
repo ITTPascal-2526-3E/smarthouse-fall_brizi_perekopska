@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
         Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>> AirFryerCommands; //dictionary with methods that accepts CookingType, byte, Time and returns Task (Air fryer)
 
         //Constructor
-        public CommandsHandler(Lamp Lamp1, EcoLamp EcoLamp1, TwoLampDevice TwoLampDevice1, Thermostat Thermostat1, AirConditioner AirConditioner1, AirFryer AirFryer1, CCTV Camera1, Door Door1)
+        public CommandsHandler(Lamp Lamp1, EcoLamp EcoLamp1, TwoLampDevice TwoLampDevice1, Thermostat Thermostat1, AirConditioner AirConditioner1, AirFryer AirFryer1, CCTV Cameras, Door Door1)
         {
             try
             {
@@ -36,9 +36,9 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                         byte ecolamp1Brightness = byte.Parse(Console.ReadLine());
                         TwoLampDevice1.ChangeBothLampBrightness(lamp1Brightness, ecolamp1Brightness);}},
                     {"display current temperature", Thermostat1.DisplayCurrentTemperature },
-                    {"start camera1 recording", Camera1.StartRecording },
-                    {"stop camera1 recording", Camera1.StopRecording },
-                    { "save camera1", Camera1.Save},
+                    {"start cameras recording", Cameras.StartRecording },
+                    {"stop cameras recording", Cameras.StopRecording },
+                    { "save cameras", Cameras.Save},
                     {"stop air fryer1", AirFryer1.StopTheCooking }
                 };
 
@@ -62,8 +62,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     {"turn off thermostat1", Thermostat1.TurnOnOrOff },
                     {"turn on air conditioner1", AirConditioner1.TurnOnOrOff },
                     {"turn off air conditioner1", AirConditioner1.TurnOnOrOff },
-                    {"turn on camera1", Camera1.TurnOnOrOff },
-                    {"turn of camera1", Camera1.TurnOnOrOff },
+                    {"turn on camera1", Cameras.TurnOnOrOff },
+                    {"turn of camera1", Cameras.TurnOnOrOff },
                     {"lock the door1", Door1.LockUnlockTheDoor },
                     {"unlock the door1", Door1.LockUnlockTheDoor }
                 };
