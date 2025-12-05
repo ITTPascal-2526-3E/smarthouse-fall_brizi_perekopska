@@ -63,7 +63,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     {"turn on air conditioner1", AirConditioner1.TurnOnOrOff },
                     {"turn off air conditioner1", AirConditioner1.TurnOnOrOff },
                     {"turn on cameras", Cameras.TurnOnOrOff },
-                    {"turn of cameras", Cameras.TurnOnOrOff },
+                    {"turn off cameras", Cameras.TurnOnOrOff },
                     {"lock the door1", Door1.LockUnlockTheDoor },
                     {"unlock the door1", Door1.LockUnlockTheDoor }
                 };

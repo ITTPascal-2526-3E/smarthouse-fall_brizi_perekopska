@@ -44,6 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
                 IsOn = false;
             else
                 IsOn = true;
+            Console.WriteLine("Cameras are {0}",IsOn);
             return IsOn;
         }
 
