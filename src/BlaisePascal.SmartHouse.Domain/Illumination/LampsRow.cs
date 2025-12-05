@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using System.Xml.Linq;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -136,14 +137,22 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
 		//Changes the brightness of one lamp or more by name
 		public void ChangeBrightnessByName(string name, byte brightness)
 		{
-			//To do
-		}
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.Name == name)
+                    lamp.ChangeBrightness(brightness);
+            }
+        }
 
 		//Changes the brightness of one lamp by its id
 		public void ChangeBrightnessById(Guid id, byte brightness)
 		{
-			//To do
-		}
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.Id == id)
+                    lamp.ChangeBrightness(brightness);
+            }
+        }
 
         //Changes the color of all lamps in the LampsRow to the specified RGB value
         public void ChangeColorForAllLamps(byte[] newColor)
@@ -155,13 +164,21 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
 		//Changes the color of one lamp or more by name
 		public void ChangeColorByName(string name, byte[] color)
 		{
-			//To do
-		}
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.Name == name)
+                    lamp.ChangeLampColor(color);
+            }
+        }
 
 		//Changes the color of one lamp by its id
 		public void ChangeColorById(Guid id, byte[] color)
 		{
-			//To do
-		}
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.Id == id)
+                    lamp.ChangeLampColor(color);
+            }
+        }
     }
 }
