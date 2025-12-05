@@ -103,15 +103,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
         }
 
         // ChangeLampColor tests
-        /*[Fact]
+        [Fact]
         public void ChangeLampColor_UpdateColor()
         {
             bool isOn = true;
             var initialColor = new byte[] { 52, 200, 105 };
-            var lamp = new Lamp(isOn, brightness: 50, initialColor, type: "Halogen", onTime: new Time(19, 0, 3), offTime: new Time(7, 0, 6));
+            var lamp = new Lamp("aaa", isOn, brightness: 50, initialColor, type: "Halogen", onTime: new Time(19, 0, 3), offTime: new Time(7, 0, 6));
             var color = new byte[] { 22,235, 1 };
             lamp.ChangeLampColor(color);
             Assert.NotEqual (initialColor, lamp.Color);
-        }*/
+        }
     }
 }
