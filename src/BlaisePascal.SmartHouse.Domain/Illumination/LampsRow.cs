@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -136,22 +137,32 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
 
 		//Changes the brightness of one lamp or more by name
 		public void ChangeBrightnessByName(string name, byte brightness)
-		{
+        {
+            bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Name == name)
+                if (lamp.Name == name) { 
                     lamp.ChangeBrightness(brightness);
+                    found = true;
+                }
             }
+            if (!found)
+                throw new ArgumentException("Lamp with the specified name does not exist in this LampsRow");
         }
 
 		//Changes the brightness of one lamp by its id
 		public void ChangeBrightnessById(Guid id, byte brightness)
 		{
+            bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Id == id)
+                if (lamp.Id == id) {
                     lamp.ChangeBrightness(brightness);
+                    found = true; 
+                }
             }
+            if (!found)
+                throw new ArgumentException("Lamp with the specified Id does not exist in this LampsRow");
         }
 
         //Changes the color of all lamps in the LampsRow to the specified RGB value
@@ -164,21 +175,32 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
 		//Changes the color of one lamp or more by name
 		public void ChangeColorByName(string name, byte[] color)
 		{
+            bool found = false;
             foreach (var lamp in LampsList)
             {
                 if (lamp.Name == name)
+                {
                     lamp.ChangeLampColor(color);
+                    found = true;
+                }
             }
+            if (!found)
+                throw new ArgumentException("Lamp with the specified name does not exist in this LampsRow");
         }
 
-		//Changes the color of one lamp by its id
-		public void ChangeColorById(Guid id, byte[] color)
-		{
+        //Changes the color of one lamp by its id
+        public void ChangeColorById(Guid id, byte[] color)
+        {
+            bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Id == id)
+                if (lamp.Id == id) {
                     lamp.ChangeLampColor(color);
+                    found = true;
+                }
             }
+            if (!found)
+                throw new ArgumentException("Lamp with the specified Id does not exist in this LampsRow");
         }
     }
 }

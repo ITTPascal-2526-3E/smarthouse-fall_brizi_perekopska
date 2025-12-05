@@ -185,7 +185,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             /// Since all lamps are initially off, after turning on, all should be on
             foreach (var lamp in LampsRow.LampsList)
             {
-                if(lamp.Brightness!=0) 
+                if (lamp.Brightness != 0)
                     state = false;
             }
             Assert.True(state);
@@ -202,7 +202,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             /// Since all lamps are initially off, after turning on, all should be on
             foreach (var lamp in LampsRow.LampsList)
             {
-                if(lamp.Brightness==0) 
+                if (lamp.Brightness == 0)
                     state = false;
             }
             Assert.Equal(true, state);
@@ -273,10 +273,63 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             /// Check if all lamps have the new brightness
             foreach (var lamp in LampsRow.LampsList)
             {
-                if(lamp.Brightness != newBrightness) 
+                if (lamp.Brightness != newBrightness)
                     state = false;
             }
-            Assert.Equal(true, state);
+            Assert.True(state);
+        }
+
+        // ChangeBrightnessByName tests
+        [Fact]
+        public void ChangeBrightnessByName_ExistingName_ShouldChangeTheBrightness()
+        {
+            byte newBrightness = 90;
+            var defaultLamp = new Lamp("a", false, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
+            var newLamp = new Lamp("aa", false, 9, [0, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Lamp to be added
+            LampsRow.AddLamp(newLamp); /// Add a lamp with name "aa"
+            var anotherLamp = new Lamp("aaa", false, 33, [255, 0, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Another lamp to be added
+            LampsRow.AddLamp(anotherLamp); /// Add a lamp with name "aaa"
+            LampsRow.ChangeBrightnessByName("aaa", newBrightness);
+            byte aaaLampBrightness = LampsRow.LampsList.Find(lamp => lamp.Name == "aaa").Brightness;
+            /// Check if the lamp with name "aaa" has changed its state
+            Assert.Equal(newBrightness, aaaLampBrightness);
+        }
+        [Fact]
+        public void ChangeBrightnessByName_NonExistingName_ShouldThrowExeption()
+        {
+            byte newBrightness = 90;
+            var defaultLamp = new Lamp("a", false, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
+            var newLamp = new Lamp("aa", false, 9, [0, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Lamp to be added
+            LampsRow.AddLamp(newLamp); /// Add a lamp with name "aa"
+            var anotherLamp = new Lamp("aaa", false, 33, [255, 0, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Another lamp to be added
+            LampsRow.AddLamp(anotherLamp); /// Add a lamp with name "aaa"
+            Assert.Throws<ArgumentException>(() => LampsRow.ChangeBrightnessByName("wronName", newBrightness));
+        }
+
+        // ChangeBrightnessById tests
+        [Fact]
+        public void ChangeBrightnessById_ExistingName_ShouldChangeTheBrightness()
+        {
+            var defaultLamp = new Lamp("a", false, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(5, defaultLamp); /// Create a LampsRow with 5 lamps
+            var newLamp = new Lamp("aa", false, 50, [0, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Lamp to be added
+            LampsRow.AddLamp(newLamp); /// Add a lamp
+            var ExistinglampId = newLamp.Id; /// Get the ID of the newly added lamp
+            LampsRow.ChangeBrightnessById(ExistinglampId, 20);
+            var lampId = LampsRow.LampsList.Find(lamp => lamp.Id == ExistinglampId).Id;
+            /// Check if the lamp with the specified ID has changed its state
+            Assert.Equal(ExistinglampId, lampId);
+        }
+        [Fact]
+        public void ChangeBrightnessById_NonExistingName_ShouldThrowExeption()
+        {
+            Guid nonExistingId = Guid.NewGuid();
+            byte newBrightness = 90;
+            var defaultLamp = new Lamp("a", false, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(3, defaultLamp); /// Create a LampsRow with 3 lamps
+            Assert.Throws<ArgumentException>(() => LampsRow.TurnOnOrOffLampById(nonExistingId));
         }
 
         // ChangeColorAllLamps tests
@@ -292,10 +345,16 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             /// Check if all lamps have the new color
             foreach (var lamp in LampsRow.LampsList)
             {
-                if(!lamp.Color.SequenceEqual(newColor)) 
+                if (!lamp.Color.SequenceEqual(newColor))
                     state = false;
             }
-            Assert.Equal(true, state);
+            Assert.True(state);
+        }
+
+        [Fact]
+        public void ChangeColorByName_ExistingName_ShouldChangeColorOfAllLamps()
+        {
+
         }
     }
 }
