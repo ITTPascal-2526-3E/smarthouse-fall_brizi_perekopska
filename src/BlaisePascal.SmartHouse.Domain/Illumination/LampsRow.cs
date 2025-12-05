@@ -75,7 +75,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         //Removers a lamp by name from the LampsRow
         public void RemoveLampByName(string lampName)
         {
-            var lampToRemove = LampsList.First(lamp => lamp.Name == lampName);
+            var lampToRemove = LampsList.FirstOrDefault(lamp => lamp.Name == lampName);
             if (lampToRemove != null)
                 LampsList.Remove(lampToRemove);
             else
@@ -133,17 +133,17 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 lamp.ChangeBrightness(newBrightness);
         }
 
-				//Changes the brightness of one lamp or more by name
-				public void ChangeBrightnessByName(string name, byte brightness)
-				{
-						//To do
-				}
+		//Changes the brightness of one lamp or more by name
+		public void ChangeBrightnessByName(string name, byte brightness)
+		{
+			//To do
+		}
 
-				//Changes the brightness of one lamp by its id
-				public void ChangeBrightnessById(Guid id, byte brightness)
-				{
-						//To do
-				}
+		//Changes the brightness of one lamp by its id
+		public void ChangeBrightnessById(Guid id, byte brightness)
+		{
+			//To do
+		}
 
         //Changes the color of all lamps in the LampsRow to the specified RGB value
         public void ChangeColorForAllLamps(byte[] newColor)
@@ -152,16 +152,16 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 lamp.ChangeLampColor(newColor);
         }
 
-				//Changes the color of one lamp or more by name
-				public void ChangeColorByName(string name, byte[] color)
-				{
-						//To do
-				}
+		//Changes the color of one lamp or more by name
+		public void ChangeColorByName(string name, byte[] color)
+		{
+			//To do
+		}
 
-				//Changes the color of one lamp by its id
-				public void ChangeColorById(Guid id, byte[] color)
-				{
-						//To do
-				}
+		//Changes the color of one lamp by its id
+		public void ChangeColorById(Guid id, byte[] color)
+		{
+			//To do
+		}
     }
 }

@@ -10,69 +10,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests
 {
     public class TwoLampDeviceTests
     {
-        ////State
-        //[Fact]
-        //public void ChangeLamp1State_StateChangedTrue()
-        //{
-        //    bool isOn1 = false;
-        //    var firstLamp = new Lamp("lamp", isOn1, brightness: 50, color: new byte[] { 255, 0, 0 }, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5));
-        //    var secondLamp = new EcoLamp("ecoLamp"true, brightness: 50, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5), timer: new Time(0, 5, 0));
-        //    var twoLampDevice = new TwoLampDevice(firstLamp, secondLamp);
-
-        //    var initialState = isOn1;
-        //    twoLampDevice.ChangeLamp1State();
-
-        //    Assert.NotEqual(initialState, firstLamp.isOn);
-        //}
-
-        //[Fact]
-        //public void ChangeLamp2State_StateChangedTrue()
-        //{
-        //    bool isOn2 = false;
-        //    var firstLamp = new Lamp("lamp", true, brightness: 50, color: new byte[] { 255, 0, 0 }, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5));
-        //    var secondLamp = new EcoLamp("ecoLamp",isOn2, brightness: 50, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5), timer: new Time(0, 5, 0));
-        //    var twoLampDevice = new TwoLampDevice(firstLamp, secondLamp);
-
-        //    var initialState = isOn2;
-        //    twoLampDevice.ChangeBothLampState();
-
-        //    Assert.NotEqual(initialState, secondLamp.isOn);
-        //}
-
-        //[Fact]
-        //public void ChangeBothLampsState1_StateChangedTrue()
-        //{
-        //    bool isOn2 = false;
-        //    bool isOn1 = false;
-
-        //    var firstLamp = new Lamp("lamp",isOn2, brightness: 50, color: new byte[] { 255, 0, 0 }, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5));
-        //    var secondLamp = new EcoLamp("ecoLamp",isOn2, brightness: 50, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5), timer: new Time(0, 5, 0));
-        //    var twoLampDevice = new TwoLampDevice(firstLamp, secondLamp);
-
-        //    var initialState1 = isOn1;
-        //    var initialState2 = isOn2;
-        //    twoLampDevice.ChangeBothLampState();
-
-        //    Assert.NotEqual(initialState1, firstLamp.isOn);
-        //}
-
-        //[Fact]
-        //public void ChangeBothLampsState2_StateChangedTrue()
-        //{
-        //    bool isOn2 = false;
-        //    bool isOn1 = false;
-
-        //    var firstLamp = new Lamp("lamp";isOn2, brightness: 50, color: new byte[] { 255, 0, 0 }, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5));
-        //    var secondLamp = new EcoLamp("EcoLamp0", isOn2, brightness: 50, type: "LED", onTime: new Time(18, 0, 2), offTime: new Time(6, 0, 5), timer: new Time(0, 5, 0));
-        //    var twoLampDevice = new TwoLampDevice(firstLamp, secondLamp);
-
-        //    var initialState1 = isOn1;
-        //    var initialState2 = isOn2;
-        //    twoLampDevice.ChangeBothLampState();
-
-        //    Assert.NotEqual(initialState2, secondLamp.isOn);
-        //}
-
         //Brightness
         [Fact]
         public void ChangeLamp1Brightness_BrightnessChangedTrue()
