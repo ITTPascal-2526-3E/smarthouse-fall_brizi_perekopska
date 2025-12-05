@@ -29,22 +29,40 @@ namespace BlaisePascal.SmartHouse.Domain
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Camera1, Door1);
             
-            string CommandsList = @"Available Commands:
+            string CommandsList = @"AVAILABLE COMANDS:
+LAMPS COMANDS
 - turn on/off lamp1
-- turn on/off ecolamp1
 - change lamp1 brightness [value from 1 to 100]
+- change lamp1 state
+- change lamp 1 color
+
+- turn on/off ecolamp1
 - change ecolamp1 brightness [value from 1 to 66]
+- change ecolamp1 state
+
 - change both lamps state
 - change both lamps brightness [lamp1 value from 1 to 100] [ecolamp1 value from 1 to 66]
+
+THERMOSTAT COMANDS
 - turn on/off thermostat
 - increase thermostat1 setpoint temperature [number of clicks]
 - decrease thermostat1 setpoint temperature [number of clicks]
+- display current temperature
+
+AIRCONDITIONER COMANDS
+- turn on/off air conditioner1
 - start/stop air conditioner1
+
+AIRFRYER COMANDS
 - start/stop air fryer1
+
+CCTV COMANDS
 - turn on/off camera1
 - start/stop camera1 recording
+- save camera1
+
+DOOR COMANDS
 - lock/unlock the door1
-- display current temperature
 ";
             do
             {
