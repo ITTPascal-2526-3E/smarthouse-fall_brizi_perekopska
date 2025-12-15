@@ -19,9 +19,11 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
         Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>> AcCommands; //dictionary with methods that accepts AirType, float, byte and returns void (Air conditioner)
         Dictionary<string, Func<bool>> BoolReturnCommands; //dictionary with methods that returns bool values
         Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>> AirFryerCommands; //dictionary with methods that accepts CookingType, byte, Time and returns Task (Air fryer)
+        Dictionary<string,Func<Led>> LedCommands;//dictionary with methods that return led type
+        Dictionary<string, Func<Led[]>> LedArCommands;//dictionary with methods that return led array type
 
         //Constructor
-        public CommandsHandler(Lamp Lamp1, EcoLamp EcoLamp1, TwoLampDevice TwoLampDevice1, Thermostat Thermostat1, AirConditioner AirConditioner1, AirFryer AirFryer1, CCTV Cameras, Door Door1)
+        public CommandsHandler(Lamp Lamp1, EcoLamp EcoLamp1, TwoLampDevice TwoLampDevice1, Thermostat Thermostat1, AirConditioner AirConditioner1, AirFryer AirFryer1, CCTV Cameras, Door Door1,MatrixLed MatrixLed1)
         {
             try
             {
@@ -35,7 +37,12 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                         Console.WriteLine("Enter ecolamp brightness(1-65): ");
                         byte ecolamp1Brightness = byte.Parse(Console.ReadLine());
                         TwoLampDevice1.ChangeBothLampBrightness(lamp1Brightness, ecolamp1Brightness);}},
-                    {"display current temperature", Thermostat1.DisplayCurrentTemperature },
+                    {"switch all led on",MatrixLed1.SwitchOnAll},
+                    {"switch all led off",MatrixLed1.SwitchOffAll},
+                    {"set all intensity",()=>{
+                        byte Change=Convert.ToByte(Console.ReadLine());
+                        MatrixLed1.SetIntensityAll(Change); }},
+                    { "display current temperature", Thermostat1.DisplayCurrentTemperature },
                     {"start cameras recording", Cameras.StartRecording },
                     {"stop cameras recording", Cameras.StopRecording },
                     { "save cameras", Cameras.Save},
@@ -74,6 +81,24 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
                     {"start air conditioner1", AirConditioner1.StartAirConditioner }
+                };
+
+                LedCommands = new Dictionary<string, Func<Led>>()
+                {
+                    {"get led by row and column",()=>{
+                        int Row=Convert.ToInt32(Console.ReadLine());
+                        int Column=Convert.ToInt32(Console.ReadLine());
+                        return MatrixLed1.GetLed(Row,Column); }}
+                };
+
+                LedArCommands = new Dictionary<string, Func<Led[]>>()
+                {
+                    {"get a row of led by the rows",()=>{
+                        int Row=Convert.ToInt32(Console.ReadLine());
+                        return MatrixLed1.GetLedInRow(Row); }},
+                    {"get a columns of led by the columns",()=>{
+                        int Column=Convert.ToInt32(Console.ReadLine());
+                        return MatrixLed1.GetLedInRow(Column); }}
                 };
             }
             catch (Exception ex)

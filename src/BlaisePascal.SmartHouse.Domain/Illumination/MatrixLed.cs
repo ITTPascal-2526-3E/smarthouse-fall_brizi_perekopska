@@ -40,28 +40,31 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 Console.WriteLine("There is an error:");
                 Console.WriteLine(ex.Message);
             }
-            for(int r = 0; r < 3; r++)
+            for(int r = 0; r < Rows; r++)
             {
-                for (int c = 0; c < Rows; c++)
+                for (int c = 0; c < Columns; c++)
                 {
-                    _MatrixLed[c, r] = CreateMatrix();
+                    _MatrixLed[r,c] = CreateMatrix(r,c);
                 }
             }
         }
         //Prende i valori delle lampade in input per metterli sccessivamente nella matrice.
-        private Led CreateMatrix()
+        private Led CreateMatrix(int i,int j)
         {
-            string name = Console.ReadLine() ?? "aaa";
-            bool isOn = Convert.ToBoolean(Console.ReadLine());
-            byte brightness = Convert.ToByte(Console.ReadLine());
+            Random rnd = new Random();
+            string name = i.ToString() +","+ j.ToString();
+            bool isOn = rnd.Next(2)==1;
+            byte brightness = 0;
+            if (isOn == true)
+                brightness = Convert.ToByte(rnd.Next(101));
+
             byte[] colors = new byte[3];
             for (int col = 0; col < 3; col++)
             {
-                byte color = Convert.ToByte(Console.ReadLine());
+                byte color = Convert.ToByte(rnd.Next(256));
                 colors[col] = color;
             }
             Led _Led = new Led(name, isOn, brightness, colors);
-
             return _Led;
         }
 

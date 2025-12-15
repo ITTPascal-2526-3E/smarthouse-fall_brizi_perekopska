@@ -18,6 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain
             Lamp Lamp1 = new Lamp("porta",false, 100, [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
             EcoLamp EcoLamp1 = new EcoLamp("portaEco",false, 50, "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
+            MatrixLed MatrixLed1 = new MatrixLed(2,3);
             //Temperature Devices
             Thermostat Thermostat1 = new Thermostat("Thermostat1", true, 19.5f, 23.5f);
             //Home Appliances
@@ -27,7 +28,7 @@ namespace BlaisePascal.SmartHouse.Domain
             CCTV Cameras = new CCTV("Cameras", true, false, true);
             Door Door1 = new Door(true);
             //Commands Handler
-            CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1);
+            CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
             
             string CommandsList = @"AVAILABLE COMANDS:
 LAMPS COMANDS
@@ -42,6 +43,13 @@ LAMPS COMANDS
 
 - change both lamps state
 - change both lamps brightness [lamp1 value from 1 to 100] [ecolamp1 value from 1 to 66]
+
+-switch all led on
+-switch all led off
+-set all intensity[value from 1 to 100]
+-get led by row and column[value from 0 to Rows] [value from 0 to Columns]
+-get a row of led by the rows [value from 0 to Rows]
+-get a columns of led by the columns [value from 0 to Columns]
 
 THERMOSTAT COMANDS
 - turn on/off thermostat
