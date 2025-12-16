@@ -249,6 +249,15 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             /// Check if the lamp with the specified ID has changed its state
             Assert.True(lampState);
         }
+        [Fact]
+        public void TurnOnOrOffLampById_NonExistingLamp_ShouldThrowException()
+        {
+            bool isOn = false;
+            var defaultLamp = new Lamp("a", isOn, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
+            Guid nonExistingId = Guid.NewGuid(); /// Generate a random GUID
+            Assert.Throws<ArgumentException>(() => LampsRow.TurnOnOrOffLampById(nonExistingId));
+        }
 
         // SwitchOn tests
         [Fact]
@@ -277,16 +286,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
 
             foreach (var lamp in LampsRow.LampsList)
                 Assert.False(lamp.IsOn);
-        }
-
-        [Fact]
-        public void TurnOnOrOffLampById_NonExistingLamp_ShouldThrowException()
-        {
-            bool isOn = false;
-            var defaultLamp = new Lamp("a", isOn, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
-            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
-            Guid nonExistingId = Guid.NewGuid(); /// Generate a random GUID
-            Assert.Throws<ArgumentException>(() => LampsRow.TurnOnOrOffLampById(nonExistingId));
         }
 
         // ChangeBrightnessAllLamps tests
