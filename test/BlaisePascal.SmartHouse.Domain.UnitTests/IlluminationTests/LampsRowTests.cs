@@ -250,6 +250,35 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             Assert.True(lampState);
         }
 
+        // SwitchOn tests
+        [Fact]
+        public void SwitchAllOn_TurnAllTheLampsOn()
+        {
+            var defaultLamp = new Lamp("a", false, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
+            var newLamp = new Lamp("aa", true, 50, [0, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Add new lamp already turned on
+            LampsRow.AddLamp(newLamp); /// Add a lamp
+
+            LampsRow.SwitchAllOn();
+
+            foreach (var lamp in LampsRow.LampsList)
+                Assert.True(lamp.IsOn);
+        }
+        // SwitchOff test
+        [Fact]
+        public void SwitchAllOff_TurnAllTheLampsOff()
+        {
+            var defaultLamp = new Lamp("a", true, 50, [255, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(1, defaultLamp); /// Create a LampsRow with 1 lamps
+            var newLamp = new Lamp("aa", false, 50, [0, 255, 255], "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Add new lamp already turned off
+            LampsRow.AddLamp(newLamp); /// Add a lamp
+
+            LampsRow.SwitchAllOff();
+
+            foreach (var lamp in LampsRow.LampsList)
+                Assert.False(lamp.IsOn);
+        }
+
         [Fact]
         public void TurnOnOrOffLampById_NonExistingLamp_ShouldThrowException()
         {

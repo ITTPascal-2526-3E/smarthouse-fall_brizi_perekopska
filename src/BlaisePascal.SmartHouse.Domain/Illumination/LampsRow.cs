@@ -127,23 +127,16 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             else
                 throw new ArgumentException("Lamp with the specified ID does not exist in this LampsRow");
         }
-
-        //Changes the brightness of all lamps in the LampsRow to the specified value
-        public void ChangeBrightnessForAllLamps(byte newBrightness)
-        {
-            foreach (var lamp in LampsList)
-                lamp.ChangeBrightness(newBrightness);
-        }
-
-        public void SwitchAllOn() 
+        //Turn on all the lamps
+        public void SwitchAllOn()
         {
             foreach (var lamp in LampsList)
             {
-                if(lamp.IsOn!=true)
+                if (lamp.IsOn != true)
                     lamp.TurnOnOrOff();
             }
         }
-
+        //Turn off all the lamps
         public void SwitchAllOff()
         {
             foreach (var lamp in LampsList)
@@ -151,6 +144,13 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 if (lamp.IsOn == true)
                     lamp.TurnOnOrOff();
             }
+        }
+
+        //Changes the brightness of all lamps in the LampsRow to the specified value
+        public void ChangeBrightnessForAllLamps(byte newBrightness)
+        {
+            foreach (var lamp in LampsList)
+                lamp.ChangeBrightness(newBrightness);
         }
 
         //Changes the brightness of one lamp or more by name
