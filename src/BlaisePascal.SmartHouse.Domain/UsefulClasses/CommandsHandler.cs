@@ -175,12 +175,13 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     Console.WriteLine("Enter temperature(80-200):");
                     byte temperature = byte.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Enter duration in minutes:");
+                    Console.WriteLine("Enter minutes:");
                     int minutes = int.Parse(Console.ReadLine());
-                    Time duration = new Time(0, minutes, 0);
+                    Console.WriteLine("Enter seconds:");
+                    int seconds = int.Parse(Console.ReadLine());
+                    Time duration = new Time(0, minutes, seconds);
 
                     await airFryerFunc(cookingType, temperature, duration);
-                    Console.WriteLine("Cooking started!");
                 }
                 // No command entered
                 else if (string.IsNullOrWhiteSpace(command))
