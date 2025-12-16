@@ -38,14 +38,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
         }
 
-        //Turn on the led.
+        //Turn on the led
         public bool TurnOn()
         {            
             IsOn = true;
             Brightness = BrightnessBeforeTurnOff;
             return IsOn;
         }
-        //Turn offthe led.
+        //Turn offthe led
         public bool TurnOff() 
         {
             IsOn = false;
@@ -53,7 +53,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             return IsOn;
         }
 
-        //Change the brightness of the led.
+        //Change the brightness of the led
         public void ChangeBrightness(byte newBrightness)
         {
             try
@@ -61,7 +61,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
                 {
                     Brightness = newBrightness;
-                    BrightnessBeforeTurnOff = Brightness;                }
+                    BrightnessBeforeTurnOff = Brightness;                
+								}
             }
             catch (Exception ex)
             {
@@ -70,11 +71,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
         }
 
-        // Changes the color of the  lamp
-        public void ChangeLampColor(byte[] colors)
+        // Changes the color of the led
+        public void ChangeColor(byte[] colors)
         {
             Color = colors;
-            Console.WriteLine($"The lamp color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
+            Console.WriteLine($"The led color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
         }
     }
 }
