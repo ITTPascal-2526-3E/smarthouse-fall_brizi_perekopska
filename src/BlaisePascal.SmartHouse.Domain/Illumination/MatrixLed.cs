@@ -48,7 +48,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 }
             }
         }
-        //Prende i valori delle lampade in input per metterli sccessivamente nella matrice.
+        //Prende i valori delle lampade in input per metterli sccessivamente nella matrice
         private Led CreateMatrix(int i,int j)
         {
             Random rnd = new Random();
@@ -68,7 +68,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             return _Led;
         }
 
-        //Turn on al the led.
+        //Turn on all the led
         public void SwitchOnAll()
         {
             for (int r = 0; r < 3; r++)
@@ -79,7 +79,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 }
             }
         }
-        //Turn off all the led.
+        //Turn off all the led
         public void SwitchOffAll()
         {
             for (int r = 0; r < 3; r++)
@@ -91,7 +91,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
         }
 
-        //Change the intensity of oll the led in a one specified.
+        //Change the intensity of oll the led in a one specified
         public void SetIntensityAll(byte intensity)
         {
             for (int r = 0; r < 3; r++)
@@ -103,12 +103,12 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
         }
 
-        //Return the led.
+        //Return the led
         public Led GetLed(int row, int column)
         {
             return _MatrixLed[row, column];
         }
-        //Return the row of led.
+        //Return all the led in a determined row
         public Led[] GetLedInRow(int row)
         {
             Led[] leds= new Led[Rows];
@@ -118,7 +118,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
             return leds;
         }
-        //Return the columnsof the led.
+        //Return all the led in a determined column
         public Led[] GetLedInColumn(int column)
         {
             Led[] leds = new Led[Columns];
