@@ -135,8 +135,26 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 lamp.ChangeBrightness(newBrightness);
         }
 
-		//Changes the brightness of one lamp or more by name
-		public void ChangeBrightnessByName(string name, byte brightness)
+        public void SwitchAllOn() 
+        {
+            foreach (var lamp in LampsList)
+            {
+                if(lamp.IsOn!=true)
+                    lamp.TurnOnOrOff();
+            }
+        }
+
+        public void SwitchAllOff()
+        {
+            foreach (var lamp in LampsList)
+            {
+                if (lamp.IsOn == true)
+                    lamp.TurnOnOrOff();
+            }
+        }
+
+        //Changes the brightness of one lamp or more by name
+        public void ChangeBrightnessByName(string name, byte brightness)
         {
             bool found = false;
             foreach (var lamp in LampsList)
