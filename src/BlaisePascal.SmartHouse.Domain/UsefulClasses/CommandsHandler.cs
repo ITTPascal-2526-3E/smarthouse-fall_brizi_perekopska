@@ -19,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
         Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>> AcCommands; //dictionary with methods that accepts AirType, float, byte and returns void (Air conditioner)
         Dictionary<string, Func<bool>> BoolReturnCommands; //dictionary with methods that returns bool values
         Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>> AirFryerCommands; //dictionary with methods that accepts CookingType, byte, Time and returns Task (Air fryer)
-        Dictionary<string,Func<Led>> LedCommands;//dictionary with methods that return led type
+        Dictionary<string, Func<Led>> LedCommands;//dictionary with methods that return led type
         Dictionary<string, Func<Led[]>> LedArCommands;//dictionary with methods that return led array type
 
         //Constructor
