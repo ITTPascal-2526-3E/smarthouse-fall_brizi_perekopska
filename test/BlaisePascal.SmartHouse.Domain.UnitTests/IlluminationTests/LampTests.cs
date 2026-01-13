@@ -36,16 +36,16 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
         [Fact]
         public void Constructor_TypeIsNull_TypeNotAssigned()
         {
-            string type = "";
+            string type = null;
             var Lamp = new Lamp("aaa", true, 80, [0, 0, 0], type, new Time(11, 11, 11), new Time(11, 11, 11));
-            //Assert.Equal(type, Lamp.Type);
+            Assert.Equal(type, Lamp.Type);
         }
         [Fact]
         public void Constructor_TypeIsNotNull_TypeAssigned()
         {
             string type = "LED";
             var Lamp = new Lamp("aaa", true, 80, [0, 0, 0], type, new Time(11, 11, 11), new Time(11, 11, 11));
-            //Assert.Equal(type, Lamp.Type);
+            Assert.Equal(type, Lamp.Type);
         }
         [Fact]
         public void Constructor_OnTimeHourIsLessthanOffTimeHour_OnTimeNotAssigned()
@@ -55,7 +55,6 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             var Lamp = new Lamp("aaa", true, 80, [0, 0, 0], "Led",timeOn , timeOff);
             Assert.NotEqual(timeOn, Lamp.OnTime);
         }
-
 
         // TurnOnOrOff tests
         [Fact]
@@ -100,6 +99,17 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             byte newBrightness = 80;
             lamp.ChangeBrightness(newBrightness);
             Assert.Equal(newBrightness, lamp.Brightness);
+        }
+        [Fact]
+        public void ChangeBrightness_BrightnessExceedsMax_DoesNotUpdate()
+        {
+            bool isOn = true;
+            var lamp = new Lamp("aaa", isOn, brightness: 50, color: new byte[] { 0, 255, 0 }, type: "Halogen", onTime: new Time(19, 0,3), offTime: new Time(7, 0,6));
+            
+            byte initialBrightness = lamp.Brightness;
+            byte newBrightness = 150; // Exceeds max brightness
+            lamp.ChangeBrightness(newBrightness);
+            Assert.Equal(initialBrightness, lamp.Brightness);
         }
 
         // ChangeLampColor tests

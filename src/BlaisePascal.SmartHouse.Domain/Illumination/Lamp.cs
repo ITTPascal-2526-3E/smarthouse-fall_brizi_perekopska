@@ -13,7 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         const byte MinBrightness = 1;
 
         public byte[] Color = new byte[3] { 0,0,0}; //RGB
-        private string Type;
+        public string Type { get; private set; }
 
         public Time OnTime;
         public Time OffTime;
