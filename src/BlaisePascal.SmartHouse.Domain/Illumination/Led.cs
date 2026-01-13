@@ -62,7 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 {
                     Brightness = newBrightness;
                     BrightnessBeforeTurnOff = Brightness;                
-								}
+				}
             }
             catch (Exception ex)
             {
