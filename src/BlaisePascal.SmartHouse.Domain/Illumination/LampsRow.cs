@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class LampsRow
+    public sealed class LampsRow
     {
         //Attributes
         public List<Lamp> LampsList { get; private set; }

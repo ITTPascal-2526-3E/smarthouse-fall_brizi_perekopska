@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
-    public class CommandsHandler
+    public sealed class CommandsHandler
     {
         //Dictionaries for different command types
         Dictionary<string, Action> VoidCommands; //dictionary with completely void methods

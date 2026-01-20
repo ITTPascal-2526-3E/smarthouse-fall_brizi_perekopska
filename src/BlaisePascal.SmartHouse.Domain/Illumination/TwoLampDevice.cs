@@ -9,7 +9,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
     
-    public class TwoLampDevice
+    public sealed class TwoLampDevice
     {
         //Attributes:
         private Lamp FirstLamp;

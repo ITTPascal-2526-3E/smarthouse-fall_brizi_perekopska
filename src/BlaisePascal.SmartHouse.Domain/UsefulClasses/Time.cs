@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
-    public class Time
+    public sealed class Time
     {
         //Attributes:
         public int Hours{ get; set;}

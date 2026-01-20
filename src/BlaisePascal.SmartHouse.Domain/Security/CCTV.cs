@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Security
 {
-    public class CCTV : Device
+    public sealed class CCTV : Device
     {
         //Attributes
         public bool IsRecording;

@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class Led: Device
+    public sealed class Led : Device
     {
         // Attributes
         public byte Brightness { get; private set; }

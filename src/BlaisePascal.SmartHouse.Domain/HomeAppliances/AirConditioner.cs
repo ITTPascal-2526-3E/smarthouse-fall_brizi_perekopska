@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
-    public class AirConditioner : Device
+    public sealed class AirConditioner : Device
     {
         //Attributes
         const float MaxTemperature = 35;

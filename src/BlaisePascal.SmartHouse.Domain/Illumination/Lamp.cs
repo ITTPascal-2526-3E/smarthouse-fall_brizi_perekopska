@@ -2,7 +2,7 @@
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class Lamp : Device
+    public sealed class Lamp : Device
     {
 
         //Attributes:

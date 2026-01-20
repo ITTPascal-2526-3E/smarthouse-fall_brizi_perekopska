@@ -9,7 +9,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class EcoLamp : Device
+    public sealed class EcoLamp : Device
     {
         //Attributes:
         public byte Brightness { get; set; }

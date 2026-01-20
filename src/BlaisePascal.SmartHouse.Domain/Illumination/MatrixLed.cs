@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public class MatrixLed
+    public sealed class MatrixLed
     {
         //Attributes:
         public Led[,] _MatrixLed { get; private set; }

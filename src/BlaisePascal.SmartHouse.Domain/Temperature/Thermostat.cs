@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {
-    public class Thermostat : Device
+    public sealed class Thermostat : Device
     {
         //Attributes:
 

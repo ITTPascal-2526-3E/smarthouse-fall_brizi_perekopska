@@ -8,7 +8,7 @@ using OpenCvSharp;
 
 namespace BlaisePascal.SmartHouse.Domain.Security
 {
-    internal class CCTVStartUp
+    internal sealed class CCTVStartUp
     {
         //Attributes
         static public bool Save=false;

@@ -9,7 +9,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
-    public class AirFryer : Device
+    public sealed class AirFryer : Device
     {
         //Attributes
 
