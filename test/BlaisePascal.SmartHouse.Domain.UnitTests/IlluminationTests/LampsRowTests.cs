@@ -379,10 +379,57 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             Assert.True(state);
         }
 
+        // ChangeColorByName tests 
         [Fact]
-        public void ChangeColorByName_ExistingName_ShouldChangeColorOfAllLamps()
+        public void ChangeColorByName_ExistingName_ShouldChangeColor()
         {
+            byte[] oldColor = { 255, 255, 0 };
+            var defaultLamp = new Lamp("lamp", true, 50, oldColor, "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(3, defaultLamp); /// Create a LampsRow with 3 lamps
+            string name = "aaa";
+            byte[] newColor = { 75, 75, 75 };
+            var newLamp = new Lamp(name, true, 50, oldColor, "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// New lamp
+            LampsRow.AddLamp(newLamp);
+            LampsRow.ChangeColorByName(name, newColor);
 
+            Assert.Equal(newColor, LampsRow.LampsList[3].Color);
+        }
+
+        [Fact]
+        public void ChangeColorByName_InvalidName_ShouldThrowException()
+        {
+            byte[] oldColor = { 255, 255, 0 };
+            var defaultLamp = new Lamp("lamp", true, 50, oldColor, "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(3, defaultLamp); /// Create a LampsRow with 3 lamps
+            string NonExistingname = "aaa";
+            byte[] newColor = { 75, 75, 75 };
+            Assert.Throws<ArgumentException>(() => LampsRow.ChangeColorByName(NonExistingname, newColor));
+        }
+
+        // ChangeColorById tests
+        [Fact]
+        public void ChangeColorById_ExistingId_ShouldTChangeColor()
+        {
+            byte[] oldColor = { 255, 255, 0 };
+            var defaultLamp = new Lamp("lamp", true, 50, oldColor, "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(3, defaultLamp); /// Create a LampsRow with 3 lamps
+            Guid Id = LampsRow.LampsList[2].Id;
+            byte[] newColor = { 75, 75, 75 };
+            LampsRow.ChangeColorById(Id, newColor);
+
+            Assert.Equal(newColor, LampsRow.LampsList[2].Color);
+
+        }
+
+        [Fact]
+        public void ChangeColorById_InvalidId_ShouldThrowException()
+        {
+            byte[] oldColor = { 255, 255, 0 };
+            var defaultLamp = new Lamp("lamp", true, 50, oldColor, "LED", new Time(8, 0, 0), new Time(22, 0, 0)); /// Some default lamp settings
+            var LampsRow = new LampsRow(3, defaultLamp); /// Create a LampsRow with 3 lamps
+            Guid NonExistingId = new Guid();
+            byte[] newColor = { 75, 75, 75 };
+            Assert.Throws<ArgumentException>(() => LampsRow.ChangeColorById(NonExistingId, newColor));
         }
     }
 }
