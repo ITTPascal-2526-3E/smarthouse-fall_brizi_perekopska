@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
-    public class Device
+    public abstract class Device
     {
         public string Name { get; protected set; }
         public Guid Id { get; protected set; }

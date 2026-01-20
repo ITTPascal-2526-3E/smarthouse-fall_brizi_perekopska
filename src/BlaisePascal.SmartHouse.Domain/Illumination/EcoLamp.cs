@@ -1,15 +1,16 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+﻿using BlaisePascal.SmartHouse.Domain.Interface;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public sealed class EcoLamp : Device
+    public sealed class EcoLamp : Device, IIllumination
     {
         //Attributes:
         public byte Brightness { get; set; }

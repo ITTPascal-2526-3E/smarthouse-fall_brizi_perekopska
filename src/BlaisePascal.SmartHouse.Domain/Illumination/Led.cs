@@ -1,13 +1,14 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.Interface;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public sealed class Led : Device
+    public sealed class Led : Device, IIllumination
     {
         // Attributes
         public byte Brightness { get; private set; }

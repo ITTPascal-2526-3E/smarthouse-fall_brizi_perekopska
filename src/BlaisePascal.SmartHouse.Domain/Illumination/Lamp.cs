@@ -1,8 +1,9 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+﻿using BlaisePascal.SmartHouse.Domain.Interface;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
-    public sealed class Lamp : Device
+    public sealed class Lamp : Device, IIllumination
     {
 
         //Attributes:
