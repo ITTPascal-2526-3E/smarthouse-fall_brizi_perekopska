@@ -40,18 +40,21 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         //Turn on the led
-        public bool TurnOn()
-        {            
-            IsOn = true;
-            Brightness = BrightnessBeforeTurnOff;
-            return IsOn;
-        }
-        //Turn offthe led
-        public bool TurnOff() 
+        public bool TurnOnOrOff()
         {
-            IsOn = false;
-            Brightness = 0;
-            return IsOn;
+            if (IsOn == true)
+            {
+                IsOn = false;
+                Brightness = 0;
+                return IsOn;
+            }
+            else
+            {
+                IsOn = true;
+                Brightness = BrightnessBeforeTurnOff;
+                return IsOn;
+            }
+            
         }
 
         //Change the brightness of the led

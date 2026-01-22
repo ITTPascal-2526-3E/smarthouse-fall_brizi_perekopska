@@ -8,6 +8,6 @@ namespace BlaisePascal.SmartHouse.Domain.Interface
 {
     public interface ISwitchable
     {
-        void TurnOnOrOff();
+        bool TurnOnOrOff();
     }
 }

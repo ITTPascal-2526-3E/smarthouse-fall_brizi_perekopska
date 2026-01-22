@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Interface
 {
-    public interface IIllumination
+    public interface IIllumination: ISwitchable
     {
         void ChangeBrightness(byte newBrightness);
     }

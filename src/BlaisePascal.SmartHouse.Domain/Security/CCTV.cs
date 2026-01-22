@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Security
 {
-    public sealed class CCTV : Device
+    public sealed class CCTV : Device, ISwitchable
     {
         //Attributes
         public bool IsRecording;

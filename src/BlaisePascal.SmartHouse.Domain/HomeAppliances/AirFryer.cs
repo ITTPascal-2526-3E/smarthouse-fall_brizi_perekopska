@@ -6,16 +6,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.Interface;
+using System.Numerics;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
-    public sealed class AirFryer : Device
+    public sealed class AirFryer : Device, ISwitchable
     {
         //Attributes
 
         const byte MaxTemperature = 200;
         const byte MinTemperature = 80;
         private byte CookingTemperature;
+        private byte LastCookingTemperature;
 
         public enum CookingType { Null, Fryed, Roasted, Sweets, Grilled, Dehydrated, Baked, Dryed, SlowCooked, Steamed, Pizza, Reheated, Tosted, KeepWarmed, Pasta}
 
@@ -29,6 +32,22 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             IsOn = isOn;
         }
 
+        public bool TurnOnOrOff() 
+        {
+            if (IsOn == true)
+            {
+                IsOn = false;
+                LastCookingTemperature = CookingTemperature;
+                CookingTemperature = 0;
+            }
+            else
+            {
+                IsOn = true;
+                CookingTemperature = LastCookingTemperature;
+            }
+            return IsOn;
+        }
+
         //Start of the cooking, using a timer.
         public async Task StartTheCooking(CookingType type, byte cookingTemperature, Time timer)
         {
@@ -37,6 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
                 if (cookingTemperature >= MinTemperature && cookingTemperature <= MaxTemperature)
                 {
                     CookingTemperature = cookingTemperature;
+                    LastCookingTemperature = CookingTemperature;
                 }
                 else 
                 {

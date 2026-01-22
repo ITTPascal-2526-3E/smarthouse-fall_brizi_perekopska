@@ -75,7 +75,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             {
                 for (int c = 0; c < Rows; c++)
                 {
-                    _MatrixLed[r, c].TurnOn();
+                    if (_MatrixLed[r, c].TurnOnOrOff()==false) 
+                    {
+                        _MatrixLed[r, c].TurnOnOrOff();
+                    }
+
                 }
             }
         }
@@ -86,7 +90,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             {
                 for (int c = 0; c < Rows; c++)
                 {
-                    _MatrixLed[r, c].TurnOff();
+                    if (_MatrixLed[r, c].TurnOnOrOff() == true)
+                    {
+                        _MatrixLed[r, c].TurnOnOrOff();
+                    }
                 }
             }
         }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {
-    public sealed class Thermostat : Device
+    public sealed class Thermostat : Device,ISwitchable
     {
         //Attributes:
 
