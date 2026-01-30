@@ -86,8 +86,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 LedCommands = new Dictionary<string, Func<Led>>()
                 {
                     {"get led by row and column",()=>{
-                        int Row=Convert.ToInt32(Console.ReadLine());
-                        int Column=Convert.ToInt32(Console.ReadLine());
+                        int Row = Convert.ToInt32(Console.ReadLine());
+                        int Column = Convert.ToInt32(Console.ReadLine());
                         return MatrixLed1.GetLed(Row,Column); }}
                 };
 
@@ -182,6 +182,20 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     Time duration = new Time(0, minutes, seconds);
 
                     await airFryerFunc(cookingType, temperature, duration);
+                }
+                else if(LedCommands.TryGetValue(command, out var ledFunc))
+                {
+                    Led led = ledFunc();
+                    Console.WriteLine($"Led at specified position: IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                }
+                else if(LedArCommands.TryGetValue(command, out var ledArrFunc))
+                {
+                    Led[] leds = ledArrFunc();
+                    Console.WriteLine("Leds at specified position:");
+                    foreach (var led in leds)
+                    {
+                        Console.WriteLine($"IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                    }
                 }
                 // No command entered
                 else if (string.IsNullOrWhiteSpace(command))

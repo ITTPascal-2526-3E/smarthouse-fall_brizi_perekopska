@@ -30,7 +30,7 @@ namespace BlaisePascal.SmartHouse.Domain
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
             
-            string CommandsList = @"AVAILABLE COMANDS:
+            string CommandsList = $@"AVAILABLE COMANDS:
 LAMPS COMANDS
 - turn on/off lamp1
 - change lamp1 brightness [value from 1 to 100]
@@ -47,9 +47,9 @@ LAMPS COMANDS
 -switch all led on
 -switch all led off
 -set all intensity[value from 1 to 100]
--get led by row and column[value from 0 to Rows] [value from 0 to Columns]
--get a row of led by the rows [value from 0 to Rows]
--get a columns of led by the columns [value from 0 to Columns]
+-get led by row and column[value from 0 to {MatrixLed1.GetRowsNumber()}] [value from 0 to {MatrixLed1.GetColumnsNumber()}]//doesn't work
+-get a row of led by the rows [value from 0 to {MatrixLed1.GetRowsNumber()}]//doesn't work
+-get a columns of led by the columns [value from 0 to {MatrixLed1.GetColumnsNumber()}]//doesn't work
 
 THERMOSTAT COMANDS
 - turn on/off thermostat

@@ -20,21 +20,13 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             try
             {
                 if (Columns > 0)
-                {
                     Columns = columns;
-                }
                 else
-                {
                     throw new Exception();
-                }
                 if (Rows > 0)
-                {
                     Rows = rows;
-                }
                 else
-                {
                     throw new Exception();
-                }
             } catch (Exception ex)
             {
                 Console.WriteLine("There is an error:");
@@ -43,12 +35,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             for(int r = 0; r < Rows; r++)
             {
                 for (int c = 0; c < Columns; c++)
-                {
                     _MatrixLed[r,c] = CreateMatrix(r,c);
-                }
             }
         }
-        //Prende i valori delle lampade in input per metterli sccessivamente nella matrice
+
+        //Takes the values ​​of the lamps as input to subsequently put them into the matrix
         private Led CreateMatrix(int i,int j)
         {
             Random rnd = new Random();
@@ -68,6 +59,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             return _Led;
         }
 
+        //Gets the number of rows and columns
+        public int GetRowsNumber() => Rows;
+        public int GetColumnsNumber() => Columns;
+
         //Turn on all the led
         public void SwitchOnAll()
         {
@@ -76,10 +71,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 for (int c = 0; c < Rows; c++)
                 {
                     if (_MatrixLed[r, c].TurnOnOrOff()==false) 
-                    {
                         _MatrixLed[r, c].TurnOnOrOff();
-                    }
-
                 }
             }
         }
@@ -91,9 +83,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 for (int c = 0; c < Rows; c++)
                 {
                     if (_MatrixLed[r, c].TurnOnOrOff() == true)
-                    {
                         _MatrixLed[r, c].TurnOnOrOff();
-                    }
                 }
             }
         }
@@ -104,9 +94,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             for (int r = 0; r < 3; r++)
             {
                 for (int c = 0; c < Rows; c++)
-                {
                     _MatrixLed[r, c].ChangeBrightness(intensity);
-                }
             }
         }
 
@@ -120,9 +108,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             Led[] leds= new Led[Rows];
             for (int c = 0; c < Columns; c++)
-            {
                 leds[c]=_MatrixLed[row, c];
-            }
             return leds;
         }
         //Return all the led in a determined column
@@ -130,9 +116,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             Led[] leds = new Led[Columns];
             for (int r = 0; r < Rows; r++)
-            {
                 leds[r] = _MatrixLed[r, column];
-            }
             return leds;
         }
     }

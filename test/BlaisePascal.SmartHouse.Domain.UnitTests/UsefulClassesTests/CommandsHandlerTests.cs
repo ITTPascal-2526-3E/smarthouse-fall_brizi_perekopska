@@ -13,6 +13,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.UsefulClassesTests
 {
     public class CommandsHandlerTests
     {
+        //private CommandsHandler commandHandler = new CommandsHandler();
 
     }
 }
