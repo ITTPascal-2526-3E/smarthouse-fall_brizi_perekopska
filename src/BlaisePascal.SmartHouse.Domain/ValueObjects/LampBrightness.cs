@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.ValueObjects
 {
-    public sealed class Brightness
+    public sealed class LampBrightness
     {
-        public int Value { get; private set; }
+        public byte Value { get; }
 
         public const int Min = 0;
         public const int Max = 100;
 
-        private Brightness(int value)
+        private LampBrightness(int value)
         {
-            Value = value;
+            Value = Convert.ToByte(Math.Clamp(value, Min, Max));
         }
+
+        public static LampBrightness From(int value) => new LampBrightness(value);
     }
 }

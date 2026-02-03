@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace BlaisePascal.SmartHouse.Domain.Interface
 {
     public interface IIllumination: ISwitchable
     {
-        void ChangeBrightness(byte newBrightness);
+        void ChangeBrightness(LampBrightness newBrightness);
     }
 }
