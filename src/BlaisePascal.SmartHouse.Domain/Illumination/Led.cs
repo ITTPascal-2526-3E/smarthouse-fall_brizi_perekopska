@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +12,17 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     public sealed class Led : Device, IIllumination
     {
         // Attributes
-        public byte Brightness { get; private set; }
+        public Brightness Brightness { get; private set; }
         public byte[] Color=new byte[3] { 0,0,0}; //RGB
-        const byte MaxBrightness = 100;
-        const byte MinBrightness = 1;
-        private byte BrightnessBeforeTurnOff;
+        private Brightness BrightnessBeforeTurnOff;
 
         //Constructor
-        public Led(string name, bool isOn,byte brightness, byte[] color): base(name,isOn) 
+        public Led(string name, bool isOn, Brightness brightness, byte[] color): base(name,isOn) 
         {
             try
             {
-                if (brightness >= MinBrightness && brightness <= MaxBrightness)
-                {
-                    Brightness = brightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                }
-                else
-                {
-                    throw new Exception();
-                }
+                Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
             }
             catch (Exception ex)
             {
@@ -45,7 +37,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 IsOn = false;
-                Brightness = 0;
+                Brightness = Brightness.From(0);
+                BrightnessBeforeTurnOff = Brightness;
                 return IsOn;
             }
             else
@@ -62,11 +55,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             try
             {
-                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
-                {
-                    Brightness = newBrightness;
-                    BrightnessBeforeTurnOff = Brightness;                
-				}
+                Brightness = Brightness.From(newBrightness);
+                BrightnessBeforeTurnOff = Brightness;
             }
             catch (Exception ex)
             {

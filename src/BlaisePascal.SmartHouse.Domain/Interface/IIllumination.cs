@@ -9,6 +9,6 @@ namespace BlaisePascal.SmartHouse.Domain.Interface
 {
     public interface IIllumination: ISwitchable
     {
-        void ChangeBrightness(LampBrightness newBrightness);
+        void ChangeBrightness(byte newBrightness);
     }
 }

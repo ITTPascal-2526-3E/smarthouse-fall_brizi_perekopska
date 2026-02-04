@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -55,7 +56,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 byte color = Convert.ToByte(rnd.Next(256));
                 colors[col] = color;
             }
-            Led _Led = new Led(name, isOn, brightness, colors);
+            Led _Led = new Led(name, isOn, Brightness.From(brightness), colors);
             return _Led;
         }
 

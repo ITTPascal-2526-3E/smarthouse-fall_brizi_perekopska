@@ -1,6 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +13,9 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     public sealed class EcoLamp : Device, IIllumination
     {
         //Attributes:
-        public byte Brightness { get; set; }
+        public EcoBrightness Brightness { get; set; }
         const double ConsumeAtMaxBrightnessPerHour= 65.0;
-        private byte BrightnessBeforeTurnOff;
-        const byte MaxBrightness = 65;
-        const byte MinBrightness = 1;
+        private EcoBrightness BrightnessBeforeTurnOff;
 
         private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
         private string Type;
@@ -27,17 +25,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time _Timer;
 
         //Constructor:
-        public EcoLamp(string name, bool isOn, byte brightness, string type, Time onTime, Time offTime, Time timer) : base(name, isOn)
+        public EcoLamp(string name, bool isOn, EcoBrightness brightness, string type, Time onTime, Time offTime, Time timer) : base(name, isOn)
         {
             _Timer = timer;
             IsOn = isOn;
             try
             {
-                if (brightness >= MinBrightness && brightness <= MaxBrightness)
-                {
-                    Brightness = brightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                }
+                Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
                 if (IsOn)
                     TimerToTurnOff();
 
@@ -63,7 +58,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 BrightnessBeforeTurnOff = Brightness;
-                Brightness = 0;
+                Brightness = EcoBrightness.From(0);
                 IsOn = false;
                 Console.WriteLine("Eco lamp is turned off");
             }
@@ -82,12 +77,9 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             try
             {
-                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
-                {
-                    Brightness = newBrightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                    Console.WriteLine($"Eco lamp brightness changed to {Brightness}");
-                }
+                Brightness = EcoBrightness.From(newBrightness);
+                BrightnessBeforeTurnOff = Brightness;
+                Console.WriteLine($"Eco lamp brightness changed to {Brightness}");
             }
             catch (Exception ex)
             {
@@ -104,7 +96,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 int time = (_Timer.Hours * 3600 + _Timer.Minutes * 60 + _Timer.Seconds) * 1000;
                 await Task.Delay(time);
                 BrightnessBeforeTurnOff = Brightness;
-                Brightness = 0;
+                Brightness = EcoBrightness.From(0);
                 IsOn = false;
                 Console.WriteLine("Eco lamp is turned off by timer");
             }

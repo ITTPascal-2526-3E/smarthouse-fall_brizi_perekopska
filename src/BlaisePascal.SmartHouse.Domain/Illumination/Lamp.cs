@@ -7,9 +7,9 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     public sealed class Lamp : Device, IIllumination
     {
         //Attributes:
-        public LampBrightness Brightness { get; private set; }
+        public Brightness Brightness { get; private set; }
         const float ConsumeAtMaxBrightnessPerHour = 100.0f;
-        private LampBrightness BrightnessBeforeTurnOff;
+        private Brightness BrightnessBeforeTurnOff;
 
         public byte[] Color = new byte[3] { 0,0,0}; //RGB
         public string Type { get; private set; }
@@ -18,12 +18,13 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time OffTime;
 
         //Constructor:
-        public Lamp(string name, bool isOn, LampBrightness brightness, byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
+        public Lamp(string name, bool isOn, Brightness brightness, byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
         { 
             IsOn = isOn;
             Color = color;
             try
             {
+                Brightness = brightness;
                 BrightnessBeforeTurnOff = Brightness;
 
                 if (!string.IsNullOrEmpty(type))
@@ -54,7 +55,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 IsOn = false;
-                //Brightness = 0;
+                Brightness = Brightness.From(0);
                 BrightnessBeforeTurnOff = Brightness;
                 Console.WriteLine("The lamp is turned off");
             }
@@ -69,15 +70,15 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         /// Changes the brightness of the lamp
-        public void ChangeBrightness(LampBrightness newBrightness)
+        public void ChangeBrightness(byte newBrightness)
         {
             try
             {
-                Brightness = newBrightness;
+                Brightness = Brightness.From(newBrightness);
                 BrightnessBeforeTurnOff = Brightness;
                 Console.WriteLine($"The lamp brightness is changed to {Brightness}");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             { 
                 Console.WriteLine(ex.Message);
                 return;

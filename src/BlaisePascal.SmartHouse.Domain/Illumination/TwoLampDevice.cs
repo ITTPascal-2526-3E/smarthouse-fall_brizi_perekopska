@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -52,7 +53,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         // Change second lamp brightness.
         public void ChangeLamp2Brightness(byte brightness)
         {
-            SecondLamp.Brightness = brightness;
+            SecondLamp.ChangeBrightness(brightness);
             Console.WriteLine("Second lamp brightness changed to " + brightness);
         }
 

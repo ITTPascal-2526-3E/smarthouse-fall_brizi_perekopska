@@ -3,6 +3,7 @@ using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -15,8 +16,8 @@ namespace BlaisePascal.SmartHouse.Domain
         static void Main(string[] args)
         {
             //Illumination Devices
-            Lamp Lamp1 = new Lamp("porta",false, 100, [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
-            EcoLamp EcoLamp1 = new EcoLamp("portaEco",false, 50, "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
+            Lamp Lamp1 = new Lamp("porta",false, Brightness.From(100), [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
+            EcoLamp EcoLamp1 = new EcoLamp("portaEco",false, EcoBrightness.From(56), "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
             MatrixLed MatrixLed1 = new MatrixLed(2,3);
             //Temperature Devices
@@ -79,6 +80,8 @@ DOOR COMANDS
                 string commandInput = Console.ReadLine().ToLower();
 
                 CommandsHandler.Process(commandInput);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             } while (true);
         }
     }
