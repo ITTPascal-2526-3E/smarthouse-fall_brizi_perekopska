@@ -11,14 +11,14 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         const float ConsumeAtMaxBrightnessPerHour = 100.0f;
         private Brightness BrightnessBeforeTurnOff;
 
-        public byte[] Color = new byte[3] { 0,0,0}; //RGB
+        public Color Color; //RGB
         public string Type { get; private set; }
 
         public Time OnTime;
         public Time OffTime;
 
         //Constructor:
-        public Lamp(Name name, bool isOn, Brightness brightness, byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
+        public Lamp(Name name, bool isOn, Brightness brightness, Color color,string type,Time onTime,Time offTime) : base(name, isOn) 
         { 
             IsOn = isOn;
             Color = color;
@@ -86,10 +86,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Changes the color of the  lamp
-        public void ChangeLampColor(byte[] colors)
+        public void ChangeLampColor(Color colors)
         {
             Color = colors;
-            Console.WriteLine($"The lamp color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
+            Console.WriteLine($"The lamp color is changed to RGB({Color.C[0]}, {Color.C[1]}, {Color.C[2]})");
         }
 
     }

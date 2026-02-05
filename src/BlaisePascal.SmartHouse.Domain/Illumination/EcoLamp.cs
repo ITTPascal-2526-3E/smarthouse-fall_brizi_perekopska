@@ -17,7 +17,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         const double ConsumeAtMaxBrightnessPerHour= 65.0;
         private EcoBrightness BrightnessBeforeTurnOff;
 
-        private byte[] Color = new byte[3] { 255, 255, 255 }; //white; can't be changed
+        private Color Color=Color.From ( 0,0, 0 ); //white; can't be changed
         private string Type;
 
         public Time OnTime;

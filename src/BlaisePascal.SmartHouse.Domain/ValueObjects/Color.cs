@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,7 @@ namespace BlaisePascal.SmartHouse.Domain.ValueObjects
             C[1] = G;
             C[2] = B;
         }
+
+        public static Color From(byte r, byte g, byte b) => new Color(r, g, b);
     }
 }

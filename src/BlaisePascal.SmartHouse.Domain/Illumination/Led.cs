@@ -13,11 +13,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     {
         // Attributes
         public Brightness Brightness { get; private set; }
-        public byte[] Color=new byte[3] { 0,0,0}; //RGB
+        public Color Color; //RGB
         private Brightness BrightnessBeforeTurnOff;
 
         //Constructor
-        public Led(Name name, bool isOn, Brightness brightness, byte[] color): base(name,isOn) 
+        public Led(Name name, bool isOn, Brightness brightness, Color color): base(name,isOn) 
         {
             try
             {
@@ -29,6 +29,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 Console.WriteLine(ex.Message);
                 return;
             }
+            Color = color;
         }
 
         //Turn on the led
@@ -66,10 +67,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Changes the color of the led
-        public void ChangeColor(byte[] colors)
+        public void ChangeColor(Color colors)
         {
             Color = colors;
-            Console.WriteLine($"The led color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
+            Console.WriteLine($"The led color is changed to RGB({Color.C[0]}, {Color.C[1]}, {Color.C[2]})");
         }
     }
 }
