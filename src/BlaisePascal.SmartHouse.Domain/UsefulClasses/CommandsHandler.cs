@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
@@ -57,7 +58,10 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 };
 
                 ByteArrayCommands = new Dictionary<string, Action<byte[]>>() {
-                    {"change lamp1 color", TwoLampDevice1.ChangeLamp1Color }
+                    {"change lamp1 color", (data)=>{
+                        Color color=Color.From(data[0],data[1],data[2]);
+                        TwoLampDevice1.ChangeLamp1Color(color); }
+                    }
                 };
 
                 BoolReturnCommands = new Dictionary<string, Func<bool>>() {
@@ -186,7 +190,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 else if(LedCommands.TryGetValue(command, out var ledFunc))
                 {
                     Led led = ledFunc();
-                    Console.WriteLine($"Led at specified position: IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                    Console.WriteLine($"Led at specified position: IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color.C[0]}, {led.Color.C[1]}, {led.Color.C[2]})");
                 }
                 else if(LedArCommands.TryGetValue(command, out var ledArrFunc))
                 {
@@ -194,7 +198,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     Console.WriteLine("Leds at specified position:");
                     foreach (var led in leds)
                     {
-                        Console.WriteLine($"IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                        Console.WriteLine($"IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color.C[0]}, {led.Color.C[1]}, {led.Color.C[2]})");
                     }
                 }
                 // No command entered

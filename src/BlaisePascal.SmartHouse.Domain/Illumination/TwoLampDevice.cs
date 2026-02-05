@@ -2,10 +2,10 @@
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -66,10 +66,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Change color to the first lamp
-        public void ChangeLamp1Color(byte[] colors) 
+        public void ChangeLamp1Color(Color colors) 
         { 
             FirstLamp.Color = colors;
-            Console.WriteLine("First lamp color changed to RGB(" + colors[0] + ", " + colors[1] + ", " + colors[2] + ")");
+            Console.WriteLine("First lamp color changed to RGB(" + colors.C[0] + ", " + colors.C[1] + ", " + colors.C[2] + ")");
         }
     }
 }

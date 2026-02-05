@@ -20,7 +20,7 @@ namespace BlaisePascal.SmartHouse.Domain
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
             MatrixLed MatrixLed1 = new MatrixLed(2,3);
             //Temperature Devices
-            Thermostat Thermostat1 = new Thermostat(Name.From("Thermostat1"), true, 19.5f, 23.5f);
+            Thermostat Thermostat1 = new Thermostat(Name.From("Thermostat1"), true, ThermostatTemperature.From(19.5f), ThermostatTemperature.From(23.5f));
             //Home Appliances
             AirConditioner AirConditioner1 = new AirConditioner(Name.From("AirConditioner1"), true);
             AirFryer AirFryer1 = new AirFryer(Name.From("AirFryer1"), true);

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -77,7 +78,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         //Removers a lamp by name from the LampsRow
         public void RemoveLampByName(string lampName)
         {
-            var lampToRemove = LampsList.FirstOrDefault(lamp => lamp.Name == lampName);
+            var lampToRemove = LampsList.FirstOrDefault(lamp => lamp.Name.Value == lampName);
             if (lampToRemove != null)
                 LampsList.Remove(lampToRemove);
             else
@@ -107,7 +108,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Name == lampName)
+                if (lamp.Name.Value == lampName)
                 {
                     lamp.TurnOnOrOff();
                     found = true;
@@ -159,7 +160,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Name == name) { 
+                if (lamp.Name.Value == name) { 
                     lamp.ChangeBrightness(brightness);
                     found = true;
                 }
@@ -184,19 +185,19 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         //Changes the color of all lamps in the LampsRow to the specified RGB value
-        public void ChangeColorForAllLamps(byte[] newColor)
+        public void ChangeColorForAllLamps(Color newColor)
         {
             foreach (var lamp in LampsList)
                 lamp.ChangeLampColor(newColor);
         }
 
 		//Changes the color of one lamp or more by name
-		public void ChangeColorByName(string name, byte[] color)
+		public void ChangeColorByName(string name, Color color)
 		{
             bool found = false;
             foreach (var lamp in LampsList)
             {
-                if (lamp.Name == name)
+                if (lamp.Name.Value == name)
                 {
                     lamp.ChangeLampColor(color);
                     found = true;
@@ -207,7 +208,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         //Changes the color of one lamp by its id
-        public void ChangeColorById(Guid id, byte[] color)
+        public void ChangeColorById(Guid id, Color color)
         {
             bool found = false;
             foreach (var lamp in LampsList)
