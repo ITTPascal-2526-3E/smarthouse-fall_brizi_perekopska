@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
@@ -188,7 +189,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     int minutes = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter seconds:");
                     int seconds = int.Parse(Console.ReadLine());
-                    Time duration = new Time(0, minutes, seconds);
+                    Time duration = new Time(Hour.From(0), Minutes.From(minutes), Seconds.From(seconds));
 
                     await airFryerFunc(cookingType, temperature, duration);
                 }

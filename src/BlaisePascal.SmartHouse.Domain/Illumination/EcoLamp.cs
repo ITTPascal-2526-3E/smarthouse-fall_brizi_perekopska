@@ -40,10 +40,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 if (!string.IsNullOrEmpty(type))
                     Type = type;
 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OnTime = onTime;
 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OffTime = offTime;
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             try
             {
-                int time = (_Timer.Hours * 3600 + _Timer.Minutes * 60 + _Timer.Seconds) * 1000;
+                int time = (_Timer.Hours.Value * 3600 + _Timer.Minutes.Value * 60 + _Timer.Seconds.Value) * 1000;
                 await Task.Delay(time);
                 BrightnessBeforeTurnOff = Brightness;
                 Brightness = EcoBrightness.From(0);

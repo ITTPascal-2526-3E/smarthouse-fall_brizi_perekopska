@@ -3,39 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
     public sealed class Time
     {
         //Attributes:
-        public int Hours{ get; set;}
-        public int Minutes { get; set;}
-        public int Seconds { get; set;}
+        public Hour Hours{ get; set;}
+        public Minutes Minutes { get; set;}
+        public Seconds Seconds { get; set;}
 
         //Constructor:
-        public Time(int hours, int minutes, int seconds)
+        public Time(Hour hours, Minutes minutes, Seconds seconds)
         {
-            try {
-                if (hours <= 23 && hours >= 0)
-                    Hours = hours;
-                else
-                    throw new Exception();
-
-                if (minutes <= 59 && minutes >= 0)
-                    Minutes = minutes;
-                else
-                    throw new Exception();
-
-                if (seconds <= 59 && seconds >= 0)
-                    Seconds = seconds;
-                else
-                    throw new Exception();
-            }
-            catch (Exception ex) {
-                Console.WriteLine(ex.Message);
-                return;
-            }
+            Hours = hours;
+            Minutes = minutes;   
+            Seconds = seconds;
+                
+            
         }
     }
 }

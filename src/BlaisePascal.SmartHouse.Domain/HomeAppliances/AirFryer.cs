@@ -71,7 +71,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             }
             LastCookingMethod = type;
 
-            int time = (timer.Hours * 3600 + timer.Minutes * 60 + timer.Seconds) * 1000;
+            int time = (timer.Hours.Value * 3600 + timer.Minutes.Value * 60 + timer.Seconds.Value) * 1000;
             int temp = 0;
             while (temp < time) 
             {

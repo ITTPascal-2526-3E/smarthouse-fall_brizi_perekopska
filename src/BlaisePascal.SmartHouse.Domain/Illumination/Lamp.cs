@@ -33,12 +33,12 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 else
                     throw new Exception();
 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OnTime = onTime;
                 else
                     throw new Exception();
                 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OffTime = offTime;
                 else
                     throw new Exception();

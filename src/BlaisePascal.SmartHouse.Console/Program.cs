@@ -6,6 +6,7 @@ using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,8 +18,8 @@ namespace BlaisePascal.SmartHouse.Domain
         static void Main(string[] args)
         {
             //Illumination Devices
-            Lamp Lamp1 = new Lamp(Name.From("porta"),false, Brightness.From(100), Color.From(100, 10, 50), "LED", new Time(23, 23, 23), new Time(10, 10, 12));
-            EcoLamp EcoLamp1 = new EcoLamp(Name.From("portaEco"),false, EcoBrightness.From(56), "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
+            Lamp Lamp1 = new Lamp(Name.From("porta"),false, Brightness.From(100), Color.From(100, 10, 50), "LED", new Time(Hour.From(23), Minutes.From(23), Seconds.From(23)), new Time(Hour.From(10), Minutes.From(10), Seconds.From(12)));
+            EcoLamp EcoLamp1 = new EcoLamp(Name.From("portaEco"),false, EcoBrightness.From(56), "EcoLED", new Time(Hour.From(10), Minutes.From(00),Seconds.From( 00)), new Time(Hour.From(12), Minutes.From(00), Seconds.From(00)), new Time(Hour.From(00), Minutes.From(00), Seconds.From(16)));
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
             MatrixLed MatrixLed1 = new MatrixLed(2,3);
             //Temperature Devices
