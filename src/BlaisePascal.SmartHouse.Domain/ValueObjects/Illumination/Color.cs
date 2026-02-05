@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.ValueObjects
+namespace BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination
 {
     public sealed class Color
     {

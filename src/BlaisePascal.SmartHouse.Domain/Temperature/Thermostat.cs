@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {

@@ -4,6 +4,8 @@ using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

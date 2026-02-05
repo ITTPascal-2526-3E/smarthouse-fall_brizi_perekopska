@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Domain.ValueObjects
+namespace BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination
 {
-    public sealed class EcoBrightness
+    public sealed class Brightness
     {
         public byte Value { get; }
 
         public const int Min = 1;
-        public const int Max = 66;
+        public const int Max = 100;
 
-        private EcoBrightness(int value)
+        private Brightness(int value)
         {
             Value = Convert.ToByte(Math.Clamp(value, Min, Max));
         }
 
-        public static EcoBrightness From(int value) => new EcoBrightness(value);
+        public static Brightness From(int value) => new Brightness(value);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
