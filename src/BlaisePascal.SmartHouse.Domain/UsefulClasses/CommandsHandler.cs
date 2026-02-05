@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
@@ -84,7 +85,11 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 };
 
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
-                    {"start air conditioner1", AirConditioner1.StartAirConditioner }
+                    {"start air conditioner1", (AT,data,speed)=>{
+                        ACTemperature Temp=ACTemperature.From(data);
+                            AirConditioner1.StartAirConditioner(AT,Temp,speed);
+                        } 
+                    }
                 };
 
                 LedCommands = new Dictionary<string, Func<Led>>()
