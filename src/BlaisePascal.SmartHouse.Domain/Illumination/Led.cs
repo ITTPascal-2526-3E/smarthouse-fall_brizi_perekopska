@@ -17,7 +17,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         private Brightness BrightnessBeforeTurnOff;
 
         //Constructor
-        public Led(string name, bool isOn, Brightness brightness, byte[] color): base(name,isOn) 
+        public Led(Name name, bool isOn, Brightness brightness, byte[] color): base(name,isOn) 
         {
             try
             {

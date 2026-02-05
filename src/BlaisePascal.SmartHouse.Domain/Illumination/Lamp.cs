@@ -18,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time OffTime;
 
         //Constructor:
-        public Lamp(string name, bool isOn, Brightness brightness, byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
+        public Lamp(Name name, bool isOn, Brightness brightness, byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
         { 
             IsOn = isOn;
             Color = color;

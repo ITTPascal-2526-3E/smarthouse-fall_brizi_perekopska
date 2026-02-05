@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {
@@ -20,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         private float SetpointTemperatureBeforeTurnOff;
 
         //Constructor:
-        public Thermostat(string name, bool isOn, float currentTemperature, float setpointTemperature) : base(name, isOn)
+        public Thermostat(Name name, bool isOn, float currentTemperature, float setpointTemperature) : base(name, isOn)
         {
             if (setpointTemperature >= MinThermostatTemperature && setpointTemperature <= MaxThermostatTemperature)
                 SetpointTemperature = setpointTemperature;

@@ -16,17 +16,17 @@ namespace BlaisePascal.SmartHouse.Domain
         static void Main(string[] args)
         {
             //Illumination Devices
-            Lamp Lamp1 = new Lamp("porta",false, Brightness.From(100), [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
-            EcoLamp EcoLamp1 = new EcoLamp("portaEco",false, EcoBrightness.From(56), "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
+            Lamp Lamp1 = new Lamp(Name.From("porta"),false, Brightness.From(100), [100, 10, 50], "LED", new Time(23, 23, 23), new Time(10, 10, 12));
+            EcoLamp EcoLamp1 = new EcoLamp(Name.From("portaEco"),false, EcoBrightness.From(56), "EcoLED", new Time(10, 00, 00), new Time(12, 00, 00), new Time(00, 00, 016));
             TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
             MatrixLed MatrixLed1 = new MatrixLed(2,3);
             //Temperature Devices
-            Thermostat Thermostat1 = new Thermostat("Thermostat1", true, 19.5f, 23.5f);
+            Thermostat Thermostat1 = new Thermostat(Name.From("Thermostat1"), true, 19.5f, 23.5f);
             //Home Appliances
-            AirConditioner AirConditioner1 = new AirConditioner("AirConditioner1", true);
-            AirFryer AirFryer1 = new AirFryer("AirFryer1", true);
+            AirConditioner AirConditioner1 = new AirConditioner(Name.From("AirConditioner1"), true);
+            AirFryer AirFryer1 = new AirFryer(Name.From("AirFryer1"), true);
             //Security Devices
-            CCTV Cameras = new CCTV("Cameras", true, false, true);
+            CCTV Cameras = new CCTV(Name.From("Cameras"), true, false, true);
             Door Door1 = new Door(true);
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);

@@ -25,7 +25,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public Time _Timer;
 
         //Constructor:
-        public EcoLamp(string name, bool isOn, EcoBrightness brightness, string type, Time onTime, Time offTime, Time timer) : base(name, isOn)
+        public EcoLamp(Name name, bool isOn, EcoBrightness brightness, string type, Time onTime, Time offTime, Time timer) : base(name, isOn)
         {
             _Timer = timer;
             IsOn = isOn;

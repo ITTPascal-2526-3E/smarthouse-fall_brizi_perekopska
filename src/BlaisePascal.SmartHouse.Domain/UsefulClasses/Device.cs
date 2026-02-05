@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
     public abstract class Device
     {
-        public string Name { get; protected set; }
+        public Name Name { get; protected set; }
         public Guid Id { get; protected set; }
         public bool IsOn { get; protected set; }
 
-        public Device(string name, bool isOn)
+        public Device(Name name, bool isOn)
         {
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentException("Device name cannot be null or empty.", nameof(name));
-            else
-                Name = name;
-
+            Name = name;
             Id = Guid.NewGuid();
             IsOn = isOn;
         }

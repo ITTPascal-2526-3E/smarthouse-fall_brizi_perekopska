@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
@@ -26,7 +27,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         public enum AirTypeList { Cool, Heat, Fan, auto, Dry }
 
         //Constructor
-        public AirConditioner(string name, bool isOn) : base(name, isOn)
+        public AirConditioner(Name name, bool isOn) : base(name, isOn)
         {
             IsOn = isOn;
         }

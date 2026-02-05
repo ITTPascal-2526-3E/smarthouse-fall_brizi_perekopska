@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using System.Numerics;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
@@ -27,7 +28,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         public bool Stop { get; private set; }
 
         //Constructor
-        public AirFryer(string name, bool isOn) : base(name, isOn)
+        public AirFryer(Name name, bool isOn) : base(name, isOn)
         {
             IsOn = isOn;
         }
