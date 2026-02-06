@@ -1,25 +1,22 @@
-﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+﻿using BlaisePascal.SmartHouse.Domain.Interface;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
-using BlaisePascal.SmartHouse.Domain.Interface;
-using System.Numerics;
-using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
 {
     public sealed class AirFryer : Device, ISwitchable
     {
         //Attributes
-
-        const byte MaxTemperature = 200;
-        const byte MinTemperature = 80;
-        private byte CookingTemperature;
-        private byte LastCookingTemperature;
+        private ARTemperature CookingTemperature;
+        private ARTemperature LastCookingTemperature;
 
         public enum CookingType { Null, Fryed, Roasted, Sweets, Grilled, Dehydrated, Baked, Dryed, SlowCooked, Steamed, Pizza, Reheated, Tosted, KeepWarmed, Pasta}
 
@@ -39,7 +36,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             {
                 IsOn = false;
                 LastCookingTemperature = CookingTemperature;
-                CookingTemperature = 0;
+                CookingTemperature = ARTemperature.From(0);
             }
             else
             {
@@ -50,19 +47,12 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start of the cooking, using a timer.
-        public async Task StartTheCooking(CookingType type, byte cookingTemperature, Time timer)
+        public async Task StartTheCooking(CookingType type, ARTemperature cookingTemperature, Time timer)
         {
             try
             {
-                if (cookingTemperature >= MinTemperature && cookingTemperature <= MaxTemperature)
-                {
-                    CookingTemperature = cookingTemperature;
-                    LastCookingTemperature = CookingTemperature;
-                }
-                else 
-                {
-                    throw new Exception();
-                }
+                CookingTemperature = cookingTemperature;
+                LastCookingTemperature = CookingTemperature;
             }
             catch (Exception ex) 
             {

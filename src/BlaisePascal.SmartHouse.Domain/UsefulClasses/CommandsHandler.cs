@@ -1,12 +1,12 @@
-﻿using BlaisePascal.SmartHouse.Domain.HomeAppliances;
-using BlaisePascal.SmartHouse.Domain.Illumination;
-using BlaisePascal.SmartHouse.Domain.Security;
-using BlaisePascal.SmartHouse.Domain.Temperature;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.HomeAppliances;
+using BlaisePascal.SmartHouse.Domain.Illumination;
+using BlaisePascal.SmartHouse.Domain.Security;
+using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
@@ -82,7 +82,10 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 };
 
                 AirFryerCommands = new Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>>() {
-                    {"start air fryer1", AirFryer1.StartTheCooking }
+                    {"start air fryer1", async (CT,temp,duration)=>{
+                        await AirFryer1.StartTheCooking(CT, ARTemperature.From(temp), duration);
+                        Console.WriteLine("Air fryer started!"); }
+                    }
                 };
 
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
