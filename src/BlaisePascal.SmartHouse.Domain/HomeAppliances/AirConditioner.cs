@@ -15,11 +15,8 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         //Attributes
         public ACTemperature TemperatureBeforeTurnOff { get; private set; }
         public ACTemperature Temperature { get; private set; }
-
-        const byte MaxSpeed = 100;
-        const byte MinSpeed = 1;
-        public byte SpeedBeforeTurnOff { get; private set; }
-        public byte Speed {  get; private set; }
+        public Speed SpeedBeforeTurnOff { get; private set; }
+        public Speed Speed {  get; private set; }
 
         public string AirType { get; private set; }
         public enum AirTypeList { Cool, Heat, Fan, auto, Dry }
@@ -31,14 +28,10 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start the air condinioter
-        public void StartAirConditioner(AirTypeList airType, ACTemperature temperature, byte speed)
+        public void StartAirConditioner(AirTypeList airType, ACTemperature temperature, Speed speed)
         {
             if (!IsOn)
                 throw new Exception("Air Conditioner is off");
-
-            if (speed < MinSpeed || speed > MaxSpeed)
-                throw new Exception($"Speed must be between {MinSpeed}% and {MaxSpeed}%");
-
             Temperature = temperature;
             Speed = speed;
             IsOn = true;
@@ -51,7 +44,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             if (IsOn == true)
             {
                 SpeedBeforeTurnOff = Speed;
-                Speed = 0;
+                Speed = Speed.From(0);
                 TemperatureBeforeTurnOff = Temperature;
                 Temperature = ACTemperature.From(ACTemperature.Default);
                 IsOn = false;

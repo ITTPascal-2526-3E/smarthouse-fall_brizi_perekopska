@@ -7,6 +7,7 @@ using BlaisePascal.SmartHouse.Domain.HomeAppliances;
 using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Temperature;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
@@ -71,10 +72,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     {"turn off lamp1", Lamp1.TurnOnOrOff },
                     {"turn on ecolamp1", EcoLamp1.TurnOnOrOff },
                     {"turn off ecolamp1", EcoLamp1.TurnOnOrOff },
-                    {"turn on thermostat1", Thermostat1.TurnOnOrOff },
-                    {"turn off thermostat1", Thermostat1.TurnOnOrOff },
-                    {"turn on air conditioner1", AirConditioner1.TurnOnOrOff },
-                    {"turn off air conditioner1", AirConditioner1.TurnOnOrOff },
+                    {"turn on/off thermostat1", Thermostat1.TurnOnOrOff },
+                    {"turn on/off air conditioner1", AirConditioner1.TurnOnOrOff },
                     {"turn on cameras", Cameras.TurnOnOrOff },
                     {"turn off cameras", Cameras.TurnOnOrOff },
                     {"lock the door1", Door1.LockUnlockTheDoor },
@@ -91,7 +90,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
                     {"start air conditioner1", (AT,data,speed)=>{
                         ACTemperature Temp=ACTemperature.From(data);
-                            AirConditioner1.StartAirConditioner(AT,Temp,speed);
+                            AirConditioner1.StartAirConditioner(AT,Temp,Speed.From(speed));
                         } 
                     }
                 };
