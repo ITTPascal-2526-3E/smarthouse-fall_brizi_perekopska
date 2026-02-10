@@ -56,7 +56,6 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             }
             catch (Exception ex) 
             {
-                Console.WriteLine(ex.Message);
                 return;
             }
             LastCookingMethod = type;
@@ -69,20 +68,6 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
                 await Task.Delay(1);
                 if (Stop == true)
                     break;
-            }
-
-            if (Stop == true)
-            {
-                Console.WriteLine("\t ------------------------------------ ");
-                Console.WriteLine("\t|   🍗🍗🍗 FISHED COOKING 🍗🍗🍗   |");
-                Console.WriteLine("\t| 🍽️🍽️🍽️ YOUR FOOD IS READY 🍽️🍽️🍽️ |");
-                Console.WriteLine("\t ------------------------------------ ");
-            }
-            else
-            {
-                Console.WriteLine("\t ---------------------------------------------- ");
-                Console.WriteLine("\t| 🧑‍🍳🧑‍🍳🧑‍🍳 COOKING STOPPED 🧑‍🍳🧑‍🍳🧑‍🍳 |");
-                Console.WriteLine("\t ---------------------------------------------- ");
             }
 
             Stop = false;

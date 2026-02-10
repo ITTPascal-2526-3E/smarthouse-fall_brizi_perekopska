@@ -49,7 +49,6 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         {
             if (clicks >= 0)
             {
-                Console.WriteLine("[Increased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature = ThermostatTemperature.From(SetpointTemperature.Value + 0.5f * clicks);
                 RaiseCurrentTemperature();
             }
@@ -61,7 +60,6 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         {
             if (clicks > 0)
             {
-                Console.WriteLine("[Decreased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
                 SetpointTemperature = ThermostatTemperature.From(SetpointTemperature.Value - 0.5f * clicks);
                 RaiseCurrentTemperature();
             }
@@ -73,18 +71,6 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         {
             if (CurrentTemperature.Value < SetpointTemperature.Value + 1)
                 CurrentTemperature = ThermostatTemperature.From(SetpointTemperature.Value + 1);
-        }
-
-        public void DisplayCurrentTemperature()
-        {
-            if (IsOn)
-            {
-                Console.WriteLine("\t ----------------------------- ");
-                Console.WriteLine("\t| Current Temperature: " + CurrentTemperature + "°C |");
-                Console.WriteLine("\t ----------------------------- ");
-            }
-            else
-                Console.WriteLine("Can't display current temperature if the thermostat is off");
         }
     }
 }

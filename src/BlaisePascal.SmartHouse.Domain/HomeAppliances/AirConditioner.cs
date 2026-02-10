@@ -48,14 +48,12 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
                 TemperatureBeforeTurnOff = Temperature;
                 Temperature = ACTemperature.From(ACTemperature.Default);
                 IsOn = false;
-                Console.WriteLine("Air Conditioner turned off");
             }
             else
             {
                 Temperature = TemperatureBeforeTurnOff;
                 Speed = SpeedBeforeTurnOff;
                 IsOn = true;
-                Console.WriteLine("Air Conditioner turned on");
             }
             return IsOn;
         }

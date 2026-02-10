@@ -20,8 +20,6 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
             Hours = hours;
             Minutes = minutes;   
             Seconds = seconds;
-                
-            
         }
     }
 }

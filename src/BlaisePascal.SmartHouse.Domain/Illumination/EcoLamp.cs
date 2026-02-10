@@ -61,14 +61,12 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 BrightnessBeforeTurnOff = Brightness;
                 Brightness = EcoBrightness.From(0);
                 IsOn = false;
-                Console.WriteLine("Eco lamp is turned off");
             }
             else
             {
                 Brightness = BrightnessBeforeTurnOff;
                 IsOn = true;
-                TimerToTurnOff(); 
-                Console.WriteLine("Eco lamp is turned on and the timer to turn off is set");
+                TimerToTurnOff();
             }
             return IsOn;
         }
@@ -80,11 +78,9 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             {
                 Brightness = EcoBrightness.From(newBrightness);
                 BrightnessBeforeTurnOff = Brightness;
-                Console.WriteLine($"Eco lamp brightness changed to {Brightness}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return;
             }
         }
@@ -99,11 +95,9 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 BrightnessBeforeTurnOff = Brightness;
                 Brightness = EcoBrightness.From(0);
                 IsOn = false;
-                Console.WriteLine("Eco lamp is turned off by timer");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return;
             }
         }

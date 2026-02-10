@@ -33,8 +33,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
                 }
             }catch (Exception ex) 
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("CCTV cannot start recording if it's off");
+                return;
             }
             HasNightVision = hasNightVision;
         }
@@ -46,7 +45,6 @@ namespace BlaisePascal.SmartHouse.Domain.Security
                 IsOn = false;
             else
                 IsOn = true;
-            Console.WriteLine("Cameras are {0}",IsOn);
             return IsOn;
         }
 
@@ -66,8 +64,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine("CCTV cannot stop recording if it's already off");
+                    return;
                 }
             }
         }
@@ -89,8 +86,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine("CCTV cannot start recording if it's off");
+                return;
             }
         }
 

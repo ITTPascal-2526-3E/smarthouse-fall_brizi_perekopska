@@ -37,8 +37,6 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             using var capture = new VideoCapture(id);
             if (!capture.IsOpened())
             {
-                Console.WriteLine("Errore: webcam non aperta.");
-                Console.ReadKey();
                 return;
             }
             using var frame = new Mat();

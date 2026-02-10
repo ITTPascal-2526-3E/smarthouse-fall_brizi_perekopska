@@ -27,7 +27,6 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return;
             }
             Color = color;
@@ -62,7 +61,6 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return;
             }
         }
@@ -71,7 +69,6 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         public void ChangeColor(Color colors)
         {
             Color = colors;
-            Console.WriteLine($"The led color is changed to RGB({Color.C[0]}, {Color.C[1]}, {Color.C[2]})");
         }
     }
 }

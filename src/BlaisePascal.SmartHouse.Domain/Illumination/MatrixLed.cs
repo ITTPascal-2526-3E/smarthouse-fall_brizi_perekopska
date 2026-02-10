@@ -31,8 +31,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                     throw new Exception();
             } catch (Exception ex)
             {
-                Console.WriteLine("There is an error:");
-                Console.WriteLine(ex.Message);
+                return;
             }
             for(int r = 0; r < Rows; r++)
             {
