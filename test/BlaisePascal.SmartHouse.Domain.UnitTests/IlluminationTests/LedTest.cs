@@ -41,7 +41,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             var Led = new Led("aaa", isOn, brightness: 50, color: new byte[] { 255, 0, 0 });
 
             var initialState = isOn;
-            var newState = Led.TurnOn();
+            var newState = Led.TurnOnOrOff();
 
             Assert.NotEqual(initialState, newState);
         }
@@ -52,7 +52,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             var Led = new Led("aaa", isOn, brightness: 50, color: new byte[] { 255, 0, 0 });
 
             var initialState = isOn;
-            var newState = Led.TurnOff();
+            var newState = Led.TurnOnOrOff();
 
             Assert.NotEqual(initialState, newState);
         }
@@ -63,7 +63,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             bool isOn = true;
             var Led = new Led("aaa", isOn, brightness: 70, color: new byte[] { 0, 0, 255 });
 
-            Led.TurnOff(); /// Turn off the led
+            Led.TurnOnOrOff(); /// Turn off the led
             Assert.Equal(0, Led.Brightness);
         }
 
@@ -73,7 +73,7 @@ namespace BlaisePascal.SmartHouse.Domain.UnitTests.IlluminationTests
             bool isOn = false;
             var Led = new Led("aaa", isOn, brightness: 60, color: new byte[] { 255, 255, 0 });
 
-            Led.TurnOn(); /// Turn on the led
+            Led.TurnOnOrOff(); /// Turn on the led
             Assert.Equal(60, Led.Brightness);
         }
 
