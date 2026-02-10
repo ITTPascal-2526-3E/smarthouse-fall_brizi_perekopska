@@ -15,8 +15,8 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
     public sealed class AirFryer : Device, ISwitchable
     {
         //Attributes
-        private ARTemperature CookingTemperature;
-        private ARTemperature LastCookingTemperature;
+        private AFTemperature CookingTemperature;
+        private AFTemperature LastCookingTemperature;
 
         public enum CookingType { Null, Fryed, Roasted, Sweets, Grilled, Dehydrated, Baked, Dryed, SlowCooked, Steamed, Pizza, Reheated, Tosted, KeepWarmed, Pasta}
 
@@ -36,7 +36,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             {
                 IsOn = false;
                 LastCookingTemperature = CookingTemperature;
-                CookingTemperature = ARTemperature.From(0);
+                CookingTemperature = AFTemperature.From(0);
             }
             else
             {
@@ -47,7 +47,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start of the cooking, using a timer.
-        public async Task StartTheCooking(CookingType type, ARTemperature cookingTemperature, Time timer)
+        public async Task StartTheCooking(CookingType type, AFTemperature cookingTemperature, Time timer)
         {
             try
             {

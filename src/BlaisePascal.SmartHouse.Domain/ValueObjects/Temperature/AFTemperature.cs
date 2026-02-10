@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature
 {
-    public sealed class ARTemperature
+    public sealed class AFTemperature
     {
         public float Value { get; }
         public const float Default = 20;
         public const float Min = 80;
         public const float Max = 200;
-        private ARTemperature(float value)
+        private AFTemperature(float value)
         {
             Value = Math.Clamp(value, Min, Max);
         }
-        public static ARTemperature From(float value) => new ARTemperature(value);
+        public static AFTemperature From(float value) => new AFTemperature(value);
     }
 }

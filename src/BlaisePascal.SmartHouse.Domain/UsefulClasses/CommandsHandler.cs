@@ -82,7 +82,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 
                 AirFryerCommands = new Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>>() {
                     {"start air fryer1", async (CT,temp,duration)=>{
-                        await AirFryer1.StartTheCooking(CT, ARTemperature.From(temp), duration);
+                        await AirFryer1.StartTheCooking(CT, AFTemperature.From(temp), duration);
                         Console.WriteLine("Air fryer started!"); }
                     }
                 };
