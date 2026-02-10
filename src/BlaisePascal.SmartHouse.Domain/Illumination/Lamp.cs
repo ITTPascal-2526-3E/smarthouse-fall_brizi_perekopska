@@ -1,52 +1,44 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
     public sealed class Lamp : Device, IIllumination
     {
-
         //Attributes:
-        public byte Brightness { get; private set; }
-        const double ConsumeAtMaxBrightnessPerHour = 100.0;
-        private byte BrightnessBeforeTurnOff;
-        const byte MaxBrightness = 100;
-        const byte MinBrightness = 1;
+        public Brightness Brightness { get; private set; }
+        const float ConsumeAtMaxBrightnessPerHour = 100.0f;
+        private Brightness BrightnessBeforeTurnOff;
 
-        public byte[] Color = new byte[3] { 0,0,0}; //RGB
+        public Color Color; //RGB
         public string Type { get; private set; }
 
         public Time OnTime;
         public Time OffTime;
 
         //Constructor:
-        public Lamp(string name, bool isOn, byte brightness,byte[] color,string type,Time onTime,Time offTime) : base(name, isOn) 
+        public Lamp(Name name, bool isOn, Brightness brightness, Color color,string type,Time onTime,Time offTime) : base(name, isOn) 
         { 
             IsOn = isOn;
             Color = color;
             try
             {
-                if (brightness >= MinBrightness && brightness <= MaxBrightness)
-                {
-                    Brightness = brightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                }
-                else 
-                {
-                    throw new Exception();
-                }
+                Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
 
                 if (!string.IsNullOrEmpty(type))
                     Type = type;
                 else
                     throw new Exception();
 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OnTime = onTime;
                 else
                     throw new Exception();
                 
-                if (onTime.Hours > offTime.Hours)
+                if (onTime.Hours.Value > offTime.Hours.Value)
                     OffTime = offTime;
                 else
                     throw new Exception();
@@ -64,7 +56,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 IsOn = false;
-                Brightness = 0;
+                Brightness = Brightness.From(0);
+                BrightnessBeforeTurnOff = Brightness;
                 Console.WriteLine("The lamp is turned off");
             }
             else 
@@ -82,14 +75,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             try
             {
-                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
-                {
-                    Brightness = newBrightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                    Console.WriteLine($"The lamp brightness is changed to {Brightness}");
-                }
+                Brightness = Brightness.From(newBrightness);
+                BrightnessBeforeTurnOff = Brightness;
+                Console.WriteLine($"The lamp brightness is changed to {Brightness}");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             { 
                 Console.WriteLine(ex.Message);
                 return;
@@ -97,10 +87,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Changes the color of the  lamp
-        public void ChangeLampColor(byte[] colors)
+        public void ChangeLampColor(Color colors)
         {
             Color = colors;
-            Console.WriteLine($"The lamp color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
+            Console.WriteLine($"The lamp color is changed to RGB({Color.C[0]}, {Color.C[1]}, {Color.C[2]})");
         }
 
     }

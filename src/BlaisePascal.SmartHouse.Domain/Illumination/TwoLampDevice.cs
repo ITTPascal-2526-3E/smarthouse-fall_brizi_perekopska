@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -52,7 +53,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         // Change second lamp brightness.
         public void ChangeLamp2Brightness(byte brightness)
         {
-            SecondLamp.Brightness = brightness;
+            SecondLamp.ChangeBrightness(brightness);
             Console.WriteLine("Second lamp brightness changed to " + brightness);
         }
 
@@ -65,10 +66,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Change color to the first lamp
-        public void ChangeLamp1Color(byte[] colors) 
+        public void ChangeLamp1Color(Color colors) 
         { 
             FirstLamp.Color = colors;
-            Console.WriteLine("First lamp color changed to RGB(" + colors[0] + ", " + colors[1] + ", " + colors[2] + ")");
+            Console.WriteLine("First lamp color changed to RGB(" + colors.C[0] + ", " + colors.C[1] + ", " + colors.C[2] + ")");
         }
     }
 }

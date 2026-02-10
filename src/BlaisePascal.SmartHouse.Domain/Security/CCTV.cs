@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
 namespace BlaisePascal.SmartHouse.Domain.Security
 {
@@ -17,7 +18,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         private CCTVStartUp Starting=new CCTVStartUp();
 
         //Constructor
-        public CCTV(string name, bool isOn, bool isRecording, bool hasNightVision) : base(name, isOn)
+        public CCTV(Name name, bool isOn, bool isRecording, bool hasNightVision) : base(name, isOn)
         { 
             IsOn = isOn;
             try

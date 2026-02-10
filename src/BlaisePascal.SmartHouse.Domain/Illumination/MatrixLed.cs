@@ -1,9 +1,11 @@
-﻿using System;
+﻿using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -43,19 +45,19 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         private Led CreateMatrix(int i,int j)
         {
             Random rnd = new Random();
-            string name = i.ToString() +","+ j.ToString();
+            Name name =Name.From(i+" "+j);
             bool isOn = rnd.Next(2)==1;
             byte brightness = 0;
             if (isOn == true)
                 brightness = Convert.ToByte(rnd.Next(101));
 
-            byte[] colors = new byte[3];
-            for (int col = 0; col < 3; col++)
-            {
-                byte color = Convert.ToByte(rnd.Next(256));
-                colors[col] = color;
-            }
-            Led _Led = new Led(name, isOn, brightness, colors);
+            Color colors ;
+            
+            byte r = Convert.ToByte(rnd.Next(256));
+            byte g = Convert.ToByte(rnd.Next(256));
+            byte b = Convert.ToByte(rnd.Next(256));
+            colors =Color.From( r, g, b);
+            Led _Led = new Led(name, isOn, Brightness.From(brightness), colors);
             return _Led;
         }
 

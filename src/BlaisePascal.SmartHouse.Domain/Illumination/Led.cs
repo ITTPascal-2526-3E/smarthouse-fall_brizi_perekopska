@@ -1,5 +1,7 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +13,24 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     public sealed class Led : Device, IIllumination
     {
         // Attributes
-        public byte Brightness { get; private set; }
-        public byte[] Color=new byte[3] { 0,0,0}; //RGB
-        const byte MaxBrightness = 100;
-        const byte MinBrightness = 1;
-        private byte BrightnessBeforeTurnOff;
+        public Brightness Brightness { get; private set; }
+        public Color Color; //RGB
+        private Brightness BrightnessBeforeTurnOff;
 
         //Constructor
-        public Led(string name, bool isOn,byte brightness, byte[] color): base(name,isOn) 
+        public Led(Name name, bool isOn, Brightness brightness, Color color): base(name,isOn) 
         {
             try
             {
-                if (brightness >= MinBrightness && brightness <= MaxBrightness)
-                {
-                    Brightness = brightness;
-                    BrightnessBeforeTurnOff = Brightness;
-                }
-                else
-                {
-                    throw new Exception();
-                }
+                Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return;
             }
+            Color = color;
         }
 
         //Turn on the led
@@ -45,7 +39,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 IsOn = false;
-                Brightness = 0;
+                Brightness = Brightness.From(0);
+                BrightnessBeforeTurnOff = Brightness;
                 return IsOn;
             }
             else
@@ -62,11 +57,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             try
             {
-                if (newBrightness >= MinBrightness && newBrightness <= MaxBrightness)
-                {
-                    Brightness = newBrightness;
-                    BrightnessBeforeTurnOff = Brightness;                
-				}
+                Brightness = Brightness.From(newBrightness);
+                BrightnessBeforeTurnOff = Brightness;
             }
             catch (Exception ex)
             {
@@ -76,10 +68,10 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         }
 
         // Changes the color of the led
-        public void ChangeColor(byte[] colors)
+        public void ChangeColor(Color colors)
         {
             Color = colors;
-            Console.WriteLine($"The led color is changed to RGB({Color[0]}, {Color[1]}, {Color[2]})");
+            Console.WriteLine($"The led color is changed to RGB({Color.C[0]}, {Color.C[1]}, {Color.C[2]})");
         }
     }
 }

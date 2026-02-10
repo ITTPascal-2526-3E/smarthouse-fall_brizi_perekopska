@@ -1,12 +1,16 @@
-﻿using BlaisePascal.SmartHouse.Domain.HomeAppliances;
-using BlaisePascal.SmartHouse.Domain.Illumination;
-using BlaisePascal.SmartHouse.Domain.Security;
-using BlaisePascal.SmartHouse.Domain.Temperature;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.HomeAppliances;
+using BlaisePascal.SmartHouse.Domain.Illumination;
+using BlaisePascal.SmartHouse.Domain.Security;
+using BlaisePascal.SmartHouse.Domain.Temperature;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
@@ -57,7 +61,10 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 };
 
                 ByteArrayCommands = new Dictionary<string, Action<byte[]>>() {
-                    {"change lamp1 color", TwoLampDevice1.ChangeLamp1Color }
+                    {"change lamp1 color", (data)=>{
+                        Color color=Color.From(data[0],data[1],data[2]);
+                        TwoLampDevice1.ChangeLamp1Color(color); }
+                    }
                 };
 
                 BoolReturnCommands = new Dictionary<string, Func<bool>>() {
@@ -65,10 +72,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     {"turn off lamp1", Lamp1.TurnOnOrOff },
                     {"turn on ecolamp1", EcoLamp1.TurnOnOrOff },
                     {"turn off ecolamp1", EcoLamp1.TurnOnOrOff },
-                    {"turn on thermostat1", Thermostat1.TurnOnOrOff },
-                    {"turn off thermostat1", Thermostat1.TurnOnOrOff },
-                    {"turn on air conditioner1", AirConditioner1.TurnOnOrOff },
-                    {"turn off air conditioner1", AirConditioner1.TurnOnOrOff },
+                    {"turn on/off thermostat1", Thermostat1.TurnOnOrOff },
+                    {"turn on/off air conditioner1", AirConditioner1.TurnOnOrOff },
                     {"turn on cameras", Cameras.TurnOnOrOff },
                     {"turn off cameras", Cameras.TurnOnOrOff },
                     {"lock the door1", Door1.LockUnlockTheDoor },
@@ -76,11 +81,18 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                 };
 
                 AirFryerCommands = new Dictionary<string, Func<AirFryer.CookingType, byte, Time, Task>>() {
-                    {"start air fryer1", AirFryer1.StartTheCooking }
+                    {"start air fryer1", async (CT,temp,duration)=>{
+                        await AirFryer1.StartTheCooking(CT, ARTemperature.From(temp), duration);
+                        Console.WriteLine("Air fryer started!"); }
+                    }
                 };
 
                 AcCommands = new Dictionary<string, Action<AirConditioner.AirTypeList, float, byte>>() {
-                    {"start air conditioner1", AirConditioner1.StartAirConditioner }
+                    {"start air conditioner1", (AT,data,speed)=>{
+                        ACTemperature Temp=ACTemperature.From(data);
+                            AirConditioner1.StartAirConditioner(AT,Temp,Speed.From(speed));
+                        } 
+                    }
                 };
 
                 LedCommands = new Dictionary<string, Func<Led>>()
@@ -179,14 +191,14 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     int minutes = int.Parse(Console.ReadLine());
                     Console.WriteLine("Enter seconds:");
                     int seconds = int.Parse(Console.ReadLine());
-                    Time duration = new Time(0, minutes, seconds);
+                    Time duration = new Time(Hour.From(0), Minutes.From(minutes), Seconds.From(seconds));
 
                     await airFryerFunc(cookingType, temperature, duration);
                 }
                 else if(LedCommands.TryGetValue(command, out var ledFunc))
                 {
                     Led led = ledFunc();
-                    Console.WriteLine($"Led at specified position: IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                    Console.WriteLine($"Led at specified position: IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color.C[0]}, {led.Color.C[1]}, {led.Color.C[2]})");
                 }
                 else if(LedArCommands.TryGetValue(command, out var ledArrFunc))
                 {
@@ -194,7 +206,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
                     Console.WriteLine("Leds at specified position:");
                     foreach (var led in leds)
                     {
-                        Console.WriteLine($"IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color[0]}, {led.Color[1]}, {led.Color[2]})");
+                        Console.WriteLine($"IsOn={led.IsOn}, Brightness={led.Brightness}, Color=({led.Color.C[0]}, {led.Color.C[1]}, {led.Color.C[2]})");
                     }
                 }
                 // No command entered

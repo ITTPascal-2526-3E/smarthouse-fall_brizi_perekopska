@@ -5,27 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Domain.Interface;
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Temperature;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature
 {
-    public sealed class Thermostat : Device,ISwitchable
+    public sealed class Thermostat : Device, ISwitchable
     {
         //Attributes:
-
-        const float MaxThermostatTemperature = 35;
-        const float MinThermostatTemperature = 5;
-        public float CurrentTemperature { get; private set; }
-        public float SetpointTemperature { get; private set; }
-        private float CurrentTemperatureBeforeTurnOff;
-        private float SetpointTemperatureBeforeTurnOff;
+        public ThermostatTemperature CurrentTemperature { get; private set; }
+        public ThermostatTemperature SetpointTemperature { get; private set; }
+        private ThermostatTemperature CurrentTemperatureBeforeTurnOff;
+        private ThermostatTemperature SetpointTemperatureBeforeTurnOff;
 
         //Constructor:
-        public Thermostat(string name, bool isOn, float currentTemperature, float setpointTemperature) : base(name, isOn)
+        public Thermostat(Name name, bool isOn, ThermostatTemperature currentTemperature, ThermostatTemperature setpointTemperature) : base(name, isOn)
         {
-            if (setpointTemperature >= MinThermostatTemperature && setpointTemperature <= MaxThermostatTemperature)
-                SetpointTemperature = setpointTemperature;
-            if (currentTemperature <= MaxThermostatTemperature)
-                CurrentTemperature = currentTemperature;
+            SetpointTemperature = setpointTemperature;
+            CurrentTemperature = currentTemperature;
         }
 
         // Change the state of the thermostat, on/off
@@ -34,9 +31,9 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
             if (IsOn == true)
             {
                 CurrentTemperatureBeforeTurnOff = CurrentTemperature;
+                CurrentTemperature = ThermostatTemperature.From(0);
                 SetpointTemperatureBeforeTurnOff = SetpointTemperature;
-                CurrentTemperature = 0;
-                SetpointTemperature = 0;
+                SetpointTemperature = ThermostatTemperature.From(0);
                 IsOn = false;
             }
             else
@@ -50,38 +47,32 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
 
         public void IncreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature < MaxThermostatTemperature && clicks > 0)
+            if (clicks >= 0)
             {
                 Console.WriteLine("[Increased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
-                SetpointTemperature += 0.5f * clicks;
-                if (SetpointTemperature > MaxThermostatTemperature)
-                    SetpointTemperature = MaxThermostatTemperature;
+                SetpointTemperature = ThermostatTemperature.From(SetpointTemperature.Value + 0.5f * clicks);
                 RaiseCurrentTemperature();
             }
             else
-                Console.WriteLine("Setpoint temperature is already at maximum value");
+                throw new ArgumentException("Number of clicks must be a positive value");
         }
 
         public void DecreaseSetpointTemperature(byte clicks)
         {
-            if (SetpointTemperature > MinThermostatTemperature && clicks > 0)
+            if (clicks > 0)
             {
                 Console.WriteLine("[Decreased setpoint temperature from " + SetpointTemperature + "°C by " + 0.5 * clicks + "°C]");
-                SetpointTemperature -= 0.5f * clicks;
-                if (SetpointTemperature < MinThermostatTemperature)
-                    SetpointTemperature = MinThermostatTemperature;
+                SetpointTemperature = ThermostatTemperature.From(SetpointTemperature.Value - 0.5f * clicks);
                 RaiseCurrentTemperature();
             }
             else 
-                Console.WriteLine("Setpoint temperature is already at minimum value");
+                throw new ArgumentException("Number of clicks must be a positive value");
         }
 
         public void RaiseCurrentTemperature()
         {
-            if (CurrentTemperature < SetpointTemperature + 1 )
-                CurrentTemperature = SetpointTemperature + 1;
-            if (CurrentTemperature > 35.0f)
-                CurrentTemperature = 35.0f;
+            if (CurrentTemperature.Value < SetpointTemperature.Value + 1)
+                CurrentTemperature = ThermostatTemperature.From(SetpointTemperature.Value + 1);
         }
 
         public void DisplayCurrentTemperature()
