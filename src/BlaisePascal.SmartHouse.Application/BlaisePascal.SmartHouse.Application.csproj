@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Devices\Illumination\Lamps\Commands\" />
+    <Folder Include="Devices\Illumination\Lamps\Queries\" />
+  </ItemGroup>
+
 </Project>
