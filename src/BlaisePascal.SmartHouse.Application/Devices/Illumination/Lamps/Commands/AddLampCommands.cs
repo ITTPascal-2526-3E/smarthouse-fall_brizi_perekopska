@@ -19,9 +19,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
             _lampRepository = lampRepository;
         }
 
-        public void Execute(string name, string imageUrl)
+        public void Execute(Name name)
         {
-            var lamp = new Lamp();
+            var lamp = new Lamp(name);
             _lampRepository.Add(lamp);
 
         }

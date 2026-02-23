@@ -2,6 +2,7 @@
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 
 namespace BlaisePascal.SmartHouse.Domain.Illumination
 {
@@ -13,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         private Brightness BrightnessBeforeTurnOff;
 
         public Color Color; //RGB
-        public string Type { get; private set; }
+        public string Type { get; protected set; }
 
         public Time OnTime;
         public Time OffTime;
@@ -49,6 +50,19 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 return;
             }
         }
+        public Lamp(Name name) :base(name, AssigmentIsOn())
+        {
+            Color = Color.From(0,0,0);
+            Brightness = Brightness.From(0);
+            Type = "LED";
+            OnTime = new Time(Hour.From(0),Minutes.From(0),Seconds.From(0));
+            OffTime = new Time(Hour.From(20), Minutes.From(0), Seconds.From(0));
+
+        }
+        private static bool AssigmentIsOn() 
+        {
+            return false;
+        } 
 
         /// Change the state of the Lamp, on or off.
         public bool TurnOnOrOff() 
