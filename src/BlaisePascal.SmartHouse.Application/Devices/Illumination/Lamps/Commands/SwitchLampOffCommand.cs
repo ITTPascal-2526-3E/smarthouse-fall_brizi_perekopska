@@ -7,7 +7,7 @@ using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands
 {
-    internal class SwitchLampOffCommand
+    public class SwitchLampOffCommand
     {
         private ILampRepository _repository;
 

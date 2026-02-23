@@ -8,7 +8,7 @@ using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Queries
 {
-    internal class GetLampByIdQuery
+    public class GetLampByIdQuery
     {
         private readonly ILampRepository _repository;
 

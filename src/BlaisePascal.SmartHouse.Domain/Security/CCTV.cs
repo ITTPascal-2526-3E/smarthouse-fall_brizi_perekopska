@@ -37,6 +37,15 @@ namespace BlaisePascal.SmartHouse.Domain.Security
             }
             HasNightVision = hasNightVision;
         }
+        public CCTV(Name name):base(name,AssigmentIsOn()) 
+        {
+            IsRecording = false;
+            HasNightVision=false;
+        }
+        private static bool AssigmentIsOn()
+        {
+            return false;
+        }
 
         // Turn on the CCTV
         public bool TurnOnOrOff() 
