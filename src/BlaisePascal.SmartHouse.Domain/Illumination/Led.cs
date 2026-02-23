@@ -2,6 +2,7 @@
 using BlaisePascal.SmartHouse.Domain.UsefulClasses;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,16 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
                 return;
             }
             Color = color;
+        }
+
+        public Led(Name name) : base(name, AssigmentIsOn())
+        {
+            Color = Color.From(0, 0, 0);
+            Brightness = Brightness.From(0);
+        }
+        private static bool AssigmentIsOn()
+        {
+            return false;
         }
 
         //Turn on the led
