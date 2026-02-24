@@ -9,23 +9,23 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
 {
     public class SwitchLedOffCommand
     {
-        private ILedRepository _repository;
+        private ILedRepository _ledRepository;
 
         public SwitchLedOffCommand(ILedRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
 
         public void Execute(Guid lampId)
         {
-            var lamp = _repository.GetById(lampId);
+            var lamp = _ledRepository.GetById(lampId);
             if (lamp != null)
             {
                 if (lamp.TurnOnOrOff() == false)
                 {
                     lamp.TurnOnOrOff();
                 }
-                _repository.Update(lamp);
+                _ledRepository.Update(lamp);
             }
         }
     }

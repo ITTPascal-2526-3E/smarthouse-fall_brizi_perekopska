@@ -10,16 +10,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Queries
 {
     public class GetLedsByIdQuery
     {
-        private readonly ILedRepository _repository;
+        private readonly ILedRepository _ledRepository;
 
         public GetLedsByIdQuery(ILedRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
 
         public Led Execute(Guid id)
         {
-            return _repository.GetById(id);
+            return _ledRepository.GetById(id);
         }
     }
 }

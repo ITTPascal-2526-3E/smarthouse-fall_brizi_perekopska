@@ -29,7 +29,7 @@ namespace BlaisePascal.SmartHouse.Domain
             AirFryer AirFryer1 = new AirFryer(Name.From("AirFryer1"), true);
             //Security Devices
             CCTV Cameras = new CCTV(Name.From("Cameras"), true, false, true);
-            Door Door1 = new Door(true);
+            Door Door1 = new Door(new Guid(),true);
             //Commands Handler
             CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
             

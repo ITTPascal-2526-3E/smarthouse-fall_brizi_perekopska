@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Security.Repositories
 {
-    public interface IDoorRepositiory
+    public interface IDoorRepository
     {
         void Add(Door door);
         void Update(Door door);

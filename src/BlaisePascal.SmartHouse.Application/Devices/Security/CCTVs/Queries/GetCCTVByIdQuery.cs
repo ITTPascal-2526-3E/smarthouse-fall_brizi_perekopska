@@ -10,16 +10,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Queries
 {
     internal class GetCCTVByIdQuery
     {
-        private readonly ICCTVRepository _repository;
+        private readonly ICCTVRepository _ledRepository;
 
         public GetCCTVByIdQuery(ICCTVRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
 
         public CCTV Execute(Guid id)
         {
-            return _repository.GetById(id);
+            return _ledRepository.GetById(id);
         }
     }
 }

@@ -9,20 +9,20 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
 {
     public class StartCCTVRecordingCommand
     {
-        private ICCTVRepository _repository;
+        private ICCTVRepository _ledRepository;
 
         public StartCCTVRecordingCommand(ICCTVRepository cctvRepository)
         {
-            _repository = cctvRepository;
+            _ledRepository = cctvRepository;
         }
 
         public void Execute(Guid id)
         {
-            var cctv = _repository.GetById(id);
+            var cctv = _ledRepository.GetById(id);
             if (cctv != null)
             {
                 cctv.StartRecording();
-                _repository.Update(cctv);
+                _ledRepository.Update(cctv);
             }
         }
     }

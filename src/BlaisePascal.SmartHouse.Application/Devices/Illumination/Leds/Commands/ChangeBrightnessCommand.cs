@@ -9,20 +9,20 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
 {
     public class ChangeBrightnessCommand
     {
-        private ILedRepository _repository;
+        private ILedRepository _ledRepository;
 
         public ChangeBrightnessCommand(ILedRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
 
         public void Execute(Guid lampId, Byte newBrightness)
         {
-            var lamp = _repository.GetById(lampId);
+            var lamp = _ledRepository.GetById(lampId);
             if (lamp != null)
             {
                 lamp.ChangeBrightness(newBrightness);
-                _repository.Update(lamp);
+                _ledRepository.Update(lamp);
             }
         }
     }

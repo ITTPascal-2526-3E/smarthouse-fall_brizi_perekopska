@@ -10,16 +10,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Queries
 {
     public class GetAllLampQuery
     {
-        private readonly ILampRepository _repository;
+        private readonly ILampRepository _doorRepository;
 
         public GetAllLampQuery(ILampRepository repository)
         {
-            _repository = repository;
+            _doorRepository = repository;
         }
 
         public List<Lamp> Execute()
         {
-            return _repository.GetAll();
+            return _doorRepository.GetAll();
         }
     }
 }

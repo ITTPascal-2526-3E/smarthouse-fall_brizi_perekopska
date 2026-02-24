@@ -11,23 +11,23 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
 {
     public class SwitchCCTVOffCommand
     {
-        private ICCTVRepository _repository;
+        private ICCTVRepository _ledRepository;
 
         public SwitchCCTVOffCommand(ICCTVRepository cctvRepository)
         {
-            _repository = cctvRepository;
+            _ledRepository = cctvRepository;
         }
 
         public void Execute(Guid id) 
         {
-            var cctv = _repository.GetById(id);
+            var cctv = _ledRepository.GetById(id);
             if (cctv != null)
             {
                 if (cctv.TurnOnOrOff() == true)
                 {
                     cctv.TurnOnOrOff();
                 }
-                _repository.Update(cctv);
+                _ledRepository.Update(cctv);
             }
         }
     }

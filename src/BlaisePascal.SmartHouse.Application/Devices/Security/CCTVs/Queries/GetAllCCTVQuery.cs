@@ -10,16 +10,16 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Queries
 {
     public class GetAllCCTVQuery
     {
-        private readonly ICCTVRepository _repository;
+        private readonly ICCTVRepository _ledRepository;
 
         public GetAllCCTVQuery(ICCTVRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
 
         public List<CCTV> Execute()
         {
-            return _repository.GetAll();
+            return _ledRepository.GetAll();
         }
     }
 }

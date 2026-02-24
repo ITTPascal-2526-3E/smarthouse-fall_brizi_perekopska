@@ -11,17 +11,17 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
 {
     public class AddCCTVCommand
     {
-        private ICCTVRepository _repository;
+        private ICCTVRepository _ledRepository;
 
         public AddCCTVCommand(ICCTVRepository cctvRepository)
         {
-            _repository = cctvRepository;
+            _ledRepository = cctvRepository;
         }
 
         public void Execute(Name name)
         {
             var cctv = new CCTV(name);
-            _repository.Add(cctv);
+            _ledRepository.Add(cctv);
 
         }
     }

@@ -9,19 +9,19 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
 {
     public class SaveScreenCCTVCommand
     {
-        private readonly ICCTVRepository _repository;
+        private readonly ICCTVRepository _ledRepository;
 
         public SaveScreenCCTVCommand(ICCTVRepository repository)
         {
-            _repository = repository;
+            _ledRepository = repository;
         }
         public void Execute(Guid cctvId)
         {
-            var cctv = _repository.GetById(cctvId);
+            var cctv = _ledRepository.GetById(cctvId);
             if (cctv != null)
             {
                 cctv.Save();
-                _repository.Update(cctv);
+                _ledRepository.Update(cctv);
             }
         }
     }
