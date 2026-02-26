@@ -26,6 +26,11 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         {
             IsOn = isOn;
         }
+        public AirConditioner(Name name) : base(name, AssigmentIsOn()){}
+        private static bool AssigmentIsOn()
+        {
+            return false;
+        }
 
         //Start the air condinioter
         public void StartAirConditioner(AirTypeList airType, ACTemperature temperature, Speed speed)

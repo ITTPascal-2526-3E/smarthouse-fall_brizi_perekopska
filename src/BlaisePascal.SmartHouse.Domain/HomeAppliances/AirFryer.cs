@@ -29,6 +29,12 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         {
             IsOn = isOn;
         }
+        public AirFryer(Name name) : base(name, AssigmentIsOn()){}
+
+        private static bool AssigmentIsOn()
+        {
+            return false;
+        }
 
         public bool TurnOnOrOff() 
         {

@@ -24,6 +24,15 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
             SetpointTemperature = setpointTemperature;
             CurrentTemperature = currentTemperature;
         }
+        public Thermostat(Name name) : base(name,AssigmentIsOn())
+        {
+            SetpointTemperature = ThermostatTemperature.From(0);
+            CurrentTemperature = ThermostatTemperature.From(0);
+        }
+        private static bool AssigmentIsOn()
+        {
+            return false;
+        }
 
         // Change the state of the thermostat, on/off
         public bool TurnOnOrOff()
