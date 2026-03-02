@@ -6,20 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Queries
+namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
 {
-    public class GetDoorByIdQuery
+    public class RemoveDoorCommand
     {
-        private readonly IDoorRepository _doorRepository;
+        private IDoorRepository _doorRepository;
 
-        public GetDoorByIdQuery(IDoorRepository doorRepository)
+        public RemoveDoorCommand(IDoorRepository doorRepository)
         {
             _doorRepository = doorRepository;
         }
 
-        public Door Execute(Guid id)
+        public void Execute(Guid id)
         {
-            return _doorRepository.GetById(id);
+            _doorRepository.Remove(id);
+
         }
     }
 }

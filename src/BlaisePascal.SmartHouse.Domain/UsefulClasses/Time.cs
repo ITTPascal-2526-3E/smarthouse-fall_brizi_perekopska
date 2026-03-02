@@ -9,6 +9,8 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
 {
     public sealed class Time
     {
+        private Guid id;
+
         //Attributes:
         public Hour Hours{ get; set;}
         public Minutes Minutes { get; set;}
@@ -20,6 +22,11 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
             Hours = hours;
             Minutes = minutes;   
             Seconds = seconds;
+        }
+
+        public Time(Guid id)
+        {
+            this.id = id;
         }
     }
 }

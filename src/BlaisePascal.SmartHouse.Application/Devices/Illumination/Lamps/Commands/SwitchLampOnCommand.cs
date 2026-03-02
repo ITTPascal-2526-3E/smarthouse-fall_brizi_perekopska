@@ -9,23 +9,23 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
 {
     public class SwitchLampOnCommand
     {
-        private ILampRepository _doorRepository;
+        private IThermostatRepository _lampRepository;
 
-        public SwitchLampOnCommand(ILampRepository repository)
+        public SwitchLampOnCommand(IThermostatRepository lampRepository)
         {
-            _doorRepository = repository;
+            _lampRepository = lampRepository;
         }
 
         public void Execute(Guid lampId)
         {
-            var lamp = _doorRepository.GetById(lampId);
+            var lamp = _lampRepository.GetById(lampId);
             if (lamp != null)
             {
                 if (lamp.TurnOnOrOff() == true)
                 {
                     lamp.TurnOnOrOff();
                 }
-                _doorRepository.Update(lamp);
+                _lampRepository.Update(lamp);
             }
         }
     }

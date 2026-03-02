@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands
 {
-    public class RemoveLampCommands
+    public class RemoveLampCommand
     {
-        private ILampRepository _lampRepository;
+        private IThermostatRepository _lampRepository;
 
-        public RemoveLampCommands(ILampRepository lampRepository)
+        public RemoveLampCommand(IThermostatRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }

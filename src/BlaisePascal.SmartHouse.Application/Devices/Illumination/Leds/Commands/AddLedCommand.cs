@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
 {
-    public class AddLedCommands
+    public class AddLedCommand
     {
         private ILedRepository _ledRepository;
 
-        public AddLedCommands(ILedRepository ledRepository)
+        public AddLedCommand(ILedRepository ledRepository)
         {
             _ledRepository = ledRepository;
         }

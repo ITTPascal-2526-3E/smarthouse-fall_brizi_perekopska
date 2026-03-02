@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Queries
 {
-    internal class GetAllDoorsQuery
+    public class GetAllDoorsQuery
     {
         private readonly IDoorRepository _doorRepository;
 
-        public GetAllDoorsQuery(IDoorRepository repository)
+        public GetAllDoorsQuery(IDoorRepository doorRepository)
         {
-            _doorRepository = repository;
+            _doorRepository = doorRepository;
         }
 
         public List<Door> Execute()

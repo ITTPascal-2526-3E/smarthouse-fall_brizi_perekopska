@@ -1,5 +1,4 @@
-﻿using BlaisePascal.SmartHouse.Domain.Security;
-using BlaisePascal.SmartHouse.Domain.Security.Repositories;
+﻿using BlaisePascal.SmartHouse.Domain.Security.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
 {
-    internal class LockDoorCommands
+    public class UnlockDoorCommand
     {
         private IDoorRepository _doorRepository;
 
-        public LockDoorCommands(IDoorRepository doorRepository)
+        public UnlockDoorCommand(IDoorRepository doorRepository)
         {
             _doorRepository = doorRepository;
         }
@@ -22,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
             var door = _doorRepository.GetById(doorId);
             if (door != null)
             {
-                if (door.LockUnlockTheDoor() == false)
+                if (door.LockUnlockTheDoor() == true)
                 {
                     door.LockUnlockTheDoor();
                 }
@@ -31,3 +30,4 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
         }
     }
 }
+

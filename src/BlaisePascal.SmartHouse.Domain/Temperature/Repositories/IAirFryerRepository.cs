@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.Temperature.Repositories
 {
-    public interface IThermostatRepository
+    public interface IAirFryerRepository
     {
         void Add(Thermostat thermostat);
         void Update(Thermostat thermostat);

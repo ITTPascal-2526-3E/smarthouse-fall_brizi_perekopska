@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Domain.UsefulClasses.Repositories
 {
-    public interface TimeRepository
+    public interface ITimeRepository
     {
         void Add(Time time);
         void Update(Time time);

@@ -10,11 +10,11 @@ using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands
 {
-    public class AddLampCommands
+    public class AddLampCommand
     {
-        private ILampRepository _lampRepository;
+        private IThermostatRepository _lampRepository;
 
-        public AddLampCommands(ILampRepository lampRepository)
+        public AddLampCommand(IThermostatRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }
