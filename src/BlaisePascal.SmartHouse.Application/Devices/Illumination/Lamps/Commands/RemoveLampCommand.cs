@@ -11,9 +11,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
 {
     public class RemoveLampCommand
     {
-        private IThermostatRepository _lampRepository;
+        private ILampRepository _lampRepository;
 
-        public RemoveLampCommand(IThermostatRepository lampRepository)
+        public RemoveLampCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }

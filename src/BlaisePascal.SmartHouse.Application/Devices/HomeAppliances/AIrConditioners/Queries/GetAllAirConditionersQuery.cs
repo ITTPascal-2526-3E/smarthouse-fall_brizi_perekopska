@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AIrConditioners.Queries
+namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AirConditioners.Queries
 {
     public class GetAllAirConditionersQuery
     {

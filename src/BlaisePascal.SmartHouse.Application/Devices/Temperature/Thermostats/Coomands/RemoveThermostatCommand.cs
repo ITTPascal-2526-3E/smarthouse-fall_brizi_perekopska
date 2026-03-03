@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temerature.Thermostat.Comm
 {
     public class RemoveThermostatCommand
     {
-        private IAirFryerRepository _thermostatRepository;
+        private IThermostatRepository _thermostatRepository;
 
-        public RemoveThermostatCommand(IAirFryerRepository thermostatRepository)
+        public RemoveThermostatCommand(IThermostatRepository thermostatRepository)
         {
             _thermostatRepository = thermostatRepository;
         }

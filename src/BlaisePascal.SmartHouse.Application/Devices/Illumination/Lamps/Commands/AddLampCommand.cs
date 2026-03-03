@@ -12,9 +12,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
 {
     public class AddLampCommand
     {
-        private IThermostatRepository _lampRepository;
+        private ILampRepository _lampRepository;
 
-        public AddLampCommand(IThermostatRepository lampRepository)
+        public AddLampCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }

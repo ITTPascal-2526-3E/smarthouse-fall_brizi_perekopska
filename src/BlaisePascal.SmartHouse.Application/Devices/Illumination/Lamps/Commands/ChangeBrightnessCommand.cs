@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
 {
     public class ChangeBrightnessCommand
     {
-        private IThermostatRepository _lampRepository;
+        private ILampRepository _lampRepository;
 
-        public ChangeBrightnessCommand(IThermostatRepository lampRepository)
+        public ChangeBrightnessCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }

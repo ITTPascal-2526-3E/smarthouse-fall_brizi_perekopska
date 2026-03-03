@@ -11,9 +11,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temperature.Thermostats.Co
 {
     public class SwitchThermostatOffCommand
     {
-        private Domain.Illumination.Repositories.IThermostatRepository _thermostatRepository;
+        private IThermostatRepository _thermostatRepository;
 
-        public SwitchThermostatOffCommand(Domain.Illumination.Repositories.IThermostatRepository thermostatRepository)
+        public SwitchThermostatOffCommand(IThermostatRepository thermostatRepository)
         {
             _thermostatRepository = thermostatRepository;
         }

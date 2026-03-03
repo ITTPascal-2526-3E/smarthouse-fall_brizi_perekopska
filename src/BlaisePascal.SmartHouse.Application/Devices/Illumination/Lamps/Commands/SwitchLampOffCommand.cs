@@ -9,9 +9,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
 {
     public class SwitchLampOffCommand
     {
-        private IThermostatRepository _lampRepository;
+        private ILampRepository _lampRepository;
 
-        public SwitchLampOffCommand(IThermostatRepository lampRepository)
+        public SwitchLampOffCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }

@@ -10,9 +10,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temerature.Thermostats.Que
 {
     public class GetAllThermostatsQuery
     {
-        private readonly IAirFryerRepository _thermostatRepository;
+        private readonly IThermostatRepository _thermostatRepository;
 
-        public GetAllThermostatsQuery(IAirFryerRepository thermostatRepository)
+        public GetAllThermostatsQuery(IThermostatRepository thermostatRepository)
         {
             _thermostatRepository = thermostatRepository;
         }
