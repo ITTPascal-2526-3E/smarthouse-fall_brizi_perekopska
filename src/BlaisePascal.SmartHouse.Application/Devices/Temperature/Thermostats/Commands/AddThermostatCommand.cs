@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.Temperature.Repositories;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temerature.Thrmostats.Comm
             _thermostatRepository = thermostatRepository;
         }
 
-        public void Execute(Guid id)
+        public void Execute(Name name)
         {
-            var thermostat = new Thermostat(id);
+            var thermostat = new BlaisePascal.SmartHouse.Domain.Temperature.Thermostat(name);
             _thermostatRepository.Add(thermostat);
-
         }
     }
 }

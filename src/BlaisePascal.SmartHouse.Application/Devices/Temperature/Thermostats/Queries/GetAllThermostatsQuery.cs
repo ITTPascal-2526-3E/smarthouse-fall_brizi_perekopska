@@ -17,7 +17,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temerature.Thermostats.Que
             _thermostatRepository = thermostatRepository;
         }
 
-        public List<Thermostat> Execute()
+        public List<BlaisePascal.SmartHouse.Domain.Temperature.Thermostat> Execute()
         {
             return _thermostatRepository.GetAll();
         }
