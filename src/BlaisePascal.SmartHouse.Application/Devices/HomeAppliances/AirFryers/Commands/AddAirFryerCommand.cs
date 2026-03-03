@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.HomeAppliances;
 using BlaisePascal.SmartHouse.Domain.HomeAppliances.Repositories;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AirFryers.C
             _airFryerRepository = airFryerRepository;
         }
 
-        public void Execute(Guid id)
+        public void Execute(Name name)
         {
-            var airFryer = new AirFryer(id);
+            var airFryer = new AirFryer(name);
             _airFryerRepository.Add(airFryer);
 
         }
