@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 
@@ -17,8 +18,8 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
         {
             _lamps = new List<Lamp>
             {
-                new Lamp("Name"),
-                new Lamp("Name2")
+                new Lamp(Name.From("Name")),
+                new Lamp(Name.From("Name2"))
             };
         }
 

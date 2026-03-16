@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
+using BlaisePascal.SmartHouse.Domain.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
+using BlaisePascal.SmartHouse.Domain.ValueObjects;
+using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
+using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+
 
 namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illumination.Lamps
 {
@@ -45,7 +52,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
         {
             var lamps = Load();
             var lamp = lamps.First(l => l.Id == id);
-            lamps.Remove(lampToRemove);
+            lamps.Remove(lamp);
             Save(lamps);
         }
 
@@ -62,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
             var dtos = lamps;
             var lines = new List<string>
             {
-                "Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,Type,OnTime,OffTime"
+                "Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,Type,OnTimeHour,OnTimeMInutes,OnTimeSeconds,OffTimeHour,OffTimeMInutes,OffTimeSeconds"
             };
 
             foreach (var dto in dtos)
@@ -81,10 +88,10 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
                 ));
             }
 
-            File.WriteAllLines(lines);
+            File.WriteAllLines(_filePath,lines);
         }
 
-        private List<Lamps> Load()
+        private List<Lamp> Load()
         {
             var lines = File.ReadAllLines(_filePath);
 
@@ -97,18 +104,18 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
             {
                 var values = line.Split(',');
                 var dto = new Lamp
-                {
-                    Id = Guid.Parse(values[0]),
-                    Name = new Name(values[1]),
-                    IsOn = bool.Parse(values[2]),
-                    Brightness = byte.Parse(values[3]),
-                    Color = Color.From(byte.Parse(values[4]), byte.Parse(values[5]), byte.Parse(values[6])),
-                    Type = values[7],
-                    OnTime = Time.From(TimeSpan.Parse(values[8])),
-                    OffTime = Time.From(TimeSpan.Parse(values[9]))
-                };
-
-                lamps.Add();
+                (
+                    
+                    Name.From(values[1]),
+                    bool.Parse(values[2]),
+                    Brightness.From(byte.Parse(values[3])),
+                    Color.From(byte.Parse(values[4]), byte.Parse(values[5]), byte.Parse(values[6])),
+                    values[7],
+                    new Time(Hour.From(int.Parse(values[8])), Minutes.From(int.Parse(values[9])), Seconds.From(int.Parse(values[10]))),
+                    new Time(Hour.From(int.Parse(values[11])), Minutes.From(int.Parse(values[12])), Seconds.From(int.Parse(values[13])))
+                );
+                dto.Id = Guid.Parse(values[0]);
+                lamps.Add(dto);
             }
             return lamps;
         }

@@ -10,7 +10,7 @@ namespace BlaisePascal.SmartHouse.Domain.UsefulClasses
     public abstract class Device
     {
         public Name Name { get; protected set; }
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
         public bool IsOn { get; protected set; }
 
         public Device(Name name, bool isOn)
