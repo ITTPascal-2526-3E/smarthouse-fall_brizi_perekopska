@@ -15,4 +15,3 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances.Repositories
         List<AirFryer> GetAll();
     }
 }
-}
