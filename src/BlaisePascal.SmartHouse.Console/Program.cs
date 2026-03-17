@@ -36,52 +36,10 @@ namespace BlaisePascal.SmartHouse.Domain
             CCTV Cameras = new CCTV(Name.From("Cameras"), true, false, true);
             Door Door1 = new Door(new Guid(),true);
             //Commands Handler
-            CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
+            //CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
             ILampRepository _repository = new CsvLampRepository();
             LampController Controller = new LampController(_repository);
-            /*
-            string CommandsList = $@"AVAILABLE COMANDS:
-LAMPS COMANDS
-- turn on/off lamp1
-- change lamp1 brightness [value from 1 to 100]
-- change lamp1 state
-- change lamp 1 color
-
-- turn on/off ecolamp1
-- change ecolamp1 brightness [value from 1 to 66]
-- change ecolamp1 state
-
-- change both lamps state
-- change both lamps brightness [lamp1 value from 1 to 100] [ecolamp1 value from 1 to 66]
-
--switch all led on
--switch all led off
--set all intensity[value from 1 to 100]
--get led by row and column[value from 0 to {MatrixLed1.GetRowsNumber()}] [value from 0 to {MatrixLed1.GetColumnsNumber()}]//doesn't work
--get a row of led by the rows [value from 0 to {MatrixLed1.GetRowsNumber()}]//doesn't work
--get a columns of led by the columns [value from 0 to {MatrixLed1.GetColumnsNumber()}]//doesn't work
-
-THERMOSTAT COMANDS
-- turn on/off thermostat
-- increase thermostat1 setpoint temperature [number of clicks]
-- decrease thermostat1 setpoint temperature [number of clicks]
-- display current temperature
-
-AIRCONDITIONER COMANDS
-- turn on/off air conditioner1
-- start/stop air conditioner1
-
-AIRFRYER COMANDS
-- start/stop air fryer1
-
-CCTV COMANDS
-- turn on/off cameras
-- start/stop cameras recording
-- save cameras
-
-DOOR COMANDS
-- lock/unlock the door1
-";*/
+           
             do
             {
                 Controller.ShowAllLamps();
