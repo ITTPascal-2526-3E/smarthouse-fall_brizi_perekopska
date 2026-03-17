@@ -19,7 +19,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AIrConditio
 
         public AirConditioner Execute(Guid id)
         {
-            return _airConditionerRepository.Remove(id);
+            return _airConditionerRepository.GetById(id);
         }
     }
 }
