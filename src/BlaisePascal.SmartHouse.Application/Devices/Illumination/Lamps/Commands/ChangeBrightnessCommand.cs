@@ -20,9 +20,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
         public void Execute(Guid lampId, Byte newBrightness)
         {
             var lamp = _lampRepository.GetById(lampId);
-            if (lamp != null)
+            if (lamp != null && lamp.IsOn==true)
             {
                 lamp.ChangeBrightness(newBrightness);
+                lamp.LastModified = DateTime.Now;
                 _lampRepository.Update(lamp);
             }
         }

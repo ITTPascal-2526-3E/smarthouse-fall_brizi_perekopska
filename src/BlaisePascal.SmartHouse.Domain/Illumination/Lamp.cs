@@ -9,7 +9,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
     public sealed class Lamp : Device, IIllumination
     {
         //Attributes:
-        public Brightness Brightness { get; private set; }
+        public Brightness Brightness { get; protected set; }
         const float ConsumeAtMaxBrightnessPerHour = 100.0f;
         private Brightness BrightnessBeforeTurnOff;
 
@@ -62,7 +62,18 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         private static bool AssigmentIsOn() 
         {
             return false;
-        } 
+        }
+        public Lamp(Guid id, Name name, bool isOn, Brightness brightness, Color color, string type, Time onTime, Time offTime,DateTime creation, DateTime lastModified):base(name ,isOn,id,creation, lastModified)
+        {
+            Id = id; 
+            Name = name;
+            IsOn = isOn;
+            Brightness = brightness;
+            Color = color;
+            Type = type;
+            OnTime = onTime;
+            OffTime = offTime;
+        }
 
         /// Change the state of the Lamp, on or off.
         public bool TurnOnOrOff() 

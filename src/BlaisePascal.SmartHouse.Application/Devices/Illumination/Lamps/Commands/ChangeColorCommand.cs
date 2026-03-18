@@ -24,6 +24,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
             {
                 Color color=Color.From(r,g,b);
                 lamp.ChangeLampColor(color);
+                lamp.LastModified = DateTime.Now;
                 _lampRepository.Update(lamp);
             }
         }

@@ -10,7 +10,7 @@ namespace BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination
     {
         public byte Value { get; }
 
-        public const int Min = 1;
+        public const int Min = 0;
         public const int Max = 100;
 
         private Brightness(int value)

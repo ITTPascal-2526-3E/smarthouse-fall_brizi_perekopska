@@ -202,7 +202,12 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
                 System.Console.WriteLine($"Lamp name: {lamp.Name.Value}");
                 System.Console.WriteLine($"Lamp id: {lamp.Id.ToString()}");
                 System.Console.WriteLine($"Lamp state: {lamp.IsOn}");
+                System.Console.WriteLine($"Lamp brightness: {lamp.Brightness.Value}");
+                System.Console.WriteLine($"Lamp type: {lamp.Type}");
                 System.Console.WriteLine($"Lamp color: {lamp.Color.R}, {lamp.Color.G}, {lamp.Color.B}");
+                System.Console.WriteLine($"Creation time: {lamp.Creation}");
+                System.Console.WriteLine($"Last modified time: {lamp.LastModified}");
+                System.Console.WriteLine();
             }
             return;
         }

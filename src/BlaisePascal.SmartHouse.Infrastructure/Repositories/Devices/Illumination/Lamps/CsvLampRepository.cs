@@ -62,6 +62,8 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
             var index = lamps.FindIndex(l => l.Id == lamp.Id);
             if (index == -1)
                 throw new Exception("Lamp not found");
+            lamps[index] = lamp;
+            Save(lamps);
         }
 
         private void Save(List<Lamp> lamps)
@@ -69,22 +71,28 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
             var dtos = lamps;
             var lines = new List<string>
             {
-                "Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,Type,OnTimeHour,OnTimeMInutes,OnTimeSeconds,OffTimeHour,OffTimeMInutes,OffTimeSeconds"
+                "Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,Type,OnTimeHour,OnTimeMInutes,OnTimeSeconds,OffTimeHour,OffTimeMInutes,OffTimeSeconds,CreatedTime,LastModifyTime"
             };
 
             foreach (var dto in dtos)
             {
                 lines.Add(string.Join(",",
                     dto.Id,
-                    dto.Name,
+                    dto.Name?.Value ?? "Not named",
                     dto.IsOn,
-                    dto.Brightness,
+                    dto.Brightness?.Value ?? 0,
                     dto.Color.R,
                     dto.Color.G,
                     dto.Color.B,
                     dto.Type,
-                    $"{dto.OnTime.Hours.Value}:{dto.OnTime.Minutes.Value}:{dto.OnTime.Seconds.Value}",
-                    $"{dto.OffTime.Hours.Value}:{dto.OffTime.Minutes.Value}:{dto.OffTime.Seconds.Value}"
+                    dto.OnTime.Hours.Value,
+                    dto.OnTime.Minutes.Value,
+                    dto.OnTime.Seconds.Value,
+                    dto.OffTime.Hours.Value,
+                    dto.OffTime.Minutes.Value,
+                    dto.OffTime.Seconds.Value,
+                    dto.Creation,
+                    dto.LastModified
                 ));
             }
 
@@ -93,29 +101,39 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
 
         private List<Lamp> Load()
         {
-            var lines = File.ReadAllLines(_filePath);
+            if (!File.Exists(_filePath)) return new List<Lamp>();
 
-            if (lines.Length <= 1)
-                return new List<Lamp>();
+            var lines = File.ReadAllLines(_filePath);
+            if (lines.Length <= 1) return new List<Lamp>();
 
             var lamps = new List<Lamp>();
-
-            foreach (var line in lines.Skip(1)) //skips header
+            foreach (var line in lines.Skip(1))
             {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
                 var values = line.Split(',');
-                var dto = new Lamp
-                (
-                    
-                    Name.From(values[1]),
-                    bool.Parse(values[2]),
-                    Brightness.From(byte.Parse(values[3])),
-                    Color.From(byte.Parse(values[4]), byte.Parse(values[5]), byte.Parse(values[6])),
-                    values[7],
-                    new Time(Hour.From(int.Parse(values[8])), Minutes.From(int.Parse(values[9])), Seconds.From(int.Parse(values[10]))),
-                    new Time(Hour.From(int.Parse(values[11])), Minutes.From(int.Parse(values[12])), Seconds.From(int.Parse(values[13])))
-                );
-                dto.Id = Guid.Parse(values[0]);
-                lamps.Add(dto);
+                if (values.Length < 16) continue;
+
+                try
+                {
+                    var dto = new Lamp(
+                        Guid.Parse(values[0]),
+                        Name.From(values[1]),
+                        bool.Parse(values[2]),
+                        Brightness.From(byte.Parse(values[3])),
+                        Color.From(byte.Parse(values[4]), byte.Parse(values[5]), byte.Parse(values[6])),
+                        values[7],
+                        new Time(Hour.From(int.Parse(values[8])), Minutes.From(int.Parse(values[9])), Seconds.From(int.Parse(values[10]))),
+                        new Time(Hour.From(int.Parse(values[11])), Minutes.From(int.Parse(values[12])), Seconds.From(int.Parse(values[13]))),
+                        DateTime.Parse(values[14]),
+                        DateTime.Parse(values[15])
+                    );
+                    lamps.Add(dto);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Skip corrupted line: {line}. Error: {ex.Message}");
+                }
             }
             return lamps;
         }

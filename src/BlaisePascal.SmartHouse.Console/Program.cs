@@ -43,7 +43,8 @@ namespace BlaisePascal.SmartHouse.Domain
             do
             {
                 Controller.ShowAllLamps();
-                System.Console.Write("Lamp name: ");
+                System.Console.WriteLine();
+                System.Console.WriteLine("Lamp name: ");
                 System.Console.WriteLine("Commands:");
                 System.Console.WriteLine("1) Add a lamp");
                 System.Console.WriteLine("2) Remove a Lamp");
@@ -52,29 +53,29 @@ namespace BlaisePascal.SmartHouse.Domain
                 System.Console.WriteLine("5) Change Brightness");
                 System.Console.WriteLine("6) Change Color");
                 System.Console.WriteLine("0) Exit");
-                System.Console.Write("Choose: ");
+                System.Console.WriteLine("Choosing: ");
 
-                int action=Convert.ToInt32(System.Console.ReadLine());
+                string action=System.Console.ReadLine();
                 switch (action) 
                 {
-                    case 0:
-                        break;
-                    case 1:
+                    case "0":
+                        return;
+                    case "1":
                         Controller.AddLamp();
                         break;
-                    case 2:
+                    case "2":
                         Controller.RemoveLamp();
                         break;
-                    case 3:
+                    case "3":
                         Controller.SwitchOn();
                         break;
-                    case 4:
+                    case "4":
                         Controller.SwitchOff();
                         break;
-                    case 5:
+                    case "5":
                         Controller.ChangeBrightness();
                         break;
-                    case 6:
+                    case "6":
                         Controller.ChangeColor();
                         break;
                     default:

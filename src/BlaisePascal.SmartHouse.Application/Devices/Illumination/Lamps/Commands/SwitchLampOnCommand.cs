@@ -21,9 +21,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
             var lamp = _lampRepository.GetById(lampId);
             if (lamp != null)
             {
-                if (lamp.TurnOnOrOff() == true)
+                if (lamp.IsOn == false)
                 {
                     lamp.TurnOnOrOff();
+                    lamp.LastModified = DateTime.Now;
                 }
                 _lampRepository.Update(lamp);
             }

@@ -22,6 +22,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Command
         public void Execute(Name name)
         {
             var lamp = new Lamp(name);
+            lamp.Creation = DateTime.Now;
+            lamp.LastModified = DateTime.Now;
             _lampRepository.Add(lamp);
 
         }
