@@ -18,9 +18,11 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
             _doorRepository = doorRepository;
         }
 
-        public void Execute(Guid id)
+        public void Execute(Name name)
         {
-            var door = new Door(id);
+            var door = new Door(name);
+            door.Creation = DateTime.Now;
+            door.LastModified = DateTime.Now;
             _doorRepository.Add(door);
 
         }

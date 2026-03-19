@@ -1,3 +1,2 @@
 Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,Type,OnTimeHour,OnTimeMInutes,OnTimeSeconds,OffTimeHour,OffTimeMInutes,OffTimeSeconds,CreatedTime,LastModifyTime
-7a8f10b4-2420-4d3d-b2b3-aaecc50118b4,i,False,0,0,0,0,LED,0,0,0,20,0,0,18/03/2026 19:33:30,18/03/2026 19:33:30
-1ecb7bd8-61e4-4ec2-b298-bc634e296c47,pio,False,0,0,0,0,LED,0,0,0,20,0,0,19/03/2026 16:12:51,19/03/2026 16:12:51
+7a8f10b4-2420-4d3d-b2b3-aaecc50118b4,i,False,0,0,0,0,LED,0,0,0,20,0,0,18/03/2026 19:33:30,19/03/2026 18:29:27

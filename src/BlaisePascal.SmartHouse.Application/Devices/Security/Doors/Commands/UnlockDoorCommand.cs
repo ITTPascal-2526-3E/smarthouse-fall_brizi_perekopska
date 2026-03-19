@@ -21,9 +21,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands
             var door = _doorRepository.GetById(doorId);
             if (door != null)
             {
-                if (door.LockUnlockTheDoor() == true)
+                if (door.IsLocked == true)
                 {
                     door.LockUnlockTheDoor();
+                    door.LastModified = DateTime.Now;
                 }
                 _doorRepository.Update(door);
             }

@@ -80,7 +80,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
                     dto.Id,
                     dto.Name?.Value ?? "Not named",
                     dto.IsOn,
-                    dto.Brightness?.Value ?? 0,
+                    dto.Brightness.Value ,
                     dto.Color.R,
                     dto.Color.G,
                     dto.Color.B,

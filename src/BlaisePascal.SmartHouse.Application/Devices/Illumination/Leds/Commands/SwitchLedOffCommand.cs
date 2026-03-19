@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
+﻿using BlaisePascal.SmartHouse.Domain.Illumination;
+using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,18 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
             _ledRepository = repository;
         }
 
-        public void Execute(Guid lampId)
+        public void Execute(Guid ledId)
         {
-            var lamp = _ledRepository.GetById(lampId);
-            if (lamp != null)
+            var led = _ledRepository.GetById(ledId);
+            if (led != null)
             {
-                if (lamp.TurnOnOrOff() == false)
+                if (led.IsOn == true)
                 {
-                    lamp.TurnOnOrOff();
+                    
+                    led.TurnOnOrOff();
+                    led.LastModified = DateTime.Now;
                 }
-                _ledRepository.Update(lamp);
+                _ledRepository.Update(led);
             }
         }
     }

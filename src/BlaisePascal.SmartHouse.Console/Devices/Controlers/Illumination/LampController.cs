@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands;
 using BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Queries;
 
-namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
+namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
 {
     public class LampController
     {

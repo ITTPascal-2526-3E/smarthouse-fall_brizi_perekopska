@@ -62,8 +62,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             if (IsOn == true)
             {
                 IsOn = false;
+                BrightnessBeforeTurnOff = Brightness.From(Brightness.Value);
                 Brightness = Brightness.From(0);
-                BrightnessBeforeTurnOff = Brightness;
                 return IsOn;
             }
             else

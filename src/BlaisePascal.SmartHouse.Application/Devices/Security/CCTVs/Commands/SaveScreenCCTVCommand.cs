@@ -21,6 +21,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
             if (cctv != null)
             {
                 cctv.Save();
+                cctv.LastModified = DateTime.Now;
                 _ledRepository.Update(cctv);
             }
         }

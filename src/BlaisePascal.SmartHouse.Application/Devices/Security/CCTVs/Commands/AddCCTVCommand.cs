@@ -21,6 +21,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
         public void Execute(Name name)
         {
             var cctv = new CCTV(name);
+            cctv.Creation= DateTime.Now;
+            cctv.LastModified= DateTime.Now;
             _ledRepository.Add(cctv);
 
         }

@@ -22,21 +22,6 @@ namespace BlaisePascal.SmartHouse.Domain
     {
         static async Task Main(string[] args)
         {
-            //Illumination Devices
-            Lamp Lamp1 = new Lamp(Name.From("porta"),false, Brightness.From(100), Color.From(100, 10, 50), "LED", new Time(Hour.From(23), Minutes.From(23), Seconds.From(23)), new Time(Hour.From(10), Minutes.From(10), Seconds.From(12)));
-            EcoLamp EcoLamp1 = new EcoLamp(Name.From("portaEco"),false, EcoBrightness.From(56), "EcoLED", new Time(Hour.From(10), Minutes.From(00),Seconds.From( 00)), new Time(Hour.From(12), Minutes.From(00), Seconds.From(00)), new Time(Hour.From(00), Minutes.From(00), Seconds.From(16)));
-            TwoLampDevice TwoLampDevice1 = new TwoLampDevice(Lamp1, EcoLamp1);
-            MatrixLed MatrixLed1 = new MatrixLed(2,3);
-            //Temperature Devices
-            Thermostat Thermostat1 = new Thermostat(Name.From("Thermostat1"), true, ThermostatTemperature.From(19.5f), ThermostatTemperature.From(23.5f));
-            //Home Appliances
-            AirConditioner AirConditioner1 = new AirConditioner(Name.From("AirConditioner1"), true);
-            AirFryer AirFryer1 = new AirFryer(Name.From("AirFryer1"), true);
-            //Security Devices
-            CCTV Cameras = new CCTV(Name.From("Cameras"), true, false, true);
-            Door Door1 = new Door(new Guid(),true);
-            //Commands Handler
-            //CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
             GeneralController Controller = new GeneralController();
            
             do
@@ -46,6 +31,9 @@ namespace BlaisePascal.SmartHouse.Domain
                 System.Console.WriteLine("Choose a device:");
                 System.Console.WriteLine("1- Lamp  ");
                 System.Console.WriteLine("2- Led");
+                System.Console.WriteLine("3- CCTV");
+                System.Console.WriteLine("4- Door");
+                System.Console.WriteLine("5- Thermostat");
                 System.Console.WriteLine("0) Exit");
                 System.Console.WriteLine("Choosing: ");
 
@@ -59,6 +47,15 @@ namespace BlaisePascal.SmartHouse.Domain
                         break;
                     case "2":
                         Controller.Leds();
+                        break;
+                    case "3":
+                        Controller.CCTVs();
+                        break;
+                    case "4":
+                        Controller.Doors();
+                        break;
+                    case "5":
+                        Controller.Thermostats();
                         break;
                     default:
                         System.Console.WriteLine("Invalid option");

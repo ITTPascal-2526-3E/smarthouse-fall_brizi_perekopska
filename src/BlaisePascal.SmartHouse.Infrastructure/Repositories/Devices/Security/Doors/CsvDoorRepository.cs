@@ -1,76 +1,76 @@
 ﻿using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
-using BlaisePascal.SmartHouse.Domain.UsefulClasses;
+using BlaisePascal.SmartHouse.Domain.Security;
+using BlaisePascal.SmartHouse.Domain.Security.Repositories;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using BlaisePascal.SmartHouse.Domain.ValueObjects.Illumination;
-using BlaisePascal.SmartHouse.Domain.ValueObjects.Time;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illumination.Leds
+namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Security.Doors
 {
-    public class CsvLedRepository : ILedRepository
+    public class CsvDoorRepository : IDoorRepository
     {
-        private readonly string _filePath = "leds.csv";
-        public CsvLedRepository()
+        private readonly string _filePath = "doors.csv";
+        public CsvDoorRepository()
         {
             var solutionRoot = LocalPathHelper.GetSolutionRoot();
 
             var dataFolder = Path.Combine(solutionRoot, "data");
             Directory.CreateDirectory(dataFolder);
 
-            _filePath = Path.Combine(dataFolder, "leds.csv");
+            _filePath = Path.Combine(dataFolder, "doors.csv");
 
             if (!File.Exists(_filePath))
             {
-                Save(new List<Led>());
+                Save(new List<Door>());
             }
         }
 
-        public List<Led> GetAll()
+        public List<Door> GetAll()
         {
             return Load();
         }
 
-        public Led GetById(Guid id)
+        public Door GetById(Guid id)
         {
-            return Load().FirstOrDefault(led => led.Id == id);
+            return Load().FirstOrDefault(door => door.Id == id);
         }
 
-        public void Add(Led led)
+        public void Add(Door door)
         {
-            var leds = Load();
-            leds.Add(led);
-            Save(leds);
+            var doors = Load();
+            doors.Add(door);
+            Save(doors);
         }
 
         public void Remove(Guid id)
         {
-            var leds = Load();
-            var led = leds.First(l => l.Id == id);
-            leds.Remove(led);
-            Save(leds);
+            var doors = Load();
+            var door = doors.First(d => d.Id == id);
+            doors.Remove(door);
+            Save(doors);
         }
 
-        public void Update(Led led)
+        public void Update(Door door)
         {
-            var leds = Load();
-            var index = leds.FindIndex(l => l.Id == led.Id);
+            var doors = Load();
+            var index = doors.FindIndex(l => l.Id == door.Id);
             if (index == -1)
-                throw new Exception("Led not found");
-            leds[index] = led;
-            Save(leds);
+                throw new Exception("Door not found");
+            doors[index] = door;
+            Save(doors);
         }
 
-        private void Save(List<Led> leds)
+        private void Save(List<Door> doors)
         {
-            var dtos = leds;
+            var dtos = doors;
             var lines = new List<string>
             {
-                "Id,Name,IsOn,Brightness,ColorR,ColorG,ColorB,CreatedTime,LastModifyTime"
+                "Id,Name,IsLocked,CreatedTime,LastModifyTime"
             };
 
             foreach (var dto in dtos)
@@ -78,11 +78,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
                 lines.Add(string.Join(",",
                     dto.Id,
                     dto.Name?.Value ?? "Not named",
-                    dto.IsOn,
-                    dto.Brightness.Value ,
-                    dto.Color.R,
-                    dto.Color.G,
-                    dto.Color.B,
+                    dto.IsLocked,
                     dto.Creation,
                     dto.LastModified
                 ));
@@ -91,31 +87,29 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illuminati
             File.WriteAllLines(_filePath, lines);
         }
 
-        private List<Led> Load()
+        private List<Door> Load()
         {
-            if (!File.Exists(_filePath)) return new List<Led>();
+            if (!File.Exists(_filePath)) return new List<Door>();
 
             var lines = File.ReadAllLines(_filePath);
-            if (lines.Length <= 1) return new List<Led>();
+            if (lines.Length <= 1) return new List<Door>();
 
-            var leds = new List<Led>();
+            var leds = new List<Door>();
             foreach (var line in lines.Skip(1))
             {
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
                 var values = line.Split(',');
-                if (values.Length < 9) continue;
+                if (values.Length < 5) continue;
 
                 try
                 {
-                    var dto = new Led(
+                    var dto = new Door(
                         Guid.Parse(values[0]),
                         Name.From(values[1]),
                         bool.Parse(values[2]),
-                        Brightness.From(byte.Parse(values[3])),
-                        Color.From(byte.Parse(values[4]), byte.Parse(values[5]), byte.Parse(values[6])),
-                        DateTime.Parse(values[7]),
-                        DateTime.Parse(values[8])
+                        DateTime.Parse(values[3]),
+                        DateTime.Parse(values[4])
                     );
                     leds.Add(dto);
                 }

@@ -11,7 +11,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         //Attributes:
         public Brightness Brightness { get; protected set; }
         const float ConsumeAtMaxBrightnessPerHour = 100.0f;
-        private Brightness BrightnessBeforeTurnOff;
+        public Brightness BrightnessBeforeTurnOff { get; protected set; }
 
         public Color Color; //RGB
         public string Type { get; protected set; }
@@ -26,8 +26,16 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             Color = color;
             try
             {
-                Brightness = brightness;
-                BrightnessBeforeTurnOff = Brightness;
+                if (IsOn)
+                {
+                    Brightness = Brightness.From(brightness.Value);
+                    BrightnessBeforeTurnOff = Brightness.From(brightness.Value);
+                }
+                else
+                {
+                    Brightness = Brightness.From(0);
+                    BrightnessBeforeTurnOff = Brightness.From(brightness.Value);
+                }
 
                 if (!string.IsNullOrEmpty(type))
                     Type = type;
@@ -54,6 +62,7 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             Color = Color.From(0,0,0);
             Brightness = Brightness.From(0);
+            BrightnessBeforeTurnOff = Brightness.From(50);
             Type = "LED";
             OnTime = new Time(Hour.From(0),Minutes.From(0),Seconds.From(0));
             OffTime = new Time(Hour.From(20), Minutes.From(0), Seconds.From(0));
@@ -68,7 +77,8 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             Id = id; 
             Name = name;
             IsOn = isOn;
-            Brightness = brightness;
+            Brightness = Brightness.From(brightness.Value);
+            BrightnessBeforeTurnOff = Brightness.From(Brightness.Value);
             Color = color;
             Type = type;
             OnTime = onTime;
@@ -82,12 +92,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
             {
                 IsOn = false;
                 Brightness = Brightness.From(0);
-                BrightnessBeforeTurnOff = Brightness;
             }
             else 
             {
                 IsOn = true;
-                Brightness = BrightnessBeforeTurnOff;
+                Brightness = Brightness.From(BrightnessBeforeTurnOff.Value);
             }
 
             return IsOn;
@@ -96,15 +105,11 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         /// Changes the brightness of the lamp
         public void ChangeBrightness(byte newBrightness)
         {
-            try
+            
+            if (IsOn)
             {
                 Brightness = Brightness.From(newBrightness);
-                BrightnessBeforeTurnOff = Brightness;
-            }
-            catch (Exception ex)
-            { 
-                Console.WriteLine(ex.Message);
-                return;
+                BrightnessBeforeTurnOff = Brightness.From(newBrightness);
             }
         }
 

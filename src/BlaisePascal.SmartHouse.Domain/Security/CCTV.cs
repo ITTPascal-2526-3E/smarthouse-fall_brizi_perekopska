@@ -14,7 +14,7 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         //Attributes
         public bool IsRecording;
         const uint ResolutionPixels=3840*2160;//4K
-        private bool HasNightVision;
+        public bool HasNightVision { get; private set; }
         private CCTVStartUp Starting=new CCTVStartUp();
 
         //Constructor
@@ -45,6 +45,12 @@ namespace BlaisePascal.SmartHouse.Domain.Security
         private static bool AssigmentIsOn()
         {
             return false;
+        }
+        public CCTV(Guid id, Name name, bool isOn, bool isRecording, bool hasNightVision, DateTime creation, DateTime lastModify) : base(name, isOn,id,creation,lastModify)
+        {
+            IsOn = isOn;
+            IsRecording=isRecording;
+            HasNightVision=hasNightVision;
         }
 
         // Turn on the CCTV

@@ -21,9 +21,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Commands
             var cctv = _ledRepository.GetById(id);
             if (cctv != null)
             {
-                if (cctv.TurnOnOrOff() == false)
+                if (cctv.IsOn == false)
                 {
                     cctv.TurnOnOrOff();
+                    cctv.LastModified = DateTime.Now;
                 }
                 _ledRepository.Update(cctv);
             }
