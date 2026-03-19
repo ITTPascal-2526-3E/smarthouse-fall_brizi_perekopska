@@ -143,13 +143,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
             {
                 if (name == lamp.Name.Value)
                 {
-                    new ChangeBrightnessCommand(_repository).Execute(lamp.Id,quantity);
+                    new ChangeLampBrightnessCommand(_repository).Execute(lamp.Id,quantity);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} Brightness changed!");
                     return;
                 }
                 if (name == lamp.Id.ToString()) 
                 {
-                    new ChangeBrightnessCommand(_repository).Execute(lamp.Id, quantity);
+                    new ChangeLampBrightnessCommand(_repository).Execute(lamp.Id, quantity);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} brightness changed!");
                     return;
                 }
@@ -178,13 +178,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
             {
                 if (name == lamp.Name.Value)
                 {
-                    new ChangeColorCommand(_repository).Execute(lamp.Id, r, g, b);
+                    new ChangeLampColorCommand(_repository).Execute(lamp.Id, r, g, b);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} color changed!");
                     return;
                 }
                 if (name == lamp.Id.ToString())
                 {
-                    new ChangeColorCommand(_repository).Execute(lamp.Id, r, g, b);
+                    new ChangeLampColorCommand(_repository).Execute(lamp.Id, r, g, b);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} color changed!");
                     return;
                 }

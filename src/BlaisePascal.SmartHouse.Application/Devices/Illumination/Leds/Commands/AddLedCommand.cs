@@ -22,6 +22,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
         public void Execute(Name name)
         {
             Led led = new Led(name);
+            led.Creation = DateTime.Now;
+            led.LastModified = DateTime.Now;
             _ledRepository.Add(led);
         }
     }

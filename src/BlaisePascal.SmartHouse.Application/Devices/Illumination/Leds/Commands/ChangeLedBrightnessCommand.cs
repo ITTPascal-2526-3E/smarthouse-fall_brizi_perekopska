@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
 {
-    public class ChangeBrightnessCommand
+    public class ChangeLedBrightnessCommand
     {
         private ILedRepository _ledRepository;
 
-        public ChangeBrightnessCommand(ILedRepository repository)
+        public ChangeLedBrightnessCommand(ILedRepository repository)
         {
             _ledRepository = repository;
         }

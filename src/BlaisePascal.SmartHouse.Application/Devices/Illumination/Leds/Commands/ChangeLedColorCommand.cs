@@ -6,23 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands
+namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Leds.Commands
 {
-    public class ChangeBrightnessCommand
+    public class ChangeLedColorCommand
     {
-        private ILampRepository _lampRepository;
+        private ILedRepository _lampRepository;
 
-        public ChangeBrightnessCommand(ILampRepository lampRepository)
+        public ChangeLedColorCommand(ILedRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }
 
-        public void Execute(Guid lampId, Byte newBrightness)
+        public void Execute(Guid lampId, Byte r, Byte g, Byte b)
         {
             var lamp = _lampRepository.GetById(lampId);
-            if (lamp != null && lamp.IsOn==true)
+            if (lamp != null)
             {
-                lamp.ChangeBrightness(newBrightness);
+                Color color = Color.From(r, g, b);
+                lamp.ChangeColor(color);
                 lamp.LastModified = DateTime.Now;
                 _lampRepository.Update(lamp);
             }

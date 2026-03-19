@@ -8,22 +8,21 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.SmartHouse.Application.Devices.Illumination.Lamps.Commands
 {
-    public class ChangeColorCommand
+    public class ChangeLampBrightnessCommand
     {
         private ILampRepository _lampRepository;
 
-        public ChangeColorCommand(ILampRepository lampRepository)
+        public ChangeLampBrightnessCommand(ILampRepository lampRepository)
         {
             _lampRepository = lampRepository;
         }
 
-        public void Execute(Guid lampId, Byte r, Byte g, Byte b)
+        public void Execute(Guid lampId, Byte newBrightness)
         {
             var lamp = _lampRepository.GetById(lampId);
-            if (lamp != null)
+            if (lamp != null && lamp.IsOn==true)
             {
-                Color color=Color.From(r,g,b);
-                lamp.ChangeLampColor(color);
+                lamp.ChangeBrightness(newBrightness);
                 lamp.LastModified = DateTime.Now;
                 _lampRepository.Update(lamp);
             }

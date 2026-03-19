@@ -37,21 +37,15 @@ namespace BlaisePascal.SmartHouse.Domain
             Door Door1 = new Door(new Guid(),true);
             //Commands Handler
             //CommandsHandler CommandsHandler = new CommandsHandler(Lamp1, EcoLamp1, TwoLampDevice1, Thermostat1, AirConditioner1, AirFryer1, Cameras, Door1, MatrixLed1);
-            ILampRepository _repository = new CsvLampRepository();
-            LampController Controller = new LampController(_repository);
+            GeneralController Controller = new GeneralController();
            
             do
             {
-                Controller.ShowAllLamps();
                 System.Console.WriteLine();
-                System.Console.WriteLine("Lamp name: ");
-                System.Console.WriteLine("Commands:");
-                System.Console.WriteLine("1) Add a lamp");
-                System.Console.WriteLine("2) Remove a Lamp");
-                System.Console.WriteLine("3) Turn On");
-                System.Console.WriteLine("4) Turn Off");
-                System.Console.WriteLine("5) Change Brightness");
-                System.Console.WriteLine("6) Change Color");
+                System.Console.WriteLine("-----DEVICES-----");
+                System.Console.WriteLine("Choose a device:");
+                System.Console.WriteLine("1- Lamp  ");
+                System.Console.WriteLine("2- Led");
                 System.Console.WriteLine("0) Exit");
                 System.Console.WriteLine("Choosing: ");
 
@@ -61,22 +55,10 @@ namespace BlaisePascal.SmartHouse.Domain
                     case "0":
                         return;
                     case "1":
-                        Controller.AddLamp();
+                        Controller.Lamps();
                         break;
                     case "2":
-                        Controller.RemoveLamp();
-                        break;
-                    case "3":
-                        Controller.SwitchOn();
-                        break;
-                    case "4":
-                        Controller.SwitchOff();
-                        break;
-                    case "5":
-                        Controller.ChangeBrightness();
-                        break;
-                    case "6":
-                        Controller.ChangeColor();
+                        Controller.Leds();
                         break;
                     default:
                         System.Console.WriteLine("Invalid option");

@@ -42,6 +42,19 @@ namespace BlaisePascal.SmartHouse.Domain.Illumination
         {
             return false;
         }
+        public Led(Guid id,Name name, bool isOn, Brightness brightness, Color color,DateTime creation, DateTime lastModify) : base(name, isOn,id,creation,lastModify)
+        {
+            try
+            {
+                Brightness = brightness;
+                BrightnessBeforeTurnOff = Brightness;
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+            Color = color;
+        }
 
         //Turn on the led
         public bool TurnOnOrOff()
