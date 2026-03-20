@@ -21,6 +21,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AIrConditio
         public void Execute(Name name)
         {
             var airConditioner = new AirConditioner(name);
+            airConditioner.Creation=DateTime.Now;
+            airConditioner.LastModified=DateTime.Now;
             _airConditionerRepository.Add(airConditioner);
 
         }

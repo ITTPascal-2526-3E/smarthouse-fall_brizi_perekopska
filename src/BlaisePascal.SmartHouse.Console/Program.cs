@@ -34,8 +34,8 @@ namespace BlaisePascal.SmartHouse.Domain
                 System.Console.WriteLine("3- CCTV");
                 System.Console.WriteLine("4- Door");
                 System.Console.WriteLine("5- Thermostat");
-								System.Console.WriteLine("6- AirConditioner");
-								System.Console.WriteLine("7- AirFryer");
+				System.Console.WriteLine("6- AirConditioner");
+				System.Console.WriteLine("7- AirFryer");
                 System.Console.WriteLine("0) Exit");
                 System.Console.WriteLine("Choosing: ");
 

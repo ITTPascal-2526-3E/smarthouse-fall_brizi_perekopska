@@ -21,6 +21,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AirFryers.C
         public void Execute(Name name)
         {
             var airFryer = new AirFryer(name);
+            airFryer.Creation = DateTime.Now;
+            airFryer.LastModified = DateTime.Now;
             _airFryerRepository.Add(airFryer);
 
         }
