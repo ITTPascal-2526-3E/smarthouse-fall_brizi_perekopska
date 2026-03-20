@@ -1,12 +1,16 @@
 ﻿using BlaisePascal.SmartHouse.Application.Devices.Security.CCTVs.Queries;
+using BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance;
 using BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination;
 using BlaisePascal.SmartHouse.Console.Devices.Controlers.Security;
 using BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature;
+using BlaisePascal.SmartHouse.Domain.HomeAppliances.Repositories;
 using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 using BlaisePascal.SmartHouse.Domain.Security.Repositories;
 using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.Temperature.Repositories;
+using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.HomeAppliance.AirConditioners;
+using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.HomeAppliance.AirFtryers;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illumination.Lamps;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Illumination.Leds;
 using BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Security.CCTVs;
@@ -32,10 +36,10 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
         private DoorController DoorController;
         private IThermostatRepository _thermostatRepository = new CsvThermostatRepository();
         private ThermostatController ThermostatController;
-				private IAirConditionerRepository _airConditionerRepository = new CsvAirConditioner();
-				private AirConditionerController AirConditionerController;
-				private IAirFryerRepository _airFryerRepository = new CsvAirFryer();
-				private AirFryerController AirFryerController;
+		private IAirConditionerRepository _airConditionerRepository = new CsvAirConditionerRepository();
+		private AirConditionerController AirConditionerController;
+		private IAirFryerRepository _airFryerRepository = new CsvAirFryerRepository();
+		private AirFryerController AirFryerController;
 
 
         public GeneralController() 
@@ -45,8 +49,8 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
             CCTVController = new CCTVController(_cctvRepository);
             DoorController = new DoorController(_doorRepository);
             ThermostatController = new ThermostatController(_thermostatRepository);
-						private AirConditionerController = new AirConditionerController(_airConditionerRepository);
-						private AirFryerController = new AirFryerController(_airFryerRepository);
+			AirConditionerController = new AirConditionerController(_airConditionerRepository);
+			AirFryerController = new AirFryerController(_airFryerRepository);
         }
 
         public void Lamps() 
@@ -300,7 +304,7 @@ public void AirConditioners()
         System.Console.WriteLine("Commands:");
         System.Console.WriteLine("1) Add an Air Conditioner");
         System.Console.WriteLine("2) Remove an Air Conditioner");
-				System.Console.WriteLine("3) Start Air Conditioner");
+		System.Console.WriteLine("3) Start Air Conditioner");
         System.Console.WriteLine("4) Turn On");
         System.Console.WriteLine("5) Turn Off");
         System.Console.WriteLine("0) Exit");
@@ -347,9 +351,8 @@ public void AirFryers()
         System.Console.WriteLine("2) Remove an Air Fryer");
         System.Console.WriteLine("3) Turn On");
         System.Console.WriteLine("4) Turn Off");
-        System.Console.WriteLine("5) Set Temperature");
-        System.Console.WriteLine("6) Start Cooking");
-        System.Console.WriteLine("7) Stop Cooking");
+        System.Console.WriteLine("5) Start Cooking");
+        System.Console.WriteLine("6) Stop Cooking");
         System.Console.WriteLine("0) Exit");
         System.Console.WriteLine("Choosing: ");
 
@@ -371,12 +374,9 @@ public void AirFryers()
                 AirFryerController.SwitchOff();
                 break;
             case "5":
-                AirFryerController.SetTemperature();
-                break;
-            case "6":
                 AirFryerController.StartCooking();
                 break;
-            case "7":
+            case "6":
                 AirFryerController.StopCooking();
                 break;
             default:
