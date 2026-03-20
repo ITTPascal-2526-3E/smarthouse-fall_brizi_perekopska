@@ -137,7 +137,16 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
                 return;
             }
             System.Console.Write("Brightness to set[0-100]: ");
-            byte quantity = Convert.ToByte(System.Console.ReadLine());
+            int quant = Convert.ToInt16(System.Console.ReadLine());
+            byte quantity;
+            if (quant < 0 || quant > 100)
+            {
+                quantity = 0;
+            }
+            else
+            {
+                quantity = Convert.ToByte(quant);
+            }
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
@@ -168,11 +177,38 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
                 return;
             }
             System.Console.Write("Red to set[0-255]: ");
-            byte r = Convert.ToByte(System.Console.ReadLine());
+            int red = Convert.ToInt16(System.Console.ReadLine());
+            byte r;
+            if (red < 0 || red > 255)
+            {
+                r = 0;
+            }
+            else
+            {
+                r = Convert.ToByte(red);
+            }
             System.Console.Write("Green to set[0-255]: ");
-            byte g = Convert.ToByte(System.Console.ReadLine());
+            int gre = Convert.ToInt16(System.Console.ReadLine());
+            byte g;
+            if (gre < 0 || gre > 255)
+            {
+                g = 0;
+            }
+            else
+            {
+                g = Convert.ToByte(gre);
+            }
             System.Console.Write("Blue to set[0-255]: ");
-            byte b = Convert.ToByte(System.Console.ReadLine());
+            int blue = Convert.ToInt16(System.Console.ReadLine());
+            byte b;
+            if (blue < 0 || blue > 255)
+            {
+                b = 0;
+            }
+            else
+            {
+                b = Convert.ToByte(blue);
+            }
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
