@@ -85,13 +85,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<CCTV> list = _query.Execute();
             foreach (CCTV cctv in list)
             {
-                if (name == cctv.Name.Value)
+                if (name == cctv.Name.Value && cctv.IsOn == false)
                 {
                     new SwitchCCTVOnCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV {cctv.Name.Value} switched on!");
                     return;
                 }
-                if (name == cctv.Id.ToString())
+                if (name == cctv.Id.ToString() && cctv.IsOn == false)
                 {
                     new SwitchCCTVOnCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV  {cctv.Name.Value} switched on!");
@@ -114,13 +114,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<CCTV> list = _query.Execute();
             foreach (CCTV cctv in list)
             {
-                if (name == cctv.Name.Value)
+                if (name == cctv.Name.Value && cctv.IsOn == true)
                 {
                     new SwitchCCTVOffCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV {cctv.Name.Value} switched off!");
                     return;
                 }
-                if (name == cctv.Id.ToString())
+                if (name == cctv.Id.ToString() && cctv.IsOn == true)
                 {
                     new SwitchCCTVOffCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV  {cctv.Name.Value} switched off!");
@@ -143,13 +143,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<CCTV> list = _query.Execute();
             foreach (CCTV cctv in list)
             {
-                if (name == cctv.Name.Value)
+                if (name == cctv.Name.Value && cctv.IsOn == true)
                 {
                     new StartCCTVRecordingCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV {cctv.Name.Value} start recording!");
                     return;
                 }
-                if (name == cctv.Id.ToString())
+                if (name == cctv.Id.ToString() && cctv.IsOn == true)
                 {
                     new StartCCTVRecordingCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV  {cctv.Name.Value} start recording!");
@@ -172,13 +172,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<CCTV> list = _query.Execute();
             foreach (CCTV cctv in list)
             {
-                if (name == cctv.Name.Value)
+                if (name == cctv.Name.Value && cctv.IsOn == true)
                 {
                     new StopCCTVRecordingCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV {cctv.Name.Value} stop recording!");
                     return;
                 }
-                if (name == cctv.Id.ToString())
+                if (name == cctv.Id.ToString() && cctv.IsOn == true)
                 {
                     new StopCCTVRecordingCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV  {cctv.Name.Value} stop recording!");
@@ -201,13 +201,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<CCTV> list = _query.Execute();
             foreach (CCTV cctv in list)
             {
-                if (name == cctv.Name.Value)
+                if (name == cctv.Name.Value && cctv.IsOn == true)
                 {
                     new SaveScreenCCTVCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV {cctv.Name.Value} save the screen!");
                     return;
                 }
-                if (name == cctv.Id.ToString())
+                if (name == cctv.Id.ToString() && cctv.IsOn == true)
                 {
                     new SaveScreenCCTVCommand(_repository).Execute(cctv.Id);
                     System.Console.WriteLine($"!CCTV  {cctv.Name.Value} save the screen!");

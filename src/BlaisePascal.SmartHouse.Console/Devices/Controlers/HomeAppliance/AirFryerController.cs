@@ -69,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
 
             List<AirFryer> af = _query.Execute();
             foreach (AirFryer airFryer in af)
-                if (af != null)
+                if (name == airFryer.Name.Value && airFryer.IsOn == false)
                 {
                     new SwitchAirFryerOnCommand(_repository).Execute(airFryer.Id);
                     System.Console.WriteLine($"!AirFryer {airFryer.Name.Value} switched on!");
@@ -86,7 +86,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
 
             List<AirFryer> af = _query.Execute();
             foreach (AirFryer airFryer in af)
-                if (name == airFryer.Name.Value)
+                if (name == airFryer.Name.Value && airFryer.IsOn == true)
                 {
                     new SwitchAirFryerOffCommand(_repository).Execute(airFryer.Id);
                     System.Console.WriteLine($"!AirFryer {airFryer.Name.Value} switched on!");
@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             List<AirFryer> af = _query.Execute();
             foreach (AirFryer airFryer in af)
             {
-                if (name == airFryer.Name.Value)
+                if (name == airFryer.Name.Value && airFryer.IsOn == true)
                 {
                     System.Console.Write("Cooking Type (e.g. Fryed, Pizza): ");
                     string typeStr = System.Console.ReadLine();
@@ -140,7 +140,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             List<AirFryer> af = _query.Execute();
             foreach (AirFryer airFryer in af)
             {
-                if (name == airFryer.Name.Value)
+                if (name == airFryer.Name.Value && airFryer.IsOn == true)
                 {
 
                     new StopTheCookingCommand(_repository).Execute(airFryer.Id);

@@ -81,13 +81,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
-                if (name == lamp.Name.Value)
+                if (name == lamp.Name.Value && lamp.IsOn == false)
                 {
                     new SwitchLampOnCommand(_repository).Execute(lamp.Id);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} switched on!");
                     return;
                 }
-                if (name == lamp.Id.ToString())
+                if (name == lamp.Id.ToString() && lamp.IsOn == false)
                 {
                     new SwitchLampOnCommand(_repository).Execute(lamp.Id);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} switched on!");
@@ -110,13 +110,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
-                if (name == lamp.Name.Value)
+                if (name == lamp.Name.Value && lamp.IsOn == true)
                 {
                     new SwitchLampOffCommand(_repository).Execute(lamp.Id);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} switched off!");
                     return;
                 }
-                if (name == lamp.Id.ToString())
+                if (name == lamp.Id.ToString() && lamp.IsOn == true)
                 {
                     new SwitchLampOffCommand(_repository).Execute(lamp.Id);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value}!");
@@ -141,13 +141,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
-                if (name == lamp.Name.Value)
+                if (name == lamp.Name.Value && lamp.IsOn == true)
                 {
                     new ChangeLampBrightnessCommand(_repository).Execute(lamp.Id,quantity);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} Brightness changed!");
                     return;
                 }
-                if (name == lamp.Id.ToString()) 
+                if (name == lamp.Id.ToString() && lamp.IsOn == true) 
                 {
                     new ChangeLampBrightnessCommand(_repository).Execute(lamp.Id, quantity);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} brightness changed!");
@@ -176,13 +176,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Lamp> list = _query.Execute();
             foreach (Lamp lamp in list)
             {
-                if (name == lamp.Name.Value)
+                if (name == lamp.Name.Value && lamp.IsOn == true)
                 {
                     new ChangeLampColorCommand(_repository).Execute(lamp.Id, r, g, b);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} color changed!");
                     return;
                 }
-                if (name == lamp.Id.ToString())
+                if (name == lamp.Id.ToString() && lamp.IsOn == true)
                 {
                     new ChangeLampColorCommand(_repository).Execute(lamp.Id, r, g, b);
                     System.Console.WriteLine($"!Lamp {lamp.Name.Value} color changed!");

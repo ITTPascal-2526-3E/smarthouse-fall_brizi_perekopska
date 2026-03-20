@@ -71,7 +71,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             List<AirConditioner> acs = _query.Execute();
             foreach (AirConditioner airConditioner in acs)
             {
-                if (name == airConditioner.Name.Value)
+                if (name == airConditioner.Name.Value && airConditioner.IsOn == false)
                 {
                     new SwitchAirConditionerOnCommand(_repository).Execute(airConditioner.Id);
                     System.Console.WriteLine($"!AirConditioner {airConditioner.Name.Value} switched on!");
@@ -90,7 +90,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             List<AirConditioner> acs = _query.Execute();
             foreach (AirConditioner airConditioner in acs)
             {
-                if (name == airConditioner.Name.Value)
+                if (name == airConditioner.Name.Value && airConditioner.IsOn == true)
                 {
                     new SwitchAirConditionerOffCommand(_repository).Execute(airConditioner.Id);
                     System.Console.WriteLine($"!AirConditioner {airConditioner.Name.Value} switched off!");
@@ -108,7 +108,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             List<AirConditioner> acs = _query.Execute();
             foreach (AirConditioner airConditioner in acs)
             {
-                if (name == airConditioner.Name.Value)
+                if (name == airConditioner.Name.Value && airConditioner.IsOn == true)
                 {
                     System.Console.Write("Air Type (Cool, Heat, Fan, auto, Dry): ");
                     string typeStr = System.Console.ReadLine();

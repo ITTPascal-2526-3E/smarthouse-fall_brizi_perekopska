@@ -88,13 +88,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             List<Thermostat> list = _query.Execute();
             foreach (Thermostat thermostat in list)
             {
-                if (name == thermostat.Name.Value)
+                if (name == thermostat.Name.Value && thermostat.IsOn == false)
                 {
                     new SwitchThermostatOnCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat  {thermostat.Name.Value} switched on!");
                     return;
                 }
-                if (name == thermostat.Id.ToString())
+                if (name == thermostat.Id.ToString() && thermostat.IsOn == false)
                 {
                     new SwitchThermostatOnCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat  {thermostat.Name.Value} switched on!");
@@ -117,13 +117,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             List<Thermostat> list = _query.Execute();
             foreach (Thermostat thermostat in list)
             {
-                if (name == thermostat.Name.Value)
+                if (name == thermostat.Name.Value && thermostat.IsOn == true)
                 {
                     new SwitchThermostatOffCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat   {thermostat.Name.Value} switched off!");
                     return;
                 }
-                if (name == thermostat.Id.ToString())
+                if (name == thermostat.Id.ToString() && thermostat.IsOn == true)
                 {
                     new SwitchThermostatOffCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat   {thermostat.Name.Value}!");
@@ -148,13 +148,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             List<Thermostat> list = _query.Execute();
             foreach (Thermostat thermostat in list)
             {
-                if (name == thermostat.Name.Value)
+                if (name == thermostat.Name.Value && thermostat.IsOn == true)
                 {
                     new IncreaseSetpointTemperatureCommand(_repository).Execute(thermostat.Id, quantity);
                     System.Console.WriteLine($"!Thermostat {thermostat.Name.Value} increased setpoint temperature!");
                     return;
                 }
-                if (name == thermostat.Id.ToString())
+                if (name == thermostat.Id.ToString() && thermostat.IsOn == true)
                 {
                     new IncreaseSetpointTemperatureCommand(_repository).Execute(thermostat.Id, quantity);
                     System.Console.WriteLine($"!Thermostat  {thermostat.Name.Value} increased setpoint temperature !");
@@ -179,13 +179,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             List<Thermostat> list = _query.Execute();
             foreach (Thermostat thermostat in list)
             {
-                if (name == thermostat.Name.Value)
+                if (name == thermostat.Name.Value && thermostat.IsOn == true)
                 {
                     new DecreaseSetpointTemperatureCommand(_repository).Execute(thermostat.Id, quantity);
                     System.Console.WriteLine($"!Thermostat {thermostat.Name.Value} decreased setpoint temperature!");
                     return;
                 }
-                if (name == thermostat.Id.ToString())
+                if (name == thermostat.Id.ToString() && thermostat.IsOn == true)
                 {
                     new DecreaseSetpointTemperatureCommand(_repository).Execute(thermostat.Id, quantity);
                     System.Console.WriteLine($"!Thermostat  {thermostat.Name.Value} decreased setpoint temperature!");
@@ -208,13 +208,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             List<Thermostat> list = _query.Execute();
             foreach (Thermostat thermostat in list)
             {
-                if (name == thermostat.Name.Value)
+                if (name == thermostat.Name.Value && thermostat.IsOn == true)
                 {
                     new RaiseCurrentTemperatureCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat {thermostat.Name.Value} raised temperature!");
                     return;
                 }
-                if (name == thermostat.Id.ToString())
+                if (name == thermostat.Id.ToString() && thermostat.IsOn == true)
                 {
                     new RaiseCurrentTemperatureCommand(_repository).Execute(thermostat.Id);
                     System.Console.WriteLine($"!Thermostat  {thermostat.Name.Value} raised temperature!");

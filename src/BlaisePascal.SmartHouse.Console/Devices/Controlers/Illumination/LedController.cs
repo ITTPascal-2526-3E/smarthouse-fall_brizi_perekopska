@@ -83,13 +83,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Led> list = _query.Execute();
             foreach (Led led in list)
             {
-                if (name == led.Name.Value)
+                if (name == led.Name.Value && led.IsOn == false)
                 {
                     new SwitchLedOnCommand(_repository).Execute(led.Id);
                     System.Console.WriteLine($"!Led {led.Name.Value} switched on!");
                     return;
                 }
-                if (name == led.Id.ToString())
+                if (name == led.Id.ToString() && led.IsOn == false)
                 {
                     new SwitchLedOnCommand(_repository).Execute(led.Id);
                     System.Console.WriteLine($"!Led {led.Name.Value} switched on!");
@@ -112,13 +112,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Led> list = _query.Execute();
             foreach (Led led in list)
             {
-                if (name == led.Name.Value)
+                if (name == led.Name.Value && led.IsOn == true)
                 {
                     new SwitchLedOffCommand(_repository).Execute(led.Id);
                     System.Console.WriteLine($"!Led {led.Name.Value} switched off!");
                     return;
                 }
-                if (name == led.Id.ToString())
+                if (name == led.Id.ToString() && led.IsOn == true)
                 {
                     new SwitchLedOffCommand(_repository).Execute(led.Id);
                     System.Console.WriteLine($"!Led {led.Name.Value}!");
@@ -143,13 +143,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Led> list = _query.Execute();
             foreach (Led led in list)
             {
-                if (name == led.Name.Value)
+                if (name == led.Name.Value && led.IsOn == true)
                 {
                     new ChangeLedBrightnessCommand(_repository).Execute(led.Id, quantity);
                     System.Console.WriteLine($"!Led {led.Name.Value} Brightness changed!");
                     return;
                 }
-                if (name == led.Id.ToString())
+                if (name == led.Id.ToString() && led.IsOn == true)
                 {
                     new ChangeLedBrightnessCommand(_repository).Execute(led.Id, quantity);
                     System.Console.WriteLine($"!Led {led.Name.Value} brightness changed!");
@@ -178,13 +178,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             List<Led> list = _query.Execute();
             foreach (Led led in list)
             {
-                if (name == led.Name.Value)
+                if (name == led.Name.Value && led.IsOn == true)
                 {
                     new ChangeLedColorCommand(_repository).Execute(led.Id, r, g, b);
                     System.Console.WriteLine($"!Led  {led.Name.Value} color changed!");
                     return;
                 }
-                if (name == led.Id.ToString())
+                if (name == led.Id.ToString() && led.IsOn == true)
                 {
                     new ChangeLedColorCommand(_repository).Execute(led.Id, r, g, b);
                     System.Console.WriteLine($"!Led {led.Name.Value} color changed!");

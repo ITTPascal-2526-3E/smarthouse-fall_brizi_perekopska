@@ -83,13 +83,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<Door> list = _query.Execute();
             foreach (Door door in list)
             {
-                if (name == door.Name.Value)
+                if (name == door.Name.Value && door.IsLocked == false)
                 {
                     new LockDoorCommand(_repository).Execute(door.Id);
                     System.Console.WriteLine($"!Door {door.Name.Value} looked!");
                     return;
                 }
-                if (name == door.Id.ToString())
+                if (name == door.Id.ToString() && door.IsLocked == false)
                 {
                     new LockDoorCommand(_repository).Execute(door.Id);
                     System.Console.WriteLine($"!Door  {door.Name.Value} locked!");
@@ -112,13 +112,13 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             List<Door> list = _query.Execute();
             foreach (Door door in list)
             {
-                if (name == door.Name.Value)
+                if (name == door.Name.Value && door.IsLocked == true)
                 {
                     new UnlockDoorCommand(_repository).Execute(door.Id);
                     System.Console.WriteLine($"!Door {door.Name.Value} unlooked!");
                     return;
                 }
-                if (name == door.Id.ToString())
+                if (name == door.Id.ToString() && door.IsLocked == true)
                 {
                     new UnlockDoorCommand(_repository).Execute(door.Id);
                     System.Console.WriteLine($"!Door  {door.Name.Value} unlocked!");
