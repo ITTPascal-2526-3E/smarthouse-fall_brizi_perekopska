@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Temperatur
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
                 var values = line.Split(',');
-                if (values.Length < 8) continue;
+                if (values.Length < 7) continue;
 
                 try
                 {

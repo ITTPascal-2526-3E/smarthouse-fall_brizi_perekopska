@@ -59,7 +59,7 @@ namespace BlaisePascal.SmartHouse.Domain
                     case "5":
                         Controller.Thermostats();
                         break;
-										case "6":
+					case "6":
                         Controller.AirConditioners();
                         break;
                     case "7":
