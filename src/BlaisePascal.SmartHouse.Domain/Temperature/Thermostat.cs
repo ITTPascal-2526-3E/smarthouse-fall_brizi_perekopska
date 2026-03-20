@@ -21,13 +21,17 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         //Constructor:
         public Thermostat(Name name, bool isOn, ThermostatTemperature currentTemperature, ThermostatTemperature setpointTemperature) : base(name, isOn)
         {
-            SetpointTemperature = setpointTemperature;
-            CurrentTemperature = currentTemperature;
+            SetpointTemperature = setpointTemperature ?? ThermostatTemperature.From(5);
+            CurrentTemperature = currentTemperature ?? ThermostatTemperature.From(5);
+            Creation = DateTime.Now;
+            LastModified = Creation;
         }
         public Thermostat(Name name) : base(name,AssigmentIsOn())
         {
             SetpointTemperature = ThermostatTemperature.From(0);
             CurrentTemperature = ThermostatTemperature.From(0);
+            Creation = DateTime.Now;
+            LastModified = Creation;
         }
         private static bool AssigmentIsOn()
         {
@@ -35,8 +39,8 @@ namespace BlaisePascal.SmartHouse.Domain.Temperature
         }
         public Thermostat(Guid id, Name name, bool isOn, ThermostatTemperature currentTemperature, ThermostatTemperature setpointTemperature,DateTime creation, DateTime lastModify) : base(name, isOn,id,creation,lastModify)
         {
-            SetpointTemperature = setpointTemperature;
-            CurrentTemperature = currentTemperature;
+            SetpointTemperature = setpointTemperature ?? ThermostatTemperature.From(20);
+            CurrentTemperature = currentTemperature ?? ThermostatTemperature.From(20);
         }
 
         // Change the state of the thermostat, on/off

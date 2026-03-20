@@ -133,14 +133,14 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             System.Console.WriteLine("----------AIR CONDITIONERS----------");
             foreach (AirConditioner ac in list)
             {
-                System.Console.WriteLine($"Name: {ac.Name.Value}");
-                System.Console.WriteLine($"ID: {ac.Id}");
-                System.Console.WriteLine($"State: {(ac.IsOn ? "On" : "Off")}");
-                System.Console.WriteLine($"Mode: {ac.AirType}");
-                System.Console.WriteLine($"Temp: {(ac.Temperature != null ? ac.Temperature.Value.ToString() : "N/A")}");
-                System.Console.WriteLine($"Speed: {(ac.Speed != null ? ac.Speed.Value.ToString() : "N/A")}");
-                System.Console.WriteLine($"Creation: {ac.Creation}");
-                System.Console.WriteLine($"Last Modify: {ac.LastModified}");
+                System.Console.WriteLine($"Air conditioner name: {ac.Name.Value}");
+                System.Console.WriteLine($"Air conditioner ID: {ac.Id}");
+                System.Console.WriteLine($"Air conditioner state: {(ac.IsOn ? "On" : "Off")}");
+                System.Console.WriteLine($"Air conditioner mode: {ac.AirType}");
+                System.Console.WriteLine($"Air conditioner temperature: {(ac.Temperature != null ? ac.Temperature.Value.ToString() : "N/A")}");
+                System.Console.WriteLine($"Air conditioner speed: {(ac.Speed != null ? ac.Speed.Value.ToString() : "N/A")}");
+                System.Console.WriteLine($"Creation time: {ac.Creation}");
+                System.Console.WriteLine($"Last modified time: {ac.LastModified}");
                 System.Console.WriteLine();
             }
         }

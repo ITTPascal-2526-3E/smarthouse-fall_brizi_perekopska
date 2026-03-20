@@ -233,7 +233,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
             {
                 System.Console.WriteLine($"Thermostat name: {thermostat.Name.Value}");
                 System.Console.WriteLine($"Thermostat id: {thermostat.Id.ToString()}");
-                System.Console.WriteLine($"Thermostat state: {thermostat.IsOn}");
+                System.Console.WriteLine($"Thermostat state: {(thermostat.IsOn ? "On" : "Off")}");
                 System.Console.WriteLine($"Thermostat Setpoint Temperature: {thermostat.SetpointTemperature.Value}");
                 System.Console.WriteLine($"Thermostat Current Temperature: {thermostat.CurrentTemperature.Value}");
                 System.Console.WriteLine($"Creation time: {thermostat.Creation}");

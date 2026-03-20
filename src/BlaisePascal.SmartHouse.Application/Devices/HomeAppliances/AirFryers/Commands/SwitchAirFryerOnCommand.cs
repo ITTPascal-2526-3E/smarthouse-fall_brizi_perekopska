@@ -22,9 +22,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AirFryers.C
             var airFryer = _airFryerRepository.GetById(id);
             if (airFryer != null)
             {
-                if (airFryer.TurnOnOrOff() == true)
+                if (airFryer.IsOn == false)
                 {
                     airFryer.TurnOnOrOff();
+                    airFryer.LastModified = DateTime.Now;
                 }
                 _airFryerRepository.Update(airFryer);
             }

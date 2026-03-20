@@ -203,7 +203,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             {
                 System.Console.WriteLine($"Led name: {led.Name.Value}");
                 System.Console.WriteLine($"Led id: {led.Id.ToString()}");
-                System.Console.WriteLine($"Led state: {led.IsOn}");
+                System.Console.WriteLine($"Led state: {(led.IsOn ? "On" : "Off")}");
                 System.Console.WriteLine($"Led brightness: {led.Brightness.Value}");
                 System.Console.WriteLine($"Led color: {led.Color.R}, {led.Color.G}, {led.Color.B}");
                 System.Console.WriteLine($"Creation time: {led.Creation}");

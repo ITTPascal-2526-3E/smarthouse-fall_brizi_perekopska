@@ -22,9 +22,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temperature.Thermostats.Co
             var thermostat = _thermostatRepository.GetById(id);
             if (thermostat != null)
             {
-                if (thermostat.IsOn == true)
+                if (thermostat.IsOn == false)
                 {
                     thermostat.TurnOnOrOff();
+                    thermostat.LastModified = DateTime.Now;
                 }
                 _thermostatRepository.Update(thermostat);
             }

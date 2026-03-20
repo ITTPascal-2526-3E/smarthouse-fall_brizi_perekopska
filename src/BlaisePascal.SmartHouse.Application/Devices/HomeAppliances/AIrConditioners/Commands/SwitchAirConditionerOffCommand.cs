@@ -21,7 +21,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AIrConditio
             var airConditioner = _airConditionerRepository.GetById(id);
             if (airConditioner != null)
             {
-                if (airConditioner.IsOn == false)
+                if (airConditioner.IsOn == true)
                 {
                     airConditioner.TurnOnOrOff();
                     airConditioner.LastModified = DateTime.Now;

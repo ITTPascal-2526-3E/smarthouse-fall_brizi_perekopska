@@ -201,7 +201,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Illumination
             {
                 System.Console.WriteLine($"Lamp name: {lamp.Name.Value}");
                 System.Console.WriteLine($"Lamp id: {lamp.Id.ToString()}");
-                System.Console.WriteLine($"Lamp state: {lamp.IsOn}");
+                System.Console.WriteLine($"Lamp state: {(lamp.IsOn ? "On" : "Off")}");
                 System.Console.WriteLine($"Lamp brightness: {lamp.Brightness.Value}");
                 System.Console.WriteLine($"Lamp type: {lamp.Type}");
                 System.Console.WriteLine($"Lamp color: {lamp.Color.R}, {lamp.Color.G}, {lamp.Color.B}");

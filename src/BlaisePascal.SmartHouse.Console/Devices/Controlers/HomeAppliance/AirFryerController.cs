@@ -158,12 +158,12 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.HomeAppliance
             System.Console.WriteLine("----------AIR FRYERS----------");
             foreach (AirFryer af in list)
             {
-                System.Console.WriteLine($"Name: {af.Name.Value}");
-                System.Console.WriteLine($"ID: {af.Id}");
-                System.Console.WriteLine($"State: {(af.IsOn ? "On" : "Off")}");
-                System.Console.WriteLine($"Last Method: {af.LastCookingMethod}");
-                System.Console.WriteLine($"Creation: {af.Creation}");
-                System.Console.WriteLine($"Last MOdify: {af.LastModified}");
+                System.Console.WriteLine($"Airfryer name: {af.Name.Value}");
+                System.Console.WriteLine($"Airfryer ID: {af.Id}");
+                System.Console.WriteLine($"AirFryer state: {(af.IsOn ? "On" : "Off")}");
+                System.Console.WriteLine($"Airfryer last Method: {af.LastCookingMethod}");
+                System.Console.WriteLine($"Creation time: {af.Creation}");
+                System.Console.WriteLine($"Last modified time: {af.LastModified}");
                 System.Console.WriteLine();
             }
         }

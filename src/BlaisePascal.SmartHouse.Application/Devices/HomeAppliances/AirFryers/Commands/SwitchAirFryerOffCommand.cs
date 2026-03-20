@@ -1,5 +1,6 @@
 ﻿using BlaisePascal.SmartHouse.Domain.HomeAppliances;
 using BlaisePascal.SmartHouse.Domain.HomeAppliances.Repositories;
+using BlaisePascal.SmartHouse.Domain.Temperature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,10 @@ namespace BlaisePascal.SmartHouse.Application.Devices.HomeAppliances.AirFryers.C
             var airFryer = _airFryerRepository.GetById(id);
             if (airFryer != null)
             {
-                if (airFryer.TurnOnOrOff() == false)
+                if (airFryer.IsOn == true)
                 {
                     airFryer.TurnOnOrOff();
+                    airFryer.LastModified = DateTime.Now;
                 }
                 _airFryerRepository.Update(airFryer);
             }

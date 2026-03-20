@@ -80,8 +80,8 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Temperatur
                     dto.Id,
                     dto.Name?.Value ?? "Not named",
                     dto.IsOn,
-                    dto.CurrentTemperature.Value,
-                    dto.SetpointTemperature.Value,
+                    dto.CurrentTemperature?.Value ?? 20,
+                    dto.SetpointTemperature?.Value ?? 20,
                     dto.Creation,
                     dto.LastModified
                 ));
