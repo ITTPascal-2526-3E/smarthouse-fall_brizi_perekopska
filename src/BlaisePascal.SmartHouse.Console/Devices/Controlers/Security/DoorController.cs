@@ -4,6 +4,7 @@ using BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Commands;
 using BlaisePascal.SmartHouse.Application.Devices.Security.Doors.Queries;
 using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Security.Repositories;
+using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -136,7 +137,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             {
                 System.Console.WriteLine($"Door name: {door.Name.Value}");
                 System.Console.WriteLine($"Door id: {door.Id.ToString()}");
-                System.Console.WriteLine($"Door state: {door.IsLocked}");
+                System.Console.WriteLine($"Door state: {(door.IsLocked ? "Locked" : "Unlocked")}");
                 System.Console.WriteLine($"Creation time: {door.Creation}");
                 System.Console.WriteLine($"Last modified time: {door.LastModified}");
                 System.Console.WriteLine();

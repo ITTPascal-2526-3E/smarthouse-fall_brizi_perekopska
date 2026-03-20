@@ -6,6 +6,7 @@ using BlaisePascal.SmartHouse.Domain.Illumination;
 using BlaisePascal.SmartHouse.Domain.Illumination.Repositories;
 using BlaisePascal.SmartHouse.Domain.Security;
 using BlaisePascal.SmartHouse.Domain.Security.Repositories;
+using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -225,7 +226,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Security
             {
                 System.Console.WriteLine($"CCTV name: {cctv.Name.Value}");
                 System.Console.WriteLine($"CCTV id: {cctv.Id.ToString()}");
-                System.Console.WriteLine($"CCTV state: {cctv.IsOn}");
+                System.Console.WriteLine($"CCTV state: {(cctv.IsOn ? "On" : "Off")}");
                 System.Console.WriteLine($"CCTV is recording: {cctv.IsRecording}");
                 System.Console.WriteLine($"CCTV has night vision: {cctv.HasNightVision}");
                 System.Console.WriteLine($"Creation time: {cctv.Creation}");
