@@ -32,15 +32,21 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
         private DoorController DoorController;
         private IThermostatRepository _thermostatRepository = new CsvThermostatRepository();
         private ThermostatController ThermostatController;
+				private IAirConditionerRepository _airConditionerRepository = new CsvAirConditioner();
+				private AirConditionerController AirConditionerController;
+				private IAirFryerRepository _airFryerRepository = new CsvAirFryer();
+				private AirFryerController AirFryerController;
 
 
         public GeneralController() 
         {
             LampController = new LampController(_lampRepository);
             LedController = new LedController(_ledRrepository);
-            CCTVController=new CCTVController(_cctvRepository);
+            CCTVController = new CCTVController(_cctvRepository);
             DoorController = new DoorController(_doorRepository);
-            ThermostatController= new ThermostatController(_thermostatRepository);
+            ThermostatController = new ThermostatController(_thermostatRepository);
+						private AirConditionerController = new AirConditionerController(_airConditionerRepository);
+						private AirFryerController = new AirFryerController(_airFryerRepository);
         }
 
         public void Lamps() 
@@ -284,5 +290,102 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers
 
             } while (true);
         }
-    }
+public void AirConditioners()
+{
+    do
+    {
+        AirConditionerController.ShowAllAirConditioners();
+        System.Console.WriteLine();
+        System.Console.WriteLine("Air Conditioner name: ");
+        System.Console.WriteLine("Commands:");
+        System.Console.WriteLine("1) Add an Air Conditioner");
+        System.Console.WriteLine("2) Remove an Air Conditioner");
+				System.Console.WriteLine("3) Start Air Conditioner");
+        System.Console.WriteLine("4) Turn On");
+        System.Console.WriteLine("5) Turn Off");
+        System.Console.WriteLine("0) Exit");
+        System.Console.WriteLine("Choosing: ");
+
+        string action = System.Console.ReadLine();
+        switch (action)
+        {
+            case "0":
+                return;
+            case "1":
+                AirConditionerController.AddAirConditioner();
+                break;
+            case "2":
+                AirConditionerController.RemoveAirConditioner();
+                break;
+            case "3":
+                AirConditionerController.StartAirConditioner();
+                break;
+            case "4":
+                AirConditionerController.SwitchOn();
+                break;
+            case "5":
+                AirConditionerController.SwitchOff();
+                break;
+            default:
+                System.Console.WriteLine("Invalid option");
+                break;
+        }
+        System.Console.Clear();
+
+    } while (true);
+}
+
+public void AirFryers()
+{
+    do
+    {
+        AirFryerController.ShowAllAirFryers();
+        System.Console.WriteLine();
+        System.Console.WriteLine("Air Fryer name: ");
+        System.Console.WriteLine("Commands:");
+        System.Console.WriteLine("1) Add an Air Fryer");
+        System.Console.WriteLine("2) Remove an Air Fryer");
+        System.Console.WriteLine("3) Turn On");
+        System.Console.WriteLine("4) Turn Off");
+        System.Console.WriteLine("5) Set Temperature");
+        System.Console.WriteLine("6) Start Cooking");
+        System.Console.WriteLine("7) Stop Cooking");
+        System.Console.WriteLine("0) Exit");
+        System.Console.WriteLine("Choosing: ");
+
+        string action = System.Console.ReadLine();
+        switch (action)
+        {
+            case "0":
+                return;
+            case "1":
+                AirFryerController.AddAirFryer();
+                break;
+            case "2":
+                AirFryerController.RemoveAirFryer();
+                break;
+            case "3":
+                AirFryerController.SwitchOn();
+                break;
+            case "4":
+                AirFryerController.SwitchOff();
+                break;
+            case "5":
+                AirFryerController.SetTemperature();
+                break;
+            case "6":
+                AirFryerController.StartCooking();
+                break;
+            case "7":
+                AirFryerController.StopCooking();
+                break;
+            default:
+                System.Console.WriteLine("Invalid option");
+                break;
+        }
+        System.Console.Clear();
+
+    } while (true);
+}
+		}
 }
