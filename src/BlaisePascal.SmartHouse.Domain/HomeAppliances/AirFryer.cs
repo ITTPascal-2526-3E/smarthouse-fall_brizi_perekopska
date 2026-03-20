@@ -35,7 +35,10 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         {
             return false;
         }
-
+        public AirFryer(Guid id,Name name, bool isOn, DateTime creation, DateTime lastModify) : base(name, isOn,id,creation,lastModify)
+        {
+            IsOn = isOn;
+        }
         public bool TurnOnOrOff() 
         {
             if (IsOn == true)
@@ -53,11 +56,11 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         }
 
         //Start of the cooking, using a timer.
-        public async Task StartTheCooking(CookingType type, AFTemperature cookingTemperature, Time timer)
+        public async Task StartTheCooking(CookingType type, byte cookingTemperature, byte timerHours, byte timerMins, byte timerSecs)
         {
             try
             {
-                CookingTemperature = cookingTemperature;
+                CookingTemperature = AFTemperature.From(cookingTemperature);
                 LastCookingTemperature = CookingTemperature;
             }
             catch (Exception ex) 
@@ -66,7 +69,7 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
             }
             LastCookingMethod = type;
 
-            int time = (timer.Hours.Value * 3600 + timer.Minutes.Value * 60 + timer.Seconds.Value) * 1000;
+            int time = (timerHours * 3600 + timerMins * 60 + timerSecs) * 1000;
             int temp = 0;
             while (temp < time) 
             {

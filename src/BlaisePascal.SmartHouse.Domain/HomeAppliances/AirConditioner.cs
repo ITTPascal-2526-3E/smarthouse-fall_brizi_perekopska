@@ -31,6 +31,10 @@ namespace BlaisePascal.SmartHouse.Domain.HomeAppliances
         {
             return false;
         }
+        public AirConditioner(Guid id, Name name, bool isOn, DateTime creation, DateTime lastModify) : base(name, isOn, id, creation, lastModify)
+        {
+            IsOn = isOn;
+        }
 
         //Start the air condinioter
         public void StartAirConditioner(AirTypeList airType, ACTemperature temperature, Speed speed)

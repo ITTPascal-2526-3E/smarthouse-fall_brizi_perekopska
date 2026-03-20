@@ -23,7 +23,7 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temperature.Thermostats.Co
             var thermostat = _thermostatRepository.GetById(id);
             if (thermostat != null)
             {
-                if (thermostat.TurnOnOrOff() == false)
+                if (thermostat.IsOn == false)
                 {
                     thermostat.TurnOnOrOff();
                 }

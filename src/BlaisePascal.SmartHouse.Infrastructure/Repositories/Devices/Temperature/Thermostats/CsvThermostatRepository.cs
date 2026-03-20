@@ -80,8 +80,8 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Temperatur
                     dto.Id,
                     dto.Name?.Value ?? "Not named",
                     dto.IsOn,
-                    dto.CurrentTemperature,
-                    dto.SetpointTemperature,
+                    dto.CurrentTemperature.Value,
+                    dto.SetpointTemperature.Value,
                     dto.Creation,
                     dto.LastModified
                 ));
@@ -103,7 +103,7 @@ namespace BlaisePascal.SmartHouse.Infrastructure.Repositories.Devices.Temperatur
                 if (string.IsNullOrWhiteSpace(line)) continue;
 
                 var values = line.Split(',');
-                if (values.Length < 7) continue;
+                if (values.Length < 8) continue;
 
                 try
                 {

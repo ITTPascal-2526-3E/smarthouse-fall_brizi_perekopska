@@ -228,7 +228,7 @@ namespace BlaisePascal.SmartHouse.Console.Devices.Controlers.Temperature
         public void ShowAllThermostats()
         {
             List<Thermostat> list = _query.Execute();
-            System.Console.WriteLine("----------LEDS----------");
+            System.Console.WriteLine("----------Thermostats----------");
             foreach (Thermostat thermostat in list)
             {
                 System.Console.WriteLine($"Thermostat name: {thermostat.Name.Value}");

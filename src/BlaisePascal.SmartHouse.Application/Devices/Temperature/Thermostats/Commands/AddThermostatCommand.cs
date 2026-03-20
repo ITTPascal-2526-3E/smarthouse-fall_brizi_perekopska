@@ -1,4 +1,5 @@
-﻿using BlaisePascal.SmartHouse.Domain.Temperature;
+﻿using BlaisePascal.SmartHouse.Domain.Illumination;
+using BlaisePascal.SmartHouse.Domain.Temperature;
 using BlaisePascal.SmartHouse.Domain.Temperature.Repositories;
 using BlaisePascal.SmartHouse.Domain.ValueObjects;
 using System;
@@ -21,6 +22,8 @@ namespace BlaisePascal.SmartHouse.Application.Devices.Temerature.Thrmostats.Comm
         public void Execute(Name name)
         {
             var thermostat = new BlaisePascal.SmartHouse.Domain.Temperature.Thermostat(name);
+            thermostat.Creation = DateTime.Now;
+            thermostat.LastModified = DateTime.Now;
             _thermostatRepository.Add(thermostat);
         }
     }
